@@ -55,6 +55,17 @@
             this.label13 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +88,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(807, 147);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(867, 147);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // actionsTextBox
@@ -86,10 +98,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.actionsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actionsTextBox.Location = new System.Drawing.Point(109, 99);
+            this.actionsTextBox.Location = new System.Drawing.Point(117, 99);
             this.actionsTextBox.Multiline = true;
             this.actionsTextBox.Name = "actionsTextBox";
-            this.actionsTextBox.Size = new System.Drawing.Size(695, 45);
+            this.actionsTextBox.Size = new System.Drawing.Size(747, 45);
             this.actionsTextBox.TabIndex = 5;
             this.actionsTextBox.Leave += new System.EventHandler(this.ActionsTextBox_Changed);
             // 
@@ -99,10 +111,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fluentsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fluentsTextBox.Location = new System.Drawing.Point(109, 51);
+            this.fluentsTextBox.Location = new System.Drawing.Point(117, 51);
             this.fluentsTextBox.Multiline = true;
             this.fluentsTextBox.Name = "fluentsTextBox";
-            this.fluentsTextBox.Size = new System.Drawing.Size(695, 42);
+            this.fluentsTextBox.Size = new System.Drawing.Size(747, 42);
             this.fluentsTextBox.TabIndex = 4;
             this.fluentsTextBox.Leave += new System.EventHandler(this.FluentsTextBox_Changed);
             // 
@@ -115,7 +127,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 48);
+            this.label1.Size = new System.Drawing.Size(108, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Aktorzy:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -129,7 +141,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(3, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 48);
+            this.label2.Size = new System.Drawing.Size(108, 48);
             this.label2.TabIndex = 1;
             this.label2.Text = "Fluenty:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,7 +155,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(3, 96);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 51);
+            this.label3.Size = new System.Drawing.Size(108, 51);
             this.label3.TabIndex = 2;
             this.label3.Text = "Akcje:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -154,10 +166,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.actorsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actorsTextBox.Location = new System.Drawing.Point(109, 3);
+            this.actorsTextBox.Location = new System.Drawing.Point(117, 3);
             this.actorsTextBox.Multiline = true;
             this.actorsTextBox.Name = "actorsTextBox";
-            this.actorsTextBox.Size = new System.Drawing.Size(695, 42);
+            this.actorsTextBox.Size = new System.Drawing.Size(747, 42);
             this.actorsTextBox.TabIndex = 3;
             this.actorsTextBox.Leave += new System.EventHandler(this.ActorsTextBox_Changed);
             // 
@@ -240,7 +252,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(375, 241);
+            this.label11.Location = new System.Drawing.Point(375, 238);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(51, 16);
             this.label11.TabIndex = 9;
@@ -265,7 +277,7 @@
             // piComboBox
             // 
             this.piComboBox.FormattingEnabled = true;
-            this.piComboBox.Location = new System.Drawing.Point(284, 238);
+            this.piComboBox.Location = new System.Drawing.Point(284, 235);
             this.piComboBox.Name = "piComboBox";
             this.piComboBox.Size = new System.Drawing.Size(85, 24);
             this.piComboBox.TabIndex = 12;
@@ -273,14 +285,14 @@
             // fluentComboBox
             // 
             this.fluentComboBox.FormattingEnabled = true;
-            this.fluentComboBox.Location = new System.Drawing.Point(432, 238);
+            this.fluentComboBox.Location = new System.Drawing.Point(432, 235);
             this.fluentComboBox.Name = "fluentComboBox";
             this.fluentComboBox.Size = new System.Drawing.Size(85, 24);
             this.fluentComboBox.TabIndex = 13;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(582, 231);
+            this.button1.Location = new System.Drawing.Point(626, 229);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(171, 35);
             this.button1.TabIndex = 14;
@@ -338,11 +350,122 @@
             this.richTextBox2.TabIndex = 20;
             this.richTextBox2.Text = "";
             // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox2.Location = new System.Drawing.Point(200, 646);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(184, 25);
+            this.textBox2.TabIndex = 22;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(151, 506);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(653, 28);
+            this.comboBox3.TabIndex = 23;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label14.Location = new System.Drawing.Point(12, 646);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(177, 25);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Wynik kwerendy:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(25, 558);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(131, 16);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "pi (stan początkowy):";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(303, 558);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(117, 16);
+            this.label16.TabIndex = 26;
+            this.label16.Text = "gamma (warunek):";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(566, 558);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 16);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "w (wykonawca):";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(160, 555);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(125, 24);
+            this.comboBox4.TabIndex = 28;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(426, 555);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(125, 24);
+            this.comboBox5.TabIndex = 29;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(672, 555);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(125, 24);
+            this.comboBox6.TabIndex = 30;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(626, 601);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(178, 35);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Odpytaj";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(114, 454);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(171, 35);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Dodaj";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // RWGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 600);
+            this.ClientSize = new System.Drawing.Size(891, 703);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label13);
@@ -402,6 +525,17 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 
