@@ -45,6 +45,8 @@ namespace RWProgram
                 Logic.Actors.Add(new Actor() { Name = a });
             actorComboBox.Items.Clear();
             actorComboBox.Items.AddRange(Logic.Actors.ToArray());
+            programActorComboBox.Items.Clear();
+            programActorComboBox.Items.AddRange(Logic.Actors.ToArray());
         }
 
         private void FluentsTextBox_Changed(object sender, EventArgs e)
@@ -74,6 +76,8 @@ namespace RWProgram
                 Logic.Actions.Add(new Action() { Name = f });
             actionComboBox.Items.Clear();
             actionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            programActionComboBox.Items.Clear();
+            programActionComboBox.Items.AddRange(Logic.Actions.ToArray());
         }
 
         private void ClickAddStatementButton(object sender, EventArgs e)
@@ -92,7 +96,7 @@ namespace RWProgram
                         Alpha = (Fluent)fluentComboBox.SelectedItem, 
                         Action = (Action)actionComboBox.SelectedItem,
                         Actor = (Actor)actorComboBox.SelectedItem,
-                        Pi = (Fluent)piComboBox.SelectedItem
+                        Pi = new List<Fluent> { (Fluent)piComboBox.SelectedItem }
                     });
                     break;
                 default:
@@ -104,6 +108,15 @@ namespace RWProgram
                 str = str + st.ToString() + "\n";
 
             richTextBox1.Text = str;
+        }
+
+        private void AddToProgramButton_Click(object sender, EventArgs e)
+        {
+            Logic.Program.Add(((Action)programActionComboBox.SelectedItem, (Actor)programActorComboBox.SelectedItem));
+            var str = string.Empty;
+            foreach (var p in Logic.Program)
+                str = str + p.Item1.ToString() + " by " + p.Item2.ToString() + "\n";
+            richTextBox2.Text = str;
         }
     }
 }

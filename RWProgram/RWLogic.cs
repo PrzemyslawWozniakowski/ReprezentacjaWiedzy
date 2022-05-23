@@ -18,6 +18,6 @@ namespace RWProgram
 
         public List<Statement> Statements = new List<Statement>();
 
-        public List<(Actor,Action)> Program = new List<(Actor,Action)>();
+        public List<(Action,Actor)> Program = new List<(Action, Actor)>();
     }
 }

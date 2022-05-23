@@ -11,10 +11,9 @@ namespace RWProgram.Classes
         public override string ToString() { return string.Empty; }
     }
 
-    public class InitiallyFluent : Statement
+    //Same as FluentAfterActionbyActor but actors and action empty
+    public class InitiallyFluent : FluentAfterActionbyActor
     {
-        public Fluent Alpha { get; set; }
-
         public override string ToString()
         {
             return $"initially {Alpha.ToString()}";
@@ -73,7 +72,7 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorCausesAlphaIfFluent : Statement
+    public class ActionByActorCausesAlphaIfFluents : Statement
     {
         public Fluent Alpha { get; set; }
 
@@ -81,7 +80,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public override string ToString()
         {
@@ -89,7 +88,7 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorReleasesFluent1IfFluent2 : Statement
+    public class ActionByActorReleasesFluent1IfFluents : Statement
     {
         public Fluent F { get; set; }
 
@@ -97,7 +96,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public override string ToString()
         {
@@ -105,7 +104,7 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorTypicallyCausesAlphaIfFluent
+    public class ActionByActorTypicallyCausesAlphaIfFluents
     {
         public Fluent Alpha { get; set; }
 
@@ -113,7 +112,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public override string ToString()
         {
@@ -121,7 +120,7 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorTypicallyReleasesFluent1IfFluent2
+    public class ActionByActorTypicallyReleasesFluent1IfFluents
     {
         public Fluent F { get; set; }
 
@@ -129,7 +128,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public override string ToString()
         {
@@ -137,9 +136,9 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ImpossibleActionByActorIfFluent
+    public class ImpossibleActionByActorIfFluents
     {
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public Action Action { get; set; }
 
@@ -153,11 +152,11 @@ namespace RWProgram.Classes
 
     public class AlwaysPi
     {
-        public Fluent Pi { get; set; }
+        public List<Fluent> Pi { get; set; }
 
         public override string ToString()
         {
-            return $"alays {Pi}";
+            return $"always {Pi}";
         }
     }
 
