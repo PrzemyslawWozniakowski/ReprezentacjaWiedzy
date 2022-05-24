@@ -49,6 +49,7 @@
     <Compile Include="Classes\Action.cs" />
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="Classes\Fluent.cs" />
+    <Compile Include="Classes\Queries.cs" />
     <Compile Include="Classes\Statements.cs" />
     <Compile Include="Enums\StatementEnum.cs" />
     <Compile Include="RWGui.cs">

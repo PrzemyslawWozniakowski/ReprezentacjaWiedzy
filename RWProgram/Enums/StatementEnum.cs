@@ -10,13 +10,15 @@ namespace RWProgram.Enums
     {
         InitiallyFluent,
         FluentAfterActionbyActor,
+        FluentTypicallyAfterActionbyActor,
         ObservableFluentAfterActionByActor,
-        ActionByActorCausesAlphaIfFluent,
-        ActionByActorReleasesFluent1IfFluent2,
-        ActionByActorTypicallyCausesAlphaIfFluent,
-        ActionByActorTypicallyReleasesFluent1IfFluent2,
-        ImpossibleActionByActorIfFluent,
+        ActionByActorCausesAlphaIfFluents,
+        ActionByActorReleasesFluent1IfFluents,
+        ActionByActorTypicallyCausesAlphaIfFluents,
+        ActionByActorTypicallyReleasesFluent1IfFluents,
+        ImpossibleActionByActorIfFluents,
         AlwaysPi,
-        NoninertialFluent
+        NoninertialFluent,
+        None
     }
 }
