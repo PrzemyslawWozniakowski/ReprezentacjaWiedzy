@@ -386,7 +386,8 @@
             this.QueriesOutcomeLabel.Location = new System.Drawing.Point(17, 833);
             this.QueriesOutcomeLabel.Margin = new System.Windows.Forms.Padding(10);
             this.QueriesOutcomeLabel.Name = "QueriesOutcomeLabel";
-            this.QueriesOutcomeLabel.Size = new System.Drawing.Size(177, 25);
+            this.QueriesOutcomeLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.QueriesOutcomeLabel.Size = new System.Drawing.Size(177, 35);
             this.QueriesOutcomeLabel.TabIndex = 24;
             this.QueriesOutcomeLabel.Text = "Wynik kwerendy:";
             // 
@@ -593,7 +594,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(832, 866);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(832, 971);
             this.Controls.Add(this.DeleteLastProgramButton);
             this.Controls.Add(this.DeleteLastStatementButton);
             this.Controls.Add(this.AddQueryButton);
@@ -638,6 +640,7 @@
             this.Controls.Add(this.StatementsComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MaximumSize = new System.Drawing.Size(850, 1200);
             this.MinimumSize = new System.Drawing.Size(850, 900);
             this.Name = "RWGui";
