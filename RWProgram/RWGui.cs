@@ -15,33 +15,48 @@ namespace RWProgram
     public partial class RWGui : Form
     {
         public StatementEnum statementWIP = StatementEnum.None;
-         
+
+        public Query Query { get; set; } = null;
+
         public List<string> Statements = new List<string>()
         {
             "initially alfa",
             "alfa after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "alfa typically after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "observable alfa after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
-            "A by w causes alfa if pi",
-            "A by w releases f if pi",
-            "A by w typically causes alfa if pi",
-            "A by w typically release f if pi",
-            "impossible A by w if pi",
-            "always pi",
+            "A by w causes alfa if π",
+            "A by w releases f if π",
+            "A by w typically causes alfa if π",
+            "A by w typically release f if π",
+            "impossible A by w if π",
+            "always π",
             "noninertial fluent"
         };
+
+        public List<string> Querends = new List<string>()
+        {
+            "always executable?",
+            "ever executable?",
+            "always accessible γ from π with P?",
+            "ever accessible γ from π with P?",
+            "always w involved with P?",
+            "ever w involved with P?"
+        };
+
         public RWLogic Logic { get; set; }
+        
         public RWGui()
         {
             InitializeComponent();
             Logic = new RWLogic();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
+            QueriesComboBox.Items.AddRange(Querends.ToArray());
         }
 
         private void ActorsTextBox_Changed(object sender, EventArgs e)
         {
             var actors_names = actorsTextBox.Text.Split(',',';','\n');
-            actors_names = actors_names.Select(a => a.Trim()).Where(a => a != String.Empty).ToArray();
+            actors_names = actors_names.Select(a => a.Trim()).Where(a => a != string.Empty).ToArray();
 
             var to_create = actors_names.Where(a => !Logic.Actors.Any(x => x.Name == a));
             Logic.Actors = Logic.Actors.Where(x => actors_names.Any(a => a == x.Name)).ToList();
@@ -49,14 +64,18 @@ namespace RWProgram
                 Logic.Actors.Add(new Actor() { Name = a });
             actorComboBox.Items.Clear();
             actorComboBox.Items.AddRange(Logic.Actors.ToArray());
+
             ProgramActorComboBox.Items.Clear();
             ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
+
+            Actor2ComboBox.Items.Clear();
+            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
         }
 
         private void FluentsTextBox_Changed(object sender, EventArgs e)
         {
             var fluents_names = fluentsTextBox.Text.Split(',', ';', '\n');
-            fluents_names = fluents_names.Select(f => f.Trim()).Where(f => f != String.Empty).ToArray();
+            fluents_names = fluents_names.Select(f => f.Trim()).Where(f => f != string.Empty).ToArray();
 
             var to_create = fluents_names.Where(f => !Logic.Fluents.Any(x => x.Name == f));
             Logic.Fluents = Logic.Fluents.Where(x => fluents_names.Any(f => f == x.Name)).ToList();
@@ -71,12 +90,18 @@ namespace RWProgram
 
             piComboBox.Items.Clear();
             piComboBox.Items.AddRange(Logic.Fluents.ToArray());
+
+            GammaComboBox.Items.Clear();
+            GammaComboBox.Items.AddRange(Logic.Fluents.ToArray());
+
+            Pi2ComboBox.Items.Clear();
+            Pi2ComboBox.Items.AddRange(Logic.Fluents.ToArray());
         }
 
         private void ActionsTextBox_Changed(object sender, EventArgs e)
         {
             var actions_names = actionsTextBox.Text.Split(',', ';', '\n');
-            actions_names = actions_names.Select(a => a.Trim()).Where(a => a != String.Empty).ToArray();
+            actions_names = actions_names.Select(a => a.Trim()).Where(a => a != string.Empty).ToArray();
 
             var to_create = actions_names.Where(a => !Logic.Actions.Any(x => x.Name == a));
             Logic.Actions = Logic.Actions.Where(x => actions_names.Any(a => a == x.Name)).ToList();
@@ -304,6 +329,155 @@ namespace RWProgram
             ConfirmStatementButton.Enabled = false;
             AddConditionButton.Visible = false;
             AddConditionButton.Enabled = false;
+        }
+
+        private void AskQueryButton_Click(object sender, EventArgs e)
+        {
+            ResponseTextBox.Text =  Query.Response().ToString();
+        }
+
+        private void ResetQueryButton_Click(object sender, EventArgs e)
+        {
+            Query = null;
+            ResetButtons();
+            QueriesComboBox.SelectedIndex = -1;
+        }
+
+        private void AddQueryButton_Click(object sender, EventArgs e)
+        {
+            var queryIndex = QueriesComboBox.SelectedIndex;
+            var queryEnum = (QueriesEnum)queryIndex;
+            switch (queryEnum)
+            {
+                case QueriesEnum.AlwaysExecutable:
+                    Query = new AlwaysExecutable();
+                    break;
+                case QueriesEnum.EverExecutable:
+                    Query = new EverExecutable();
+                    break;
+                case QueriesEnum.AlwaysAccesibleYFromPi:
+                    if(GammaComboBox.SelectedItem != null && Pi2ComboBox.SelectedItem != null)
+                        Query = new AlwaysAccesibleYFromPi() { 
+                            Gamma = new List<Fluent> { (Fluent)GammaComboBox.SelectedItem } ,
+                            Pi = new List<Fluent> { (Fluent)Pi2ComboBox.SelectedItem } ,
+                        };
+                    break;
+                case QueriesEnum.EverAccesibleYFromPi:
+                    if (GammaComboBox.SelectedItem != null && Pi2ComboBox.SelectedItem != null)
+                        Query = new EverAccesibleYFromPi()
+                        {
+                            Gamma = new List<Fluent> { (Fluent)GammaComboBox.SelectedItem },
+                            Pi = new List<Fluent> { (Fluent)Pi2ComboBox.SelectedItem },
+                        };
+                    break;
+                case QueriesEnum.AlwaysWInvolved:
+                    if (Actor2ComboBox.SelectedItem != null)
+                        Query = new AlwaysWInvolved() { W = (Actor)Actor2ComboBox.SelectedItem };
+                    break;
+                case QueriesEnum.EverWInvolved:
+                    if (Actor2ComboBox.SelectedItem != null)
+                        Query = new EverWInvolved() { W = (Actor)Actor2ComboBox.SelectedItem };
+                    break;
+                default:
+                    break;
+            }
+
+            SetQueryTextBox();
+        }
+
+        private void ResetButtons()
+        {
+            AddInitialStateButton.Visible = false;
+            AddCondition2Button.Visible = false;
+            AddInitialStateButton.Enabled = false;
+            AddCondition2Button.Enabled = false;
+        }
+
+        private void QueriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Query = null;
+            SetQueryTextBox();
+
+            var queryIndex = QueriesComboBox.SelectedIndex;
+            var queryEnum = (QueriesEnum)queryIndex;
+            SetQueryTextBox();
+            switch (queryEnum)
+            {
+                case QueriesEnum.AlwaysAccesibleYFromPi:
+                case QueriesEnum.EverAccesibleYFromPi:
+                    AddInitialStateButton.Visible = true;
+                    AddCondition2Button.Visible = true;
+                    AddInitialStateButton.Enabled = true;
+                    AddCondition2Button.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void AddInitialStateButton_Click(object sender, EventArgs e)
+        {
+            var queryIndex = QueriesComboBox.SelectedIndex;
+            var queryEnum = (QueriesEnum)queryIndex;
+            switch (queryEnum)
+            {
+
+                case QueriesEnum.AlwaysAccesibleYFromPi:
+                case QueriesEnum.EverAccesibleYFromPi:
+                    {
+                        var query = Query as QueryWithGammaAndPi;
+                        if (query != null)
+                        {
+                            query.Pi.Add((Fluent)Pi2ComboBox.SelectedItem);
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            SetQueryTextBox();
+        }
+
+        private void AddCondition2Button_Click(object sender, EventArgs e)
+        {
+            var queryIndex = QueriesComboBox.SelectedIndex;
+            var queryEnum = (QueriesEnum)queryIndex;
+            switch (queryEnum)
+            {
+
+                case QueriesEnum.AlwaysAccesibleYFromPi:
+                case QueriesEnum.EverAccesibleYFromPi:
+                    {
+                        var query = Query as QueryWithGammaAndPi;
+                        if (query != null)
+                        {
+                            query.Gamma.Add((Fluent)GammaComboBox.SelectedItem);
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            SetQueryTextBox();
+        }
+
+        private void SetQueryTextBox()
+        {
+            QueryTextBox.Text = Query != null ? Query.ToString() : string.Empty;
+        }
+
+        private void DeleteLastStatementButton_Click(object sender, EventArgs e)
+        {
+            if (Logic.Statements.Count > 0)
+                Logic.Statements.RemoveAt(Logic.Statements.Count - 1);
+        }
+
+        private void DeleteLastProgramButton_Click(object sender, EventArgs e)
+        {
+            if (Logic.Program.Count > 0)
+                Logic.Program.RemoveAt(Logic.Statements.Count - 1);
         }
     }
 }

@@ -126,7 +126,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} casues {Alpha} if {String.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} casues {Alpha} if {string.Join(",", Pi.Select(p => p.Name))}";
         }
     }
 
@@ -147,7 +147,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} releases {F} if {String.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} releases {F} if {string.Join(",", Pi.Select(p => p.Name))}";
         }
     }
 
@@ -168,7 +168,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically casues {Alpha} if {String.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} typically casues {Alpha} if {string.Join(",", Pi.Select(p => p.Name))}";
         }
     }
 
@@ -189,7 +189,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically releases {F} if {String.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} typically releases {F} if {string.Join(",", Pi.Select(p => p.Name))}";
         }
     }
 
@@ -210,7 +210,7 @@ namespace RWProgram.Classes
         {
             var str = $"impossible {Action} by {Actor}";
             if (Pi == null || Pi.Count == 0) return str;
-            return $"{str} if {String.Join(",", Pi.Select(p => p.Name))}";
+            return $"{str} if {string.Join(",", Pi.Select(p => p.Name))}";
         }
     }
 
@@ -221,7 +221,7 @@ namespace RWProgram.Classes
         {
             if (Pi == null || Pi.Count == 0) return string.Empty;
 
-            return $"always {String.Join(", ", Pi.Select(p => p?.Name))}";
+            return $"always {string.Join(", ", Pi.Select(p => p?.Name))}";
         }
     }
 

@@ -51,6 +51,7 @@
     <Compile Include="Classes\Fluent.cs" />
     <Compile Include="Classes\Queries.cs" />
     <Compile Include="Classes\Statements.cs" />
+    <Compile Include="Enums\QueriesEnum.cs" />
     <Compile Include="Enums\StatementEnum.cs" />
     <Compile Include="RWGui.cs">
       <SubType>Form</SubType>

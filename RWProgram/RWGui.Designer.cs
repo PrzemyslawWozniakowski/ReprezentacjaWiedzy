@@ -55,21 +55,29 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ProgramActorComboBox = new System.Windows.Forms.ComboBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.ResponseTextBox = new System.Windows.Forms.TextBox();
+            this.QueriesComboBox = new System.Windows.Forms.ComboBox();
             this.QueriesOutcomeLabel = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.Pi2ComboBox = new System.Windows.Forms.ComboBox();
+            this.GammaComboBox = new System.Windows.Forms.ComboBox();
+            this.Actor2ComboBox = new System.Windows.Forms.ComboBox();
             this.AskQueryButton = new System.Windows.Forms.Button();
             this.AddToProgramButton = new System.Windows.Forms.Button();
             this.ResetProgramButton = new System.Windows.Forms.Button();
             this.ResetStatementButton = new System.Windows.Forms.Button();
             this.AddConditionButton = new System.Windows.Forms.Button();
             this.ConfirmStatementButton = new System.Windows.Forms.Button();
+            this.AddCondition2Button = new System.Windows.Forms.Button();
+            this.AddInitialStateButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ResetQueryButton = new System.Windows.Forms.Button();
+            this.QueryTextBox = new System.Windows.Forms.TextBox();
+            this.AddQueryButton = new System.Windows.Forms.Button();
+            this.DeleteLastStatementButton = new System.Windows.Forms.Button();
+            this.DeleteLastProgramButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,7 +205,7 @@
             // 
             this.StatementsLabel.AutoSize = true;
             this.StatementsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.StatementsLabel.Location = new System.Drawing.Point(15, 326);
+            this.StatementsLabel.Location = new System.Drawing.Point(18, 311);
             this.StatementsLabel.Name = "StatementsLabel";
             this.StatementsLabel.Size = new System.Drawing.Size(197, 25);
             this.StatementsLabel.TabIndex = 3;
@@ -207,7 +215,7 @@
             // 
             this.QueriesLabel.AutoSize = true;
             this.QueriesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.QueriesLabel.Location = new System.Drawing.Point(13, 561);
+            this.QueriesLabel.Location = new System.Drawing.Point(18, 605);
             this.QueriesLabel.Name = "QueriesLabel";
             this.QueriesLabel.Size = new System.Drawing.Size(115, 25);
             this.QueriesLabel.TabIndex = 4;
@@ -217,7 +225,7 @@
             // 
             this.ProgramLabel.AutoSize = true;
             this.ProgramLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ProgramLabel.Location = new System.Drawing.Point(18, 428);
+            this.ProgramLabel.Location = new System.Drawing.Point(20, 453);
             this.ProgramLabel.Name = "ProgramLabel";
             this.ProgramLabel.Size = new System.Drawing.Size(100, 25);
             this.ProgramLabel.TabIndex = 5;
@@ -293,9 +301,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(626, 229);
+            this.button1.Location = new System.Drawing.Point(678, 229);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 35);
+            this.button1.Size = new System.Drawing.Size(119, 35);
             this.button1.TabIndex = 14;
             this.button1.Text = "Dodaj";
             this.button1.UseVisualStyleBackColor = true;
@@ -303,16 +311,16 @@
             // 
             // StatementsTextBox
             // 
-            this.StatementsTextBox.Location = new System.Drawing.Point(260, 326);
+            this.StatementsTextBox.Location = new System.Drawing.Point(256, 311);
             this.StatementsTextBox.Name = "StatementsTextBox";
-            this.StatementsTextBox.Size = new System.Drawing.Size(553, 96);
+            this.StatementsTextBox.Size = new System.Drawing.Size(554, 96);
             this.StatementsTextBox.TabIndex = 15;
             this.StatementsTextBox.Text = "";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(26, 470);
+            this.label12.Location = new System.Drawing.Point(31, 495);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 16);
             this.label12.TabIndex = 16;
@@ -321,15 +329,15 @@
             // ProgramActionComboBox
             // 
             this.ProgramActionComboBox.FormattingEnabled = true;
-            this.ProgramActionComboBox.Location = new System.Drawing.Point(79, 467);
+            this.ProgramActionComboBox.Location = new System.Drawing.Point(77, 492);
             this.ProgramActionComboBox.Name = "ProgramActionComboBox";
-            this.ProgramActionComboBox.Size = new System.Drawing.Size(85, 24);
+            this.ProgramActionComboBox.Size = new System.Drawing.Size(56, 24);
             this.ProgramActionComboBox.TabIndex = 17;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(170, 470);
+            this.label13.Location = new System.Drawing.Point(139, 495);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 16);
             this.label13.TabIndex = 18;
@@ -338,42 +346,45 @@
             // ProgramActorComboBox
             // 
             this.ProgramActorComboBox.FormattingEnabled = true;
-            this.ProgramActorComboBox.Location = new System.Drawing.Point(201, 467);
+            this.ProgramActorComboBox.Location = new System.Drawing.Point(166, 492);
             this.ProgramActorComboBox.Name = "ProgramActorComboBox";
-            this.ProgramActorComboBox.Size = new System.Drawing.Size(85, 24);
+            this.ProgramActorComboBox.Size = new System.Drawing.Size(56, 24);
             this.ProgramActorComboBox.TabIndex = 19;
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(326, 445);
+            this.richTextBox2.Location = new System.Drawing.Point(337, 453);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(472, 96);
+            this.richTextBox2.Size = new System.Drawing.Size(473, 122);
             this.richTextBox2.TabIndex = 20;
             this.richTextBox2.Text = "";
             // 
-            // textBox2
+            // ResponseTextBox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(201, 698);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 25);
-            this.textBox2.TabIndex = 22;
+            this.ResponseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ResponseTextBox.Location = new System.Drawing.Point(199, 834);
+            this.ResponseTextBox.Margin = new System.Windows.Forms.Padding(10);
+            this.ResponseTextBox.Multiline = true;
+            this.ResponseTextBox.Name = "ResponseTextBox";
+            this.ResponseTextBox.Size = new System.Drawing.Size(174, 25);
+            this.ResponseTextBox.TabIndex = 22;
             // 
-            // comboBox3
+            // QueriesComboBox
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(152, 558);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(646, 28);
-            this.comboBox3.TabIndex = 23;
+            this.QueriesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.QueriesComboBox.FormattingEnabled = true;
+            this.QueriesComboBox.Location = new System.Drawing.Point(157, 602);
+            this.QueriesComboBox.Name = "QueriesComboBox";
+            this.QueriesComboBox.Size = new System.Drawing.Size(653, 28);
+            this.QueriesComboBox.TabIndex = 23;
+            this.QueriesComboBox.SelectedIndexChanged += new System.EventHandler(this.QueriesComboBox_SelectedIndexChanged);
             // 
             // QueriesOutcomeLabel
             // 
             this.QueriesOutcomeLabel.AutoSize = true;
             this.QueriesOutcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.QueriesOutcomeLabel.Location = new System.Drawing.Point(13, 698);
+            this.QueriesOutcomeLabel.Location = new System.Drawing.Point(17, 833);
+            this.QueriesOutcomeLabel.Margin = new System.Windows.Forms.Padding(10);
             this.QueriesOutcomeLabel.Name = "QueriesOutcomeLabel";
             this.QueriesOutcomeLabel.Size = new System.Drawing.Size(177, 25);
             this.QueriesOutcomeLabel.TabIndex = 24;
@@ -382,7 +393,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(26, 610);
+            this.label15.Location = new System.Drawing.Point(22, 654);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(131, 16);
             this.label15.TabIndex = 25;
@@ -391,7 +402,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(304, 610);
+            this.label16.Location = new System.Drawing.Point(309, 654);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(117, 16);
             this.label16.TabIndex = 26;
@@ -400,50 +411,51 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(567, 610);
+            this.label17.Location = new System.Drawing.Point(572, 654);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(100, 16);
             this.label17.TabIndex = 27;
             this.label17.Text = "w (wykonawca):";
             // 
-            // comboBox4
+            // Pi2ComboBox
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(161, 607);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(125, 24);
-            this.comboBox4.TabIndex = 28;
+            this.Pi2ComboBox.FormattingEnabled = true;
+            this.Pi2ComboBox.Location = new System.Drawing.Point(166, 651);
+            this.Pi2ComboBox.Name = "Pi2ComboBox";
+            this.Pi2ComboBox.Size = new System.Drawing.Size(125, 24);
+            this.Pi2ComboBox.TabIndex = 28;
             // 
-            // comboBox5
+            // GammaComboBox
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(427, 607);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(125, 24);
-            this.comboBox5.TabIndex = 29;
+            this.GammaComboBox.FormattingEnabled = true;
+            this.GammaComboBox.Location = new System.Drawing.Point(432, 651);
+            this.GammaComboBox.Name = "GammaComboBox";
+            this.GammaComboBox.Size = new System.Drawing.Size(125, 24);
+            this.GammaComboBox.TabIndex = 29;
             // 
-            // comboBox6
+            // Actor2ComboBox
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(673, 607);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(125, 24);
-            this.comboBox6.TabIndex = 30;
+            this.Actor2ComboBox.FormattingEnabled = true;
+            this.Actor2ComboBox.Location = new System.Drawing.Point(678, 651);
+            this.Actor2ComboBox.Name = "Actor2ComboBox";
+            this.Actor2ComboBox.Size = new System.Drawing.Size(125, 24);
+            this.Actor2ComboBox.TabIndex = 30;
             // 
             // AskQueryButton
             // 
-            this.AskQueryButton.Location = new System.Drawing.Point(621, 654);
+            this.AskQueryButton.Location = new System.Drawing.Point(632, 779);
             this.AskQueryButton.Name = "AskQueryButton";
             this.AskQueryButton.Size = new System.Drawing.Size(178, 35);
             this.AskQueryButton.TabIndex = 31;
             this.AskQueryButton.Text = "Odpytaj";
             this.AskQueryButton.UseVisualStyleBackColor = true;
+            this.AskQueryButton.Click += new System.EventHandler(this.AskQueryButton_Click);
             // 
             // AddToProgramButton
             // 
-            this.AddToProgramButton.Location = new System.Drawing.Point(145, 506);
+            this.AddToProgramButton.Location = new System.Drawing.Point(239, 486);
             this.AddToProgramButton.Name = "AddToProgramButton";
-            this.AddToProgramButton.Size = new System.Drawing.Size(141, 35);
+            this.AddToProgramButton.Size = new System.Drawing.Size(92, 35);
             this.AddToProgramButton.TabIndex = 32;
             this.AddToProgramButton.Text = "Dodaj";
             this.AddToProgramButton.UseVisualStyleBackColor = true;
@@ -451,9 +463,9 @@
             // 
             // ResetProgramButton
             // 
-            this.ResetProgramButton.Location = new System.Drawing.Point(13, 506);
+            this.ResetProgramButton.Location = new System.Drawing.Point(28, 540);
             this.ResetProgramButton.Name = "ResetProgramButton";
-            this.ResetProgramButton.Size = new System.Drawing.Size(123, 35);
+            this.ResetProgramButton.Size = new System.Drawing.Size(104, 35);
             this.ResetProgramButton.TabIndex = 33;
             this.ResetProgramButton.Text = "Reset";
             this.ResetProgramButton.UseVisualStyleBackColor = true;
@@ -461,9 +473,9 @@
             // 
             // ResetStatementButton
             // 
-            this.ResetStatementButton.Location = new System.Drawing.Point(89, 375);
+            this.ResetStatementButton.Location = new System.Drawing.Point(28, 359);
             this.ResetStatementButton.Name = "ResetStatementButton";
-            this.ResetStatementButton.Size = new System.Drawing.Size(123, 35);
+            this.ResetStatementButton.Size = new System.Drawing.Size(99, 35);
             this.ResetStatementButton.TabIndex = 34;
             this.ResetStatementButton.Text = "Reset";
             this.ResetStatementButton.UseVisualStyleBackColor = true;
@@ -472,9 +484,9 @@
             // AddConditionButton
             // 
             this.AddConditionButton.Enabled = false;
-            this.AddConditionButton.Location = new System.Drawing.Point(628, 270);
+            this.AddConditionButton.Location = new System.Drawing.Point(678, 270);
             this.AddConditionButton.Name = "AddConditionButton";
-            this.AddConditionButton.Size = new System.Drawing.Size(171, 35);
+            this.AddConditionButton.Size = new System.Drawing.Size(121, 35);
             this.AddConditionButton.TabIndex = 36;
             this.AddConditionButton.Text = "Dodaj warunek";
             this.AddConditionButton.UseVisualStyleBackColor = true;
@@ -484,35 +496,127 @@
             // ConfirmStatementButton
             // 
             this.ConfirmStatementButton.Enabled = false;
-            this.ConfirmStatementButton.Location = new System.Drawing.Point(451, 270);
+            this.ConfirmStatementButton.Location = new System.Drawing.Point(551, 270);
             this.ConfirmStatementButton.Name = "ConfirmStatementButton";
-            this.ConfirmStatementButton.Size = new System.Drawing.Size(171, 35);
+            this.ConfirmStatementButton.Size = new System.Drawing.Size(121, 35);
             this.ConfirmStatementButton.TabIndex = 35;
             this.ConfirmStatementButton.Text = "Zatwierdź";
             this.ConfirmStatementButton.UseVisualStyleBackColor = true;
             this.ConfirmStatementButton.Visible = false;
             this.ConfirmStatementButton.Click += new System.EventHandler(this.ConfirmStatementButton_Click);
             // 
+            // AddCondition2Button
+            // 
+            this.AddCondition2Button.Enabled = false;
+            this.AddCondition2Button.Location = new System.Drawing.Point(415, 684);
+            this.AddCondition2Button.Name = "AddCondition2Button";
+            this.AddCondition2Button.Size = new System.Drawing.Size(171, 35);
+            this.AddCondition2Button.TabIndex = 37;
+            this.AddCondition2Button.Text = "Dodaj warunek";
+            this.AddCondition2Button.UseVisualStyleBackColor = true;
+            this.AddCondition2Button.Visible = false;
+            this.AddCondition2Button.Click += new System.EventHandler(this.AddCondition2Button_Click);
+            // 
+            // AddInitialStateButton
+            // 
+            this.AddInitialStateButton.Enabled = false;
+            this.AddInitialStateButton.Location = new System.Drawing.Point(149, 684);
+            this.AddInitialStateButton.Name = "AddInitialStateButton";
+            this.AddInitialStateButton.Size = new System.Drawing.Size(171, 35);
+            this.AddInitialStateButton.TabIndex = 38;
+            this.AddInitialStateButton.Text = "Dodaj stan początkowy";
+            this.AddInitialStateButton.UseVisualStyleBackColor = true;
+            this.AddInitialStateButton.Visible = false;
+            this.AddInitialStateButton.Click += new System.EventHandler(this.AddInitialStateButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(16, 764);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 25);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Kwerenda:";
+            // 
+            // ResetQueryButton
+            // 
+            this.ResetQueryButton.Location = new System.Drawing.Point(632, 738);
+            this.ResetQueryButton.Name = "ResetQueryButton";
+            this.ResetQueryButton.Size = new System.Drawing.Size(178, 35);
+            this.ResetQueryButton.TabIndex = 40;
+            this.ResetQueryButton.Text = "Reset";
+            this.ResetQueryButton.UseVisualStyleBackColor = true;
+            this.ResetQueryButton.Click += new System.EventHandler(this.ResetQueryButton_Click);
+            // 
+            // QueryTextBox
+            // 
+            this.QueryTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.QueryTextBox.Location = new System.Drawing.Point(138, 764);
+            this.QueryTextBox.Multiline = true;
+            this.QueryTextBox.Name = "QueryTextBox";
+            this.QueryTextBox.Size = new System.Drawing.Size(463, 50);
+            this.QueryTextBox.TabIndex = 41;
+            // 
+            // AddQueryButton
+            // 
+            this.AddQueryButton.Location = new System.Drawing.Point(632, 684);
+            this.AddQueryButton.Name = "AddQueryButton";
+            this.AddQueryButton.Size = new System.Drawing.Size(178, 35);
+            this.AddQueryButton.TabIndex = 42;
+            this.AddQueryButton.Text = "Dodaj kwerende";
+            this.AddQueryButton.UseVisualStyleBackColor = true;
+            this.AddQueryButton.Click += new System.EventHandler(this.AddQueryButton_Click);
+            // 
+            // DeleteLastStatementButton
+            // 
+            this.DeleteLastStatementButton.Location = new System.Drawing.Point(133, 359);
+            this.DeleteLastStatementButton.Name = "DeleteLastStatementButton";
+            this.DeleteLastStatementButton.Size = new System.Drawing.Size(117, 35);
+            this.DeleteLastStatementButton.TabIndex = 43;
+            this.DeleteLastStatementButton.Text = "Remove last";
+            this.DeleteLastStatementButton.UseVisualStyleBackColor = true;
+            this.DeleteLastStatementButton.Click += new System.EventHandler(this.DeleteLastStatementButton_Click);
+            // 
+            // DeleteLastProgramButton
+            // 
+            this.DeleteLastProgramButton.Location = new System.Drawing.Point(138, 540);
+            this.DeleteLastProgramButton.Name = "DeleteLastProgramButton";
+            this.DeleteLastProgramButton.Size = new System.Drawing.Size(113, 35);
+            this.DeleteLastProgramButton.TabIndex = 44;
+            this.DeleteLastProgramButton.Text = "Remove last";
+            this.DeleteLastProgramButton.UseVisualStyleBackColor = true;
+            this.DeleteLastProgramButton.Click += new System.EventHandler(this.DeleteLastProgramButton_Click);
+            // 
             // RWGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 735);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(832, 866);
+            this.Controls.Add(this.DeleteLastProgramButton);
+            this.Controls.Add(this.DeleteLastStatementButton);
+            this.Controls.Add(this.AddQueryButton);
+            this.Controls.Add(this.QueryTextBox);
+            this.Controls.Add(this.ResetQueryButton);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.AddInitialStateButton);
+            this.Controls.Add(this.AddCondition2Button);
             this.Controls.Add(this.AddConditionButton);
             this.Controls.Add(this.ConfirmStatementButton);
             this.Controls.Add(this.ResetStatementButton);
             this.Controls.Add(this.ResetProgramButton);
             this.Controls.Add(this.AddToProgramButton);
             this.Controls.Add(this.AskQueryButton);
-            this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.Actor2ComboBox);
+            this.Controls.Add(this.GammaComboBox);
+            this.Controls.Add(this.Pi2ComboBox);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.QueriesOutcomeLabel);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.QueriesComboBox);
+            this.Controls.Add(this.ResponseTextBox);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.ProgramActorComboBox);
             this.Controls.Add(this.label13);
@@ -534,6 +638,8 @@
             this.Controls.Add(this.StatementsComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximumSize = new System.Drawing.Size(850, 1200);
+            this.MinimumSize = new System.Drawing.Size(850, 900);
             this.Name = "RWGui";
             this.Text = "Programy działań z efektami domyślnymi";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -572,21 +678,29 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox ProgramActorComboBox;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox ResponseTextBox;
+        private System.Windows.Forms.ComboBox QueriesComboBox;
         private System.Windows.Forms.Label QueriesOutcomeLabel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox Pi2ComboBox;
+        private System.Windows.Forms.ComboBox GammaComboBox;
+        private System.Windows.Forms.ComboBox Actor2ComboBox;
         private System.Windows.Forms.Button AskQueryButton;
         private System.Windows.Forms.Button AddToProgramButton;
         private System.Windows.Forms.Button ResetProgramButton;
         private System.Windows.Forms.Button ResetStatementButton;
         private System.Windows.Forms.Button AddConditionButton;
         private System.Windows.Forms.Button ConfirmStatementButton;
+        private System.Windows.Forms.Button AddCondition2Button;
+        private System.Windows.Forms.Button AddInitialStateButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ResetQueryButton;
+        private System.Windows.Forms.TextBox QueryTextBox;
+        private System.Windows.Forms.Button AddQueryButton;
+        private System.Windows.Forms.Button DeleteLastStatementButton;
+        private System.Windows.Forms.Button DeleteLastProgramButton;
     }
 }
 
