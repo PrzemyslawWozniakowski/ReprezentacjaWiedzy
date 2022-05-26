@@ -333,7 +333,8 @@ namespace RWProgram
 
         private void AskQueryButton_Click(object sender, EventArgs e)
         {
-            ResponseTextBox.Text =  Query.Response().ToString();
+            if(Query != null)
+               ResponseTextBox.Text =  Query.Response().ToString();
         }
 
         private void ResetQueryButton_Click(object sender, EventArgs e)
@@ -341,6 +342,7 @@ namespace RWProgram
             Query = null;
             ResetButtons();
             QueriesComboBox.SelectedIndex = -1;
+            ResponseTextBox.Text = string.Empty;
         }
 
         private void AddQueryButton_Click(object sender, EventArgs e)
@@ -401,6 +403,7 @@ namespace RWProgram
             var queryIndex = QueriesComboBox.SelectedIndex;
             var queryEnum = (QueriesEnum)queryIndex;
             SetQueryTextBox();
+            ResetButtons();
             switch (queryEnum)
             {
                 case QueriesEnum.AlwaysAccesibleYFromPi:

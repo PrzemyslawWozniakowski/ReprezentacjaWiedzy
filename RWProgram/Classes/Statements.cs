@@ -21,6 +21,19 @@ namespace RWProgram.Classes
         }
     }
 
+    public abstract class ConditionActionByActorStatement : ConditionStatement
+    {
+        public Action Action { get; set; }
+
+        public Actor Actor { get; set; }
+
+        public ConditionActionByActorStatement(Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        {
+            this.Action = Action;
+            this.Actor = Actor;
+        }
+    }
+
     public abstract class StatementAfterActionByUser : Statement
     {
         public List<Action> Actions { get; set; }
@@ -109,19 +122,14 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorCausesAlphaIfFluents : ConditionStatement
+    public class ActionByActorCausesAlphaIfFluents : ConditionActionByActorStatement
     {
         public Fluent Alpha { get; set; }
 
-        public Action Action { get; set; }
 
-        public Actor Actor { get; set; }
-
-        public ActionByActorCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        public ActionByActorCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
         {
             this.Alpha = Alpha;
-            this.Action = Action;
-            this.Actor = Actor;
         }
 
         public override string ToString()
@@ -130,19 +138,14 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorReleasesFluent1IfFluents : ConditionStatement
+    public class ActionByActorReleasesFluent1IfFluents : ConditionActionByActorStatement
     {
         public Fluent F { get; set; }
 
-        public Action Action { get; set; }
 
-        public Actor Actor { get; set; }
-
-        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Action ,Actor, Pi)
         {
             this.F = F;
-            this.Action = Action;
-            this.Actor = Actor;
         }
 
         public override string ToString()
@@ -151,19 +154,14 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorTypicallyCausesAlphaIfFluents : ConditionStatement
+    public class ActionByActorTypicallyCausesAlphaIfFluents : ConditionActionByActorStatement
     {
         public Fluent Alpha { get; set; }
 
-        public Action Action { get; set; }
 
-        public Actor Actor { get; set; }
-
-        public ActionByActorTypicallyCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        public ActionByActorTypicallyCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
         {
             this.Alpha = Alpha;
-            this.Action = Action;
-            this.Actor = Actor;
         }
 
         public override string ToString()
@@ -172,19 +170,13 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ActionByActorTypicallyReleasesFluent1IfFluents : ConditionStatement
+    public class ActionByActorTypicallyReleasesFluent1IfFluents : ConditionActionByActorStatement
     {
         public Fluent F { get; set; }
 
-        public Action Action { get; set; }
-
-        public Actor Actor { get; set; }
-
-        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
         {
             this.F = F;
-            this.Action = Action;
-            this.Actor = Actor;
         }
 
         public override string ToString()
@@ -193,17 +185,11 @@ namespace RWProgram.Classes
         }
     }
 
-    public class ImpossibleActionByActorIfFluents : ConditionStatement
+    public class ImpossibleActionByActorIfFluents : ConditionActionByActorStatement
     {
-        public Action Action { get; set; }
 
-        public Actor Actor { get; set; }
 
-        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi) : base(Pi) 
-        {
-            this.Actor = Actor;
-            this.Action = Action;
-        }
+        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi) { }
 
 
         public override string ToString()
