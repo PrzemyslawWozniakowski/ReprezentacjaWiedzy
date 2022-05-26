@@ -19,8 +19,8 @@ namespace RWProgram
         public List<string> Statements = new List<string>()
         {
             "initially alfa",
-            "alfa after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
-            "alfa typically after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
+            "alpha after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
+            "alpha typically after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "observable alfa after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "A by w causes alfa if π",
             "A by w releases f if π",
@@ -133,8 +133,7 @@ namespace RWProgram
                     Logic.Statements.Add(new FluentAfterActionbyActor
                     (   
                         (Fluent)FluentComboBox.SelectedItem,
-                        new List<Action> { (Action)ActionComboBox.SelectedItem },
-                        new List<Actor> { (Actor)ActorComboBox.SelectedItem }
+                        new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
                 case StatementEnum.FluentTypicallyAfterActionbyActor:
@@ -143,8 +142,7 @@ namespace RWProgram
                     Logic.Statements.Add(new FluentTypicallyAfterActionbyActor
                     (
                         (Fluent)FluentComboBox.SelectedItem,
-                        new List<Action> { (Action)ActionComboBox.SelectedItem },
-                        new List<Actor> { (Actor)ActorComboBox.SelectedItem }
+                        new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
                 case StatementEnum.ObservableFluentAfterActionByActor:
@@ -153,8 +151,7 @@ namespace RWProgram
                     Logic.Statements.Add(new ObservableFluentAfterActionByActor
                     (
                         (Fluent)FluentComboBox.SelectedItem,
-                        new List<Action> { (Action)ActionComboBox.SelectedItem },
-                        new List<Actor> { (Actor)ActorComboBox.SelectedItem }
+                        new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
                 case StatementEnum.ActionByActorCausesAlphaIfFluents:
@@ -308,8 +305,7 @@ namespace RWProgram
                         var afterActionByActor = statement as StatementAfterActionByUser;
                         if (afterActionByActor != null)
                         {
-                            afterActionByActor.Actions.Add((Action)ActionComboBox.SelectedItem);
-                            afterActionByActor.Actors.Add((Actor)ActorComboBox.SelectedItem);
+                            afterActionByActor.ActionsByActors.Add(((Action)ActionComboBox.SelectedItem,(Actor)ActorComboBox.SelectedItem));
                         }
                         break;
                     }
@@ -508,8 +504,8 @@ namespace RWProgram
         private void DeleteLastProgramButton_Click(object sender, EventArgs e)
         {
             if (Logic.Program.Count > 0)
-                Logic.Program.RemoveAt(Logic.Statements.Count - 1);
-            SetProgramText();
+                Logic.Program.RemoveAt(Logic.Program.Count - 1);
+            SetProgramText( );
         }
     }
 }

@@ -36,14 +36,12 @@ namespace RWProgram.Classes
 
     public abstract class StatementAfterActionByUser : Statement
     {
-        public List<Action> Actions { get; set; }
+        public List<(Action action, Actor actor)> ActionsByActors { get; set; }
 
-        public List<Actor> Actors { get; set; }
-
-        public StatementAfterActionByUser(List<Action> Actions, List<Actor> Actors)
+        public StatementAfterActionByUser(List<(Action action, Actor actor)> actionsByActors)
         {
-            this.Actions = Actions == null ? new List<Action>() : Actions.Where(a => a != null).ToList();
-            this.Actors = Actors == null ? new List<Actor>() : Actors.Where(a => a != null).ToList();
+            this.ActionsByActors = actionsByActors == null ? new List<(Action action, Actor actor)>() :
+                    actionsByActors.Where(a => a.action != null && a.actor != null).ToList();
         }
 
     }
@@ -51,7 +49,7 @@ namespace RWProgram.Classes
     //Same as FluentAfterActionbyActor but actors and action empty
     public class InitiallyFluent : FluentAfterActionbyActor
     {
-        public InitiallyFluent(Fluent Alpha) : base(Alpha, null, null)
+        public InitiallyFluent(Fluent Alpha) : base(Alpha, null)
         { }
 
         public override string ToString()
@@ -65,7 +63,7 @@ namespace RWProgram.Classes
     {
         public Fluent Alpha { get; set; }
 
-        public FluentAfterActionbyActor(Fluent Alpha, List<Action> Actions, List<Actor> Actors) : base(Actions, Actors) 
+        public FluentAfterActionbyActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors) 
         {
             this.Alpha = Alpha; 
         }
@@ -73,10 +71,10 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             var str = $"{Alpha} after";
-            for (var i = 0; i < Actors.Count; i++)
+            for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
-                str = str + $"{comma} {Actions[i]} by {Actors[i]}";
+                str = str + $"{comma} {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
             }
             return str;
         }
@@ -87,7 +85,7 @@ namespace RWProgram.Classes
     {
         public Fluent Alpha { get; set; }
 
-        public FluentTypicallyAfterActionbyActor(Fluent Alpha, List<Action> Actions, List<Actor> Actors) : base(Actions, Actors)
+        public FluentTypicallyAfterActionbyActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
             this.Alpha = Alpha;
         }
@@ -95,10 +93,10 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             var str = $"{Alpha} typically after";
-            for (var i = 0; i < Actors.Count; i++)
+            for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
-                str = str + $"{comma}  {Actions[i]} by {Actors[i]}";
+                str = str + $"{comma}  {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
             }
             return str;
         }
@@ -109,7 +107,7 @@ namespace RWProgram.Classes
     {
         public Fluent Alpha { get; set; }
 
-        public ObservableFluentAfterActionByActor(Fluent Alpha, List<Action> Actions, List<Actor> Actors) : base(Actions, Actors)
+        public ObservableFluentAfterActionByActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
             this.Alpha = Alpha;
         }
@@ -117,10 +115,10 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             var str = $"observable {Alpha} after";
-            for (var i = 0; i < Actors.Count; i++)
+            for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
-                str = str + $"{comma}  {Actions[i]} by {Actors[i]}";
+                str = str + $"{comma}  {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
             }
             return str;
         }
