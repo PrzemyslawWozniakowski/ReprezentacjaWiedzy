@@ -161,7 +161,7 @@ namespace RW
 
 
 
-        // dalej jest magia, ktora dzieje przy generowaniu grafu
+        // dalej jest magia, ktora dzieje sie przy generowaniu grafu
 
         private List<State> Res0(State s, int agent, int action, List<Causes> causes)
         {
