@@ -291,11 +291,11 @@
             this.PiComboBox.Size = new System.Drawing.Size(85, 24);
             this.PiComboBox.TabIndex = 12;
             // 
-            // fluentComboBox
+            // FluentComboBox
             // 
             this.FluentComboBox.FormattingEnabled = true;
             this.FluentComboBox.Location = new System.Drawing.Point(432, 235);
-            this.FluentComboBox.Name = "fluentComboBox";
+            this.FluentComboBox.Name = "FluentComboBox";
             this.FluentComboBox.Size = new System.Drawing.Size(85, 24);
             this.FluentComboBox.TabIndex = 13;
             // 
@@ -431,15 +431,15 @@
             this.GammaComboBox.FormattingEnabled = true;
             this.GammaComboBox.Location = new System.Drawing.Point(432, 651);
             this.GammaComboBox.Name = "GammaComboBox";
-            this.GammaComboBox.Size = new System.Drawing.Size(125, 24);
+            this.GammaComboBox.Size = new System.Drawing.Size(134, 24);
             this.GammaComboBox.TabIndex = 29;
             // 
             // Actor2ComboBox
             // 
             this.Actor2ComboBox.FormattingEnabled = true;
-            this.Actor2ComboBox.Location = new System.Drawing.Point(678, 651);
+            this.Actor2ComboBox.Location = new System.Drawing.Point(688, 651);
             this.Actor2ComboBox.Name = "Actor2ComboBox";
-            this.Actor2ComboBox.Size = new System.Drawing.Size(125, 24);
+            this.Actor2ComboBox.Size = new System.Drawing.Size(122, 24);
             this.Actor2ComboBox.TabIndex = 30;
             // 
             // AskQueryButton
@@ -595,7 +595,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(832, 971);
+            this.ClientSize = new System.Drawing.Size(862, 971);
             this.Controls.Add(this.DeleteLastProgramButton);
             this.Controls.Add(this.DeleteLastStatementButton);
             this.Controls.Add(this.AddQueryButton);
@@ -641,8 +641,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MaximumSize = new System.Drawing.Size(850, 1200);
-            this.MinimumSize = new System.Drawing.Size(850, 900);
+            this.MaximumSize = new System.Drawing.Size(880, 1200);
+            this.MinimumSize = new System.Drawing.Size(880, 900);
             this.Name = "RWGui";
             this.Text = "Programy działań z efektami domyślnymi";
             this.tableLayoutPanel1.ResumeLayout(false);
