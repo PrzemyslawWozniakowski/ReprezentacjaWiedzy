@@ -54,7 +54,7 @@
             this.ProgramActionComboBox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.ProgramActorComboBox = new System.Windows.Forms.ComboBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.ProgramTextBox = new System.Windows.Forms.RichTextBox();
             this.ResponseTextBox = new System.Windows.Forms.TextBox();
             this.QueriesComboBox = new System.Windows.Forms.ComboBox();
             this.QueriesOutcomeLabel = new System.Windows.Forms.Label();
@@ -353,11 +353,11 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(349, 453);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(461, 122);
-            this.richTextBox2.TabIndex = 20;
-            this.richTextBox2.Text = "";
+            this.ProgramTextBox.Location = new System.Drawing.Point(349, 453);
+            this.ProgramTextBox.Name = "richTextBox2";
+            this.ProgramTextBox.Size = new System.Drawing.Size(461, 122);
+            this.ProgramTextBox.TabIndex = 20;
+            this.ProgramTextBox.Text = "";
             // 
             // ResponseTextBox
             // 
@@ -444,9 +444,9 @@
             // 
             // AskQueryButton
             // 
-            this.AskQueryButton.Location = new System.Drawing.Point(632, 779);
+            this.AskQueryButton.Location = new System.Drawing.Point(647, 779);
             this.AskQueryButton.Name = "AskQueryButton";
-            this.AskQueryButton.Size = new System.Drawing.Size(178, 35);
+            this.AskQueryButton.Size = new System.Drawing.Size(163, 35);
             this.AskQueryButton.TabIndex = 31;
             this.AskQueryButton.Text = "Odpytaj";
             this.AskQueryButton.UseVisualStyleBackColor = true;
@@ -542,9 +542,9 @@
             // 
             // ResetQueryButton
             // 
-            this.ResetQueryButton.Location = new System.Drawing.Point(632, 738);
+            this.ResetQueryButton.Location = new System.Drawing.Point(647, 738);
             this.ResetQueryButton.Name = "ResetQueryButton";
-            this.ResetQueryButton.Size = new System.Drawing.Size(178, 35);
+            this.ResetQueryButton.Size = new System.Drawing.Size(163, 35);
             this.ResetQueryButton.TabIndex = 40;
             this.ResetQueryButton.Text = "Reset";
             this.ResetQueryButton.UseVisualStyleBackColor = true;
@@ -556,7 +556,7 @@
             this.QueryTextBox.Location = new System.Drawing.Point(138, 764);
             this.QueryTextBox.Multiline = true;
             this.QueryTextBox.Name = "QueryTextBox";
-            this.QueryTextBox.Size = new System.Drawing.Size(463, 50);
+            this.QueryTextBox.Size = new System.Drawing.Size(485, 50);
             this.QueryTextBox.TabIndex = 41;
             // 
             // AddQueryButton
@@ -619,7 +619,7 @@
             this.Controls.Add(this.QueriesOutcomeLabel);
             this.Controls.Add(this.QueriesComboBox);
             this.Controls.Add(this.ResponseTextBox);
-            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.ProgramTextBox);
             this.Controls.Add(this.ProgramActorComboBox);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.ProgramActionComboBox);
@@ -680,7 +680,7 @@
         private System.Windows.Forms.ComboBox ProgramActionComboBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox ProgramActorComboBox;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox ProgramTextBox;
         private System.Windows.Forms.TextBox ResponseTextBox;
         private System.Windows.Forms.ComboBox QueriesComboBox;
         private System.Windows.Forms.Label QueriesOutcomeLabel;

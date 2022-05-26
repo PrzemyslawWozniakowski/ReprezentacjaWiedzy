@@ -257,7 +257,7 @@ namespace RWProgram
             var str = string.Empty;
             foreach (var p in Logic.Program)
                 str = str + p.Item1.ToString() + " by " + p.Item2.ToString() + "\n";
-            richTextBox2.Text = str;
+            ProgramTextBox.Text = str;
         }
 
         private void ResetStatementsButton_Click(object sender, EventArgs e)
