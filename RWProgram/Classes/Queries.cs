@@ -50,7 +50,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return $"Is {string.Join(", ", Gamma.Select(g => g.ToString()))} always accessible from  {string.Join(", ", Pi.Select(p => p.ToString()))} with P ? ";
+            return $"Is {string.Join(", ", Gamma.Select(g => g.ToString()))} always accessible from {string.Join(", ", Pi.Select(p => p.ToString()))} with P?";
         }
         public override bool Response()
         {
@@ -62,7 +62,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return $"Is {string.Join(", ", Gamma.Select(g => g?.ToString()))} always accessible from  {string.Join(", ", Pi.Select(p => p?.ToString()))} with P ? ";
+            return $"Is {string.Join(", ", Gamma.Select(g => g?.ToString()))} always accessible from {string.Join(", ", Pi.Select(p => p?.ToString()))} with P?";
         }
         public override bool Response()
         {
@@ -74,7 +74,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return $"Always {W.ToString()} involved with P ? ";
+            return $"Always {W.ToString()} involved with P?";
         }
         public override bool Response()
         {
@@ -88,7 +88,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"Ever {W.ToString()} involved with P ? ";
+            return $"Ever {W.ToString()} involved with P?";
         }
         public override bool Response()
         {

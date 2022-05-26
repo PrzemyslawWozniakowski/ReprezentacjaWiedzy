@@ -51,10 +51,9 @@ namespace RWProgram.Classes
     //Same as FluentAfterActionbyActor but actors and action empty
     public class InitiallyFluent : FluentAfterActionbyActor
     {
-        public Fluent Alpha { get; set; }
 
         public InitiallyFluent(Fluent Alpha) : base(Alpha, null, null)
-        {        }
+        { }
 
         public override string ToString()
         {
@@ -74,7 +73,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            var str = $"{Alpha} after ";
+            var str = $"{Alpha} after";
             for (var i = 0; i < Actors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
@@ -96,9 +95,12 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            var str = $"{Alpha} typically after ";
+            var str = $"{Alpha} typically after";
             for (var i = 0; i < Actors.Count; i++)
-                str = str + $", {Actions[i]} by {Actors[i]}";
+            {
+                var comma = i != 0 ? "," : "";
+                str = str + $"{comma}  {Actions[i]} by {Actors[i]}";
+            }
             return str;
         }
 
@@ -115,9 +117,12 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            var str = $"observable {Alpha} after ";
+            var str = $"observable {Alpha} after";
             for (var i = 0; i < Actors.Count; i++)
-                str = str + $", {Actions[i]} by {Actors[i]}";
+            {
+                var comma = i != 0 ? "," : "";
+                str = str + $"{comma}  {Actions[i]} by {Actors[i]}";
+            }
             return str;
         }
     }
@@ -127,7 +132,7 @@ namespace RWProgram.Classes
         public Fluent Alpha { get; set; }
 
 
-        public ActionByActorCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
+        public ActionByActorCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action ,Actor, Pi)
         {
             this.Alpha = Alpha;
         }
@@ -188,7 +193,6 @@ namespace RWProgram.Classes
     public class ImpossibleActionByActorIfFluents : ConditionActionByActorStatement
     {
 
-
         public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi) { }
 
 
@@ -212,7 +216,7 @@ namespace RWProgram.Classes
     }
 
     public class NoninertialFluent : Statement
-    {
+    {   
         public Fluent Fluent { get; set; }
 
         public NoninertialFluent(Fluent Fluent)

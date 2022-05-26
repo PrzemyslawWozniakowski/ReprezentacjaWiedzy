@@ -44,9 +44,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.actionComboBox = new System.Windows.Forms.ComboBox();
-            this.actorComboBox = new System.Windows.Forms.ComboBox();
-            this.piComboBox = new System.Windows.Forms.ComboBox();
+            this.ActionComboBox = new System.Windows.Forms.ComboBox();
+            this.ActorComboBox = new System.Windows.Forms.ComboBox();
+            this.PiComboBox = new System.Windows.Forms.ComboBox();
             this.fluentComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.StatementsTextBox = new System.Windows.Forms.RichTextBox();
@@ -267,29 +267,29 @@
             this.label11.TabIndex = 9;
             this.label11.Text = "alpha/f:";
             // 
-            // actionComboBox
+            // ActionComboBox
             // 
-            this.actionComboBox.FormattingEnabled = true;
-            this.actionComboBox.Location = new System.Drawing.Point(50, 235);
-            this.actionComboBox.Name = "actionComboBox";
-            this.actionComboBox.Size = new System.Drawing.Size(85, 24);
-            this.actionComboBox.TabIndex = 10;
+            this.ActionComboBox.FormattingEnabled = true;
+            this.ActionComboBox.Location = new System.Drawing.Point(50, 235);
+            this.ActionComboBox.Name = "ActionComboBox";
+            this.ActionComboBox.Size = new System.Drawing.Size(85, 24);
+            this.ActionComboBox.TabIndex = 10;
             // 
-            // actorComboBox
+            // ActorComboBox
             // 
-            this.actorComboBox.FormattingEnabled = true;
-            this.actorComboBox.Location = new System.Drawing.Point(166, 235);
-            this.actorComboBox.Name = "actorComboBox";
-            this.actorComboBox.Size = new System.Drawing.Size(85, 24);
-            this.actorComboBox.TabIndex = 11;
+            this.ActorComboBox.FormattingEnabled = true;
+            this.ActorComboBox.Location = new System.Drawing.Point(166, 235);
+            this.ActorComboBox.Name = "ActorComboBox";
+            this.ActorComboBox.Size = new System.Drawing.Size(85, 24);
+            this.ActorComboBox.TabIndex = 11;
             // 
-            // piComboBox
+            // PiComboBox
             // 
-            this.piComboBox.FormattingEnabled = true;
-            this.piComboBox.Location = new System.Drawing.Point(284, 235);
-            this.piComboBox.Name = "piComboBox";
-            this.piComboBox.Size = new System.Drawing.Size(85, 24);
-            this.piComboBox.TabIndex = 12;
+            this.PiComboBox.FormattingEnabled = true;
+            this.PiComboBox.Location = new System.Drawing.Point(284, 235);
+            this.PiComboBox.Name = "PiComboBox";
+            this.PiComboBox.Size = new System.Drawing.Size(85, 24);
+            this.PiComboBox.TabIndex = 12;
             // 
             // fluentComboBox
             // 
@@ -320,7 +320,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(31, 495);
+            this.label12.Location = new System.Drawing.Point(13, 495);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 16);
             this.label12.TabIndex = 16;
@@ -329,15 +329,15 @@
             // ProgramActionComboBox
             // 
             this.ProgramActionComboBox.FormattingEnabled = true;
-            this.ProgramActionComboBox.Location = new System.Drawing.Point(77, 492);
+            this.ProgramActionComboBox.Location = new System.Drawing.Point(65, 492);
             this.ProgramActionComboBox.Name = "ProgramActionComboBox";
-            this.ProgramActionComboBox.Size = new System.Drawing.Size(56, 24);
+            this.ProgramActionComboBox.Size = new System.Drawing.Size(110, 24);
             this.ProgramActionComboBox.TabIndex = 17;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(139, 495);
+            this.label13.Location = new System.Drawing.Point(181, 495);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 16);
             this.label13.TabIndex = 18;
@@ -346,16 +346,16 @@
             // ProgramActorComboBox
             // 
             this.ProgramActorComboBox.FormattingEnabled = true;
-            this.ProgramActorComboBox.Location = new System.Drawing.Point(166, 492);
+            this.ProgramActorComboBox.Location = new System.Drawing.Point(212, 492);
             this.ProgramActorComboBox.Name = "ProgramActorComboBox";
-            this.ProgramActorComboBox.Size = new System.Drawing.Size(56, 24);
+            this.ProgramActorComboBox.Size = new System.Drawing.Size(108, 24);
             this.ProgramActorComboBox.TabIndex = 19;
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(337, 453);
+            this.richTextBox2.Location = new System.Drawing.Point(349, 453);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(473, 122);
+            this.richTextBox2.Size = new System.Drawing.Size(461, 122);
             this.richTextBox2.TabIndex = 20;
             this.richTextBox2.Text = "";
             // 
@@ -453,9 +453,9 @@
             // 
             // AddToProgramButton
             // 
-            this.AddToProgramButton.Location = new System.Drawing.Point(239, 486);
+            this.AddToProgramButton.Location = new System.Drawing.Point(245, 540);
             this.AddToProgramButton.Name = "AddToProgramButton";
-            this.AddToProgramButton.Size = new System.Drawing.Size(92, 35);
+            this.AddToProgramButton.Size = new System.Drawing.Size(98, 35);
             this.AddToProgramButton.TabIndex = 32;
             this.AddToProgramButton.Text = "Dodaj";
             this.AddToProgramButton.UseVisualStyleBackColor = true;
@@ -463,7 +463,7 @@
             // 
             // ResetProgramButton
             // 
-            this.ResetProgramButton.Location = new System.Drawing.Point(28, 540);
+            this.ResetProgramButton.Location = new System.Drawing.Point(16, 540);
             this.ResetProgramButton.Name = "ResetProgramButton";
             this.ResetProgramButton.Size = new System.Drawing.Size(104, 35);
             this.ResetProgramButton.TabIndex = 33;
@@ -580,7 +580,7 @@
             // 
             // DeleteLastProgramButton
             // 
-            this.DeleteLastProgramButton.Location = new System.Drawing.Point(138, 540);
+            this.DeleteLastProgramButton.Location = new System.Drawing.Point(126, 540);
             this.DeleteLastProgramButton.Name = "DeleteLastProgramButton";
             this.DeleteLastProgramButton.Size = new System.Drawing.Size(113, 35);
             this.DeleteLastProgramButton.TabIndex = 44;
@@ -625,9 +625,9 @@
             this.Controls.Add(this.StatementsTextBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.fluentComboBox);
-            this.Controls.Add(this.piComboBox);
-            this.Controls.Add(this.actorComboBox);
-            this.Controls.Add(this.actionComboBox);
+            this.Controls.Add(this.PiComboBox);
+            this.Controls.Add(this.ActorComboBox);
+            this.Controls.Add(this.ActionComboBox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -667,9 +667,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox actionComboBox;
-        private System.Windows.Forms.ComboBox actorComboBox;
-        private System.Windows.Forms.ComboBox piComboBox;
+        private System.Windows.Forms.ComboBox ActionComboBox;
+        private System.Windows.Forms.ComboBox ActorComboBox;
+        private System.Windows.Forms.ComboBox PiComboBox;
         private System.Windows.Forms.ComboBox fluentComboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox StatementsTextBox;
