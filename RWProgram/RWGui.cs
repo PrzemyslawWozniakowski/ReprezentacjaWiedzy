@@ -14,8 +14,6 @@ namespace RWProgram
 {
     public partial class RWGui : Form
     {
-        public StatementEnum statementWIP = StatementEnum.None;
-
         public Query Query { get; set; } = null;
 
         public List<string> Statements = new List<string>()
@@ -88,8 +86,8 @@ namespace RWProgram
                 Logic.Fluents.Add(fluent);
                 Logic.Fluents.Add(new NegatedFluent() { Name = f, Original = fluent });
             }
-            fluentComboBox.Items.Clear();
-            fluentComboBox.Items.AddRange(Logic.Fluents.ToArray());
+            FluentComboBox.Items.Clear();
+            FluentComboBox.Items.AddRange(Logic.Fluents.ToArray());
 
             PiComboBox.Items.Clear();
             PiComboBox.Items.AddRange(Logic.Fluents.ToArray());
@@ -121,82 +119,91 @@ namespace RWProgram
 
         private void ClickAddStatementButton(object sender, EventArgs e)
         {
+            HideButtons();
             var index = StatementsComboBox.SelectedIndex;
             StatementEnum statementEnum = (StatementEnum)index;
             switch (statementEnum)
             {
                 case StatementEnum.InitiallyFluent:
-                    Logic.Statements.Add(new InitiallyFluent ((Fluent)fluentComboBox.SelectedItem));
+                    Logic.Statements.Add(new InitiallyFluent ((Fluent)FluentComboBox.SelectedItem));
                     break;
                 case StatementEnum.FluentAfterActionbyActor:
-                    statementWIP = StatementEnum.FluentAfterActionbyActor;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new FluentAfterActionbyActor
-                    (
-                        (Fluent)fluentComboBox.SelectedItem,
+                    (   
+                        (Fluent)FluentComboBox.SelectedItem,
                         new List<Action> { (Action)ActionComboBox.SelectedItem },
                         new List<Actor> { (Actor)ActorComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.FluentTypicallyAfterActionbyActor:
-                    statementWIP = StatementEnum.FluentTypicallyAfterActionbyActor;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new FluentTypicallyAfterActionbyActor
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         new List<Action> { (Action)ActionComboBox.SelectedItem },
                         new List<Actor> { (Actor)ActorComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ObservableFluentAfterActionByActor:
-                    statementWIP = StatementEnum.ObservableFluentAfterActionByActor;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ObservableFluentAfterActionByActor
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         new List<Action> { (Action)ActionComboBox.SelectedItem },
                         new List<Actor> { (Actor)ActorComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ActionByActorCausesAlphaIfFluents:
-                    statementWIP = StatementEnum.ActionByActorCausesAlphaIfFluents;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ActionByActorCausesAlphaIfFluents
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
                         new List<Fluent> { (Fluent)PiComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ActionByActorReleasesFluent1IfFluents:
-                    statementWIP = StatementEnum.ActionByActorReleasesFluent1IfFluents;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ActionByActorReleasesFluent1IfFluents
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
                         new List<Fluent> { (Fluent)PiComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ActionByActorTypicallyCausesAlphaIfFluents:
-                    statementWIP = StatementEnum.ActionByActorTypicallyCausesAlphaIfFluents;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ActionByActorTypicallyCausesAlphaIfFluents
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
                         new List<Fluent> { (Fluent)PiComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ActionByActorTypicallyReleasesFluent1IfFluents:
-                    statementWIP = StatementEnum.ActionByActorTypicallyReleasesFluent1IfFluents;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ActionByActorTypicallyReleasesFluent1IfFluents
                     (
-                        (Fluent)fluentComboBox.SelectedItem,
+                        (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
                         new List<Fluent> { (Fluent)PiComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.ImpossibleActionByActorIfFluents:
-                    statementWIP = StatementEnum.ImpossibleActionByActorIfFluents;
+                    if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new ImpossibleActionByActorIfFluents
                     (
                         (Action)ActionComboBox.SelectedItem,
@@ -205,23 +212,26 @@ namespace RWProgram
                     ));
                     break;
                 case StatementEnum.AlwaysPi:
-                    statementWIP = StatementEnum.AlwaysPi;
+                    if (FluentComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new AlwaysPi
                     (
                         new List<Fluent> { (Fluent)PiComboBox.SelectedItem }
                     ));
                     break;
                 case StatementEnum.NoninertialFluent:
+                    if (FluentComboBox.SelectedItem == null)
+                        return;
                     Logic.Statements.Add(new NoninertialFluent
                     (
-                        (Fluent)fluentComboBox.SelectedItem
+                        (Fluent)FluentComboBox.SelectedItem
                     ));
                     break;
                 default:
                     break;
             }
 
-            if (statementWIP != StatementEnum.InitiallyFluent && statementWIP != StatementEnum.NoninertialFluent && statementWIP != StatementEnum.None)
+            if (statementEnum != StatementEnum.InitiallyFluent && statementEnum != StatementEnum.NoninertialFluent && statementEnum != StatementEnum.None)
                 ShowButtons();
 
             SetStatementsText();
@@ -265,12 +275,11 @@ namespace RWProgram
             ActionComboBox.SelectedIndex = -1;
             ActorComboBox.SelectedIndex = -1;
             PiComboBox.SelectedIndex = -1;
-            fluentComboBox.SelectedIndex = -1;
+            FluentComboBox.SelectedIndex = -1;
         }
 
         private void StatementsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            statementWIP = StatementEnum.None;
             ResetComboBoxes();
             SetStatementsText();
         }
@@ -288,6 +297,7 @@ namespace RWProgram
 
         private void AddConditionButton_Click(object sender, EventArgs e)
         {
+            var statementWIP = (StatementEnum)StatementsComboBox.SelectedIndex;
             switch (statementWIP)
             {
                 case StatementEnum.FluentAfterActionbyActor:

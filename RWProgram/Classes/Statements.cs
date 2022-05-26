@@ -51,7 +51,6 @@ namespace RWProgram.Classes
     //Same as FluentAfterActionbyActor but actors and action empty
     public class InitiallyFluent : FluentAfterActionbyActor
     {
-
         public InitiallyFluent(Fluent Alpha) : base(Alpha, null, null)
         { }
 
@@ -147,7 +146,6 @@ namespace RWProgram.Classes
     {
         public Fluent F { get; set; }
 
-
         public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Action ,Actor, Pi)
         {
             this.F = F;
@@ -162,7 +160,6 @@ namespace RWProgram.Classes
     public class ActionByActorTypicallyCausesAlphaIfFluents : ConditionActionByActorStatement
     {
         public Fluent Alpha { get; set; }
-
 
         public ActionByActorTypicallyCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
         {
@@ -192,9 +189,7 @@ namespace RWProgram.Classes
 
     public class ImpossibleActionByActorIfFluents : ConditionActionByActorStatement
     {
-
         public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi) { }
-
 
         public override string ToString()
         {
@@ -216,7 +211,7 @@ namespace RWProgram.Classes
     }
 
     public class NoninertialFluent : Statement
-    {   
+    {
         public Fluent Fluent { get; set; }
 
         public NoninertialFluent(Fluent Fluent)

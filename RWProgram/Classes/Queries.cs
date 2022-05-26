@@ -84,8 +84,6 @@ namespace RWProgram.Classes
 
     public class EverWInvolved : QueryWithW
     {
-        public Actor W { get; set; }
-
         public override string ToString()
         {
             return $"Ever {W.ToString()} involved with P?";

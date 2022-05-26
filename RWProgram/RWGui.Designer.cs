@@ -47,7 +47,7 @@
             this.ActionComboBox = new System.Windows.Forms.ComboBox();
             this.ActorComboBox = new System.Windows.Forms.ComboBox();
             this.PiComboBox = new System.Windows.Forms.ComboBox();
-            this.fluentComboBox = new System.Windows.Forms.ComboBox();
+            this.FluentComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.StatementsTextBox = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -293,11 +293,11 @@
             // 
             // fluentComboBox
             // 
-            this.fluentComboBox.FormattingEnabled = true;
-            this.fluentComboBox.Location = new System.Drawing.Point(432, 235);
-            this.fluentComboBox.Name = "fluentComboBox";
-            this.fluentComboBox.Size = new System.Drawing.Size(85, 24);
-            this.fluentComboBox.TabIndex = 13;
+            this.FluentComboBox.FormattingEnabled = true;
+            this.FluentComboBox.Location = new System.Drawing.Point(432, 235);
+            this.FluentComboBox.Name = "fluentComboBox";
+            this.FluentComboBox.Size = new System.Drawing.Size(85, 24);
+            this.FluentComboBox.TabIndex = 13;
             // 
             // button1
             // 
@@ -626,7 +626,7 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.StatementsTextBox);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.fluentComboBox);
+            this.Controls.Add(this.FluentComboBox);
             this.Controls.Add(this.PiComboBox);
             this.Controls.Add(this.ActorComboBox);
             this.Controls.Add(this.ActionComboBox);
@@ -673,7 +673,7 @@
         private System.Windows.Forms.ComboBox ActionComboBox;
         private System.Windows.Forms.ComboBox ActorComboBox;
         private System.Windows.Forms.ComboBox PiComboBox;
-        private System.Windows.Forms.ComboBox fluentComboBox;
+        private System.Windows.Forms.ComboBox FluentComboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox StatementsTextBox;
         private System.Windows.Forms.Label label12;
