@@ -9,12 +9,12 @@ namespace RW
 {
     public class Model
     {
-        private string[] fluent; // fluenty z nazwami
-        private bool[] noninertial; // ktore fluenty sa nieinercjalne
-        private State[] state; // tablica wszystkich mozliwych stanow
-        private List<State> initial; // lista stanow poczatkowych
-        private string[] agent; // agenci z nazwami
-        private string[] action; // akcje z nazwami
+        public string[] fluent { get; } // fluenty z nazwami
+        public bool[] noninertial { get; private set; } // ktore fluenty sa nieinercjalne
+        public State[] state { get; private set; } // tablica wszystkich mozliwych stanow
+        public List<State> initial { get; private set; } // lista stanow poczatkowych
+        public string[] agent { get; } // agenci z nazwami
+        public string[] action { get; } // akcje z nazwami
 
         // to sa te dziwne znaczki T i odwrocone T, nie wiem czy to potrzebne do czegokolwiek
         public readonly int[] TRUE;
@@ -48,6 +48,17 @@ namespace RW
                 return true;
             }
 
+            public string Print()
+            {
+                string result = "(";
+                for (int i = 0; i < fluents.Length; i++)
+                {
+                    if (fluents[i]) result += 1 + " ";
+                    else result += 0 + " ";
+                }
+                result += ")\n";
+                return result;
+            }
 
         }
 
