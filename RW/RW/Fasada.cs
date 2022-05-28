@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +35,39 @@ namespace RW
             model.SetInitialStates(initially, after, typicallyAfter, observableAfter);
         }
 
+        public string test()
+        {
+            string log = "";
+            log += "nazwy fluentow:\n(";
+            for (int i = 0; i < model.fluent.Length; i++) log += model.fluent[i] + " ";
+            log += ")\n";
+            log += "stany poczatkowe to:\n";
+            for(int i=0;i<model.initial.Count;i++) model.initial[i].Print();
+            log += "efekty akcji:\n";
+            for(int i=0;i<model.state.Length;i++)
+            {
+                log += "stan " + model.state[i].Print();
+                if (model.state[i].forbidden)
+                {
+                    log += "jest nieosiagalny\n";
+                    continue;
+                }
+                log += "mozliwe efekty: \n";
+                for(int action=0; action < model.action.Length;action++)
+                {
+                    for(int agent=0; agent<model.agent.Length;agent++)
+                    {
+                        if (model.state[i].possibleEffects[agent, action].Count != 0)
+                        {
+                            log += model.agent[agent] + " by " + model.action[action] + ":\n";
+                            foreach(Model.State s in model.state[i].possibleEffects[agent, action]) log += s.Print();
+                        }
+
+                    }
+                }
+            }
+            return log;
+        }
         // tutaj bedzie obsluga kwerend
     }
 }
