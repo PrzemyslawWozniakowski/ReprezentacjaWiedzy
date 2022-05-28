@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +9,12 @@ namespace RW
 {
     public class Model
     {
-        // tablica fluentow, tablica ktora mowi jakie fluenty sa nieinercjalne, tablica wszystkich stanow, tablica agentow i tablica akcji
-        private string[] fluent;
-        private bool[] noninertial;
-        private State[] state;
-        private string[] agent;
-        private string[] action;
+        private string[] fluent; // fluenty z nazwami
+        private bool[] noninertial; // ktore fluenty sa nieinercjalne
+        private State[] state; // tablica wszystkich mozliwych stanow
+        private List<State> initial; // lista stanow poczatkowych
+        private string[] agent; // agenci z nazwami
+        private string[] action; // akcje z nazwami
 
         // to sa te dziwne znaczki T i odwrocone T, nie wiem czy to potrzebne do czegokolwiek
         public readonly int[] TRUE;
@@ -23,16 +23,17 @@ namespace RW
         public class State
         {
             public bool forbidden = false; // czy stan jest niedozwolony (nie spelnia always costam)
-            public bool initial = true; // czy stan jest poczatkowy
 
             public readonly bool[] fluents; // jak ustawione sa fluenty w danym stanie
-            public List<State>[,] certainEffects; // lista pewnych efektow danej akcji danego agenta w tym stanie
+            public List<State>[,] possibleEffects; // lista wszystkich możliwych bezpośrednich efektow danej akcji danego agenta w tym stanie
+            public List<State>[,] typicalEffects; // lista typowych efektów bezpośrednich
+            public List<State>[,] abnormalEffects; // lista efektów nietypowych
 
             public State(bool[] fluents, int agents, int actions)
             {
                 this.fluents = new bool[fluents.Length];
                 for (int i = 0; i < fluents.Length; i++) this.fluents[i] = fluents[i];
-                certainEffects = new List<State>[agents, actions];
+                possibleEffects = new List<State>[agents, actions];
             }
 
             public bool SatisfiesCondition(int[] conditions) // czy stan spelnia warunek
@@ -47,6 +48,7 @@ namespace RW
                 return true;
             }
 
+
         }
 
         // generujemy zbior wszystkich mozliwych stanow i takie tam
@@ -54,6 +56,8 @@ namespace RW
         {
             TRUE = new int[fluent.Count];
             FALSE = new int[fluent.Count];
+
+            initial = new();
             for(int i=0;i<fluent.Count;i++)
             {
                 TRUE[i] = -1;
@@ -106,7 +110,7 @@ namespace RW
             return;
         }
 
-        public void SetCertainEffects(List<Causes> causes, List<Releases> releases)
+        public void SetPossibleEffects(List<Causes> causes, List<Releases> releases)
         {
             foreach(State s in state)
             {
@@ -114,9 +118,46 @@ namespace RW
                 {
                     for(int j=0;j<action.Length; j++)
                     {
-                        s.certainEffects[i,j] = Res(s, i, j, causes, releases);
+                        s.possibleEffects[i,j] = Res(s, i, j, causes, releases);
                     }
                 }
+            }
+            return;
+        }
+
+        public void SetTypicalEffects(List<Causes> causes, List<TypicallyCauses> typicallyCauses, List<Releases> releases, List<TypicallyReleases> typicallyReleases)
+        {
+            foreach (State s in state)
+            {
+                if (!s.forbidden) for (int i = 0; i < agent.Length; i++)
+                    {
+                        for (int j = 0; j < action.Length; j++)
+                        {
+                            s.typicalEffects[i, j] = TypicalRes(s, i, j, causes, typicallyCauses, releases, typicallyReleases);
+                        }
+                    }
+            }
+            return;
+        }
+
+        public void SetAbnormalEffects()
+        {
+            List<State> result = new();
+            foreach (State s in state)
+            {
+                if (!s.forbidden) for (int i = 0; i < agent.Length; i++)
+                    {
+                        for (int j = 0; j < action.Length; j++)
+                        {
+                            result.Clear();
+                            result.AddRange(s.possibleEffects[i, j]);
+                            foreach(State state in result)
+                            {
+                                if (s.typicalEffects[i, j].Contains(state)) result.Remove(state);
+                            }
+                            s.abnormalEffects[i, j] = result;
+                        }
+                    }
             }
             return;
         }
@@ -126,13 +167,23 @@ namespace RW
             //initially
             foreach(State s in state)
             {
-                foreach(Initially init in initially)
+                initial.Add(s);
+                foreach(Initially statement in initially)
                 {
-                    if (!s.SatisfiesCondition(init.condition)) s.initial = false;
+                    if (!s.SatisfiesCondition(statement.condition)) initial.Remove(s);
                 }
             }
             //after
+            foreach(State s in initial)
+            {
+
+            }
             //observable
+            foreach (State s in initial)
+            {
+
+            }
+
             return;
         }
 
@@ -161,27 +212,35 @@ namespace RW
 
 
 
-        // dalej jest magia, ktora dzieje sie przy generowaniu grafu
+        // dalej jest magia, ktora dzieje przy generowaniu grafu
 
         private List<State> Res0(State s, int agent, int action, List<Causes> causes)
         {
+            bool Res0_Condition(State s, int agent, int action, State res, List<Causes> causes)
+            {
+                foreach (Causes c in causes)
+                {
+                    if ((c.agent == agent &&
+                        c.action == action &&
+                        s.SatisfiesCondition(c.condition)) &&
+                        !res.SatisfiesCondition(c.effect))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
             List<State> result = new();
             bool[] contains = new bool[state.Length];
-            for(int i=0;i<state.Length;i++)
+            for (int i = 0; i < state.Length; i++)
             {
-                if (!state[i].forbidden)
-                foreach(Causes c in causes)
+                if (!state[i].forbidden && Res0_Condition(s, agent, action, state[i], causes))
                 {
-                    if(!(c.agent == agent &&
-                        c.action == action &&
-                        s.SatisfiesCondition(c.condition)) ||
-                        state[i].SatisfiesCondition(c.effect))
+                    if (!contains[i])
                     {
-                        if (!contains[i])
-                        {
-                            result.Add(state[i]);
-                            contains[i] = true;
-                        }
+                        result.Add(state[i]);
+                        contains[i] = true;
                     }
                 }
             }
@@ -193,16 +252,16 @@ namespace RW
             bool[] result = new bool[fluent.Length];
             for(int i=0;i<fluent.Length;i++)
             {
-                if (!noninertial[i] && s.fluents[i] != res.fluents[i])
+                if (!noninertial[i] && s.fluents[i] != res.fluents[i]) // warunek 1 dla inercjalnych
                     result[i] = true;
-                else
+                else // warunek 2 z releases
                 {
-                    for(int j=0;j<releases.Count;j++)
+                    foreach(Releases statement in releases)
                     {
-                        if(releases[j].agent == agent &&
-                            releases[j].action == action &&
-                            s.SatisfiesCondition(releases[j].condition) &&
-                            res.SatisfiesCondition(releases[j].effect))
+                        if(statement.agent == agent &&
+                            statement.action == action &&
+                            s.SatisfiesCondition(statement.condition) &&
+                            !res.SatisfiesCondition(statement.effect))
                         {
                             result[i] = true;
                             break;
@@ -244,6 +303,101 @@ namespace RW
 
             List<State> result = new();
             for(int i=0;i<res0.Count;i++)
+            {
+                if (isMinimal[i]) result.Add(res0[i]);
+            }
+            return result;
+        }
+
+        // Resy dla typowych
+
+        private List<State> TypicalRes0(State s, int agent, int action, List<Causes> causes, List<TypicallyCauses> typically)
+        {
+            bool Res0_Condition(State s, int agent, int action, State res, List<Causes> causes, List<TypicallyCauses> typically)
+            {
+                List<CausesOrTypicallyCauses> statements = new();
+                statements.AddRange(causes);
+                statements.AddRange(typically);
+                foreach (CausesOrTypicallyCauses c in statements)
+                {
+                    if ((c.agent == agent &&
+                        c.action == action &&
+                        s.SatisfiesCondition(c.condition)) &&
+                        !res.SatisfiesCondition(c.effect))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            List<State> result = new();
+            bool[] contains = new bool[state.Length];
+            for (int i = 0; i < state.Length; i++)
+            {
+                if (!state[i].forbidden && Res0_Condition(s, agent, action, state[i], causes, typically))
+                {
+                    if (!contains[i])
+                    {
+                        result.Add(state[i]);
+                        contains[i] = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        private bool[] TypicalNew(State s, int agent, int action, State res, List<Releases> releases, List<TypicallyReleases> typically)
+        {
+            List<ReleasesOrTypicallyReleases> statements = new();
+            statements.AddRange(releases);
+            statements.AddRange(typically);
+
+            bool[] result = new bool[fluent.Length];
+            for (int i = 0; i < fluent.Length; i++)
+            {
+                if (!noninertial[i] && s.fluents[i] != res.fluents[i]) // warunek 1 dla inercjalnych
+                    result[i] = true;
+                else // warunek 2 z releases
+                {
+                    foreach(ReleasesOrTypicallyReleases statement in statements)
+                    {
+                        if (statement.agent == agent &&
+                            statement.action == action &&
+                            s.SatisfiesCondition(statement.condition) &&
+                            !res.SatisfiesCondition(statement.effect))
+                        {
+                            result[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        private List<State> TypicalRes(State s, int agent, int action, List<Causes> causes, List<TypicallyCauses> typicallyCauses, List<Releases> releases, List<TypicallyReleases> typicallyReleases)
+        {
+            List<State> res0 = TypicalRes0(s, agent, action, causes, typicallyCauses);
+            List<bool[]> newSet = new();
+            foreach (State res in res0)
+            {
+                newSet.Add(TypicalNew(s, agent, action, res, releases, typicallyReleases));
+            }
+
+            bool[] isMinimal = new bool[newSet.Count];
+            for (int i = 0; i < newSet.Count; i++) isMinimal[i] = true;
+
+            for (int i = 0; i < newSet.Count; i++)
+            {
+                for (int j = i + 1; j < newSet.Count; j++)
+                {
+                    if (Subset(newSet[i], newSet[j])) isMinimal[j] = false;
+                }
+            }
+
+            List<State> result = new();
+            for (int i = 0; i < res0.Count; i++)
             {
                 if (isMinimal[i]) result.Add(res0[i]);
             }
