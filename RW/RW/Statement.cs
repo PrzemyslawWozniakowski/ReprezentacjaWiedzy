@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace RW
         int fluent { get; }
     }
 
-    public interface Causes
+    public interface CausesOrTypicallyCauses
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
@@ -24,7 +24,7 @@ namespace RW
         int[] effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
     }
 
-    public interface TypicallyCauses
+    public interface Causes : CausesOrTypicallyCauses
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
@@ -32,7 +32,7 @@ namespace RW
         int[] effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
     }
 
-    public interface Releases
+    public interface TypicallyCauses : CausesOrTypicallyCauses
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
@@ -40,7 +40,23 @@ namespace RW
         int[] effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
     }
 
-    public interface TypicallyReleases
+    public interface ReleasesOrTypicallyReleases
+    {
+        int agent { get; } //id agenta
+        int action { get; } //id akcji
+        int[] condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        int[] effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+    }
+
+    public interface Releases : ReleasesOrTypicallyReleases
+    {
+        int agent { get; } //id agenta
+        int action { get; } //id akcji
+        int[] condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        int[] effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+    }
+
+    public interface TypicallyReleases : ReleasesOrTypicallyReleases
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
