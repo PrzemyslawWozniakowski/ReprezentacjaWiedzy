@@ -162,7 +162,7 @@ namespace RW
             return;
         }
 
-        public void SetInitialStates(List<Initially> initially, List<After> after, List<ObservableAfter> observableAfter)
+        public void SetInitialStates(List<Initially> initially, List<After> after, List<TypicallyAfter> typicallyAfter, List<ObservableAfter> observableAfter)
         {
             //initially
             foreach(State s in state)
@@ -173,16 +173,116 @@ namespace RW
                     if (!s.SatisfiesCondition(statement.condition)) initial.Remove(s);
                 }
             }
+            List<State> result = new();
+
             //after
             foreach(State s in initial)
             {
+                result.Add(s);
+                bool end = false;
+                foreach(After statement in after)
+                {
+                    if (end) break;
+                    Stack<(State state, int i)> DFS = new();
+                    (State state, int index) current;
+                    DFS.Push((s, 0));
+                    while(DFS.Count != 0)
+                    {
+                        current = DFS.Pop();
+                        if(current.index == statement.activity.Count)
+                        {
+                            if(!current.state.SatisfiesCondition(statement.effect))
+                            {
+                                result.Remove(s);
+                                end = true;
+                                break;
+                            }
+                        }
+                        else foreach(State res in current.state.possibleEffects[
+                                                statement.activity[current.index].agent,
+                                                statement.activity[current.index].action])
+                            {
+                                DFS.Push((res, current.index + 1));
+                            }
+                    }
 
+                }
             }
+            initial.Clear();
+            initial.AddRange(result);
+            result.Clear();
+
+            //typically after
+            foreach (State s in initial)
+            {
+                result.Add(s);
+                bool end = false;
+                foreach (TypicallyAfter statement in typicallyAfter)
+                {
+                    if (end) break;
+                    Stack<(State state, int i)> DFS = new();
+                    (State state, int index) current;
+                    DFS.Push((s, 0));
+                    while (DFS.Count != 0)
+                    {
+                        current = DFS.Pop();
+                        if (current.index == statement.activity.Count)
+                        {
+                            if (!current.state.SatisfiesCondition(statement.effect))
+                            {
+                                result.Remove(s);
+                                end = true;
+                                break;
+                            }
+                        }
+                        else foreach (State res in current.state.possibleEffects[
+                                                statement.activity[current.index].agent,
+                                                statement.activity[current.index].action])
+                            {
+                                DFS.Push((res, current.index + 1));
+                            }
+                    }
+
+                }
+            }
+            initial.Clear();
+            initial.AddRange(result);
+            result.Clear();
+
             //observable
             foreach (State s in initial)
             {
-
+                result.Add(s);
+                bool end = false;
+                foreach (ObservableAfter statement in observableAfter)
+                {
+                    if (end) break;
+                    Stack<(State state, int i)> DFS = new();
+                    (State state, int index) current;
+                    DFS.Push((s, 0));
+                    while (DFS.Count != 0)
+                    {
+                        current = DFS.Pop();
+                        if (current.index == statement.activity.Count)
+                        {
+                            if (current.state.SatisfiesCondition(statement.effect))
+                            {
+                                end = true;
+                                break;
+                            }
+                        }
+                        else foreach (State res in current.state.possibleEffects[
+                                                statement.activity[current.index].agent, 
+                                                statement.activity[current.index].action])
+                            {
+                                DFS.Push((res, current.index + 1));
+                            }
+                    }
+                    if(!end) result.Remove(s);
+                }
             }
+            initial.Clear();
+            initial.AddRange(result);
 
             return;
         }
