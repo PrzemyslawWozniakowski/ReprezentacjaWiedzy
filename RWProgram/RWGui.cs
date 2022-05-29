@@ -18,7 +18,7 @@ namespace RWProgram
 
         public List<string> Statements = new List<string>()
         {
-            "initially alfa",
+            "initially alpha",
             "alpha after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "alpha typically after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "observable alpha after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
