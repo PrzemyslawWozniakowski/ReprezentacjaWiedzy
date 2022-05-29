@@ -314,11 +314,35 @@ namespace RW
         }
         */
 
+        public bool IsAlwaysExecutable(Query_ExecutableAlways query)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool IsEverExecutable(Query_ExecutableEver query)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool IsAlwaysAccessible(Query_AccessibleAlways query)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool IsEverAccessible(Query_AccessibleEver query)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool IsAlwaysInvolved(Query_InvolvedAlways query)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool IsEverInvolved(Query_InvolvedEver query)
+        {
+            throw new NotImplementedException();
+        }
 
 
 

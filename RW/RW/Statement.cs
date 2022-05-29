@@ -89,10 +89,39 @@ namespace RW
 
     // dalej syntaktyka kwerend
 
-    // public interface Query_ExecutableAlways
-    // public interface Query_ExecutableEver
-    // public interface Query_AccessibleAlways
-    // public interface Query_AccessibleEver
-    // public interface Query_InvolvedAlways
-    // public interface Query_InvolvedEver
+    public interface Query_ExecutableAlways
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+    }
+    
+    public interface Query_ExecutableEver
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+    }
+
+    public interface Query_AccessibleAlways
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+        int[] pi_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        int[] gamma_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+    }
+
+    public interface Query_AccessibleEver
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+        int[] pi_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        int[] gamma_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+    }
+
+    public interface Query_InvolvedAlways
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+        int action { get; } //id akcji
+    }
+
+    public interface Query_InvolvedEver
+    {
+        List<(int agent, int action)> program { get; } //program dzialan
+        int action { get; } //id akcji
+    }
 }
