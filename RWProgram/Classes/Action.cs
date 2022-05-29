@@ -8,6 +8,7 @@ namespace RWProgram.Classes
 {
     public class Action
     {
+        public int Index { get; set; }
         public string Name { get; set; }
 
         public override string ToString()

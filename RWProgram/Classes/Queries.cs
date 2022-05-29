@@ -13,8 +13,14 @@ namespace RWProgram.Classes
 
     public abstract class QueryWithGammaAndPi : Query
     {
-        public List<Fluent> Gamma { get; set; }
-        public List<Fluent> Pi { get; set; }
+        public State Gamma { get; set; }
+        public State Pi { get; set; }
+
+        public QueryWithGammaAndPi()
+        {
+            Gamma = new State();
+            Pi = new State();
+        }
     }
 
     public abstract class QueryWithW : Query
@@ -48,9 +54,10 @@ namespace RWProgram.Classes
 
     public class AlwaysAccesibleYFromPi : QueryWithGammaAndPi
     {
+        public AlwaysAccesibleYFromPi() : base() { }
         public override string ToString()
         {
-            return $"Is {string.Join(", ", Gamma.Select(g => g.ToString()))} always accessible from {string.Join(", ", Pi.Select(p => p.ToString()))} with P?";
+            return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
         }
         public override bool Response()
         {
@@ -60,9 +67,11 @@ namespace RWProgram.Classes
 
     public class EverAccesibleYFromPi : QueryWithGammaAndPi
     {
+        public EverAccesibleYFromPi() : base() { }
+
         public override string ToString()
         {
-            return $"Is {string.Join(", ", Gamma.Select(g => g?.ToString()))} always accessible from {string.Join(", ", Pi.Select(p => p?.ToString()))} with P?";
+            return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
         }
         public override bool Response()
         {

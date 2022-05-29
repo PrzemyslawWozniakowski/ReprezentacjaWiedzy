@@ -70,14 +70,28 @@
             this.ResetStatementButton = new System.Windows.Forms.Button();
             this.AddConditionButton = new System.Windows.Forms.Button();
             this.ConfirmStatementButton = new System.Windows.Forms.Button();
-            this.AddCondition2Button = new System.Windows.Forms.Button();
-            this.AddInitialStateButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.ResetQueryButton = new System.Windows.Forms.Button();
             this.QueryTextBox = new System.Windows.Forms.TextBox();
             this.AddQueryButton = new System.Windows.Forms.Button();
             this.DeleteLastStatementButton = new System.Windows.Forms.Button();
             this.DeleteLastProgramButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.LogicOperatorComboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.LogicOperatorComboBox2 = new System.Windows.Forms.ComboBox();
+            this.PiComboBox2 = new System.Windows.Forms.ComboBox();
+            this.FluentComboBox2 = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.LogicOperatorComboBox3 = new System.Windows.Forms.ComboBox();
+            this.Pi2ComboBox2 = new System.Windows.Forms.ComboBox();
+            this.GammaComboBox2 = new System.Windows.Forms.ComboBox();
+            this.LogicOperatorComboBox4 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,6 +125,7 @@
             this.actionsTextBox.Location = new System.Drawing.Point(106, 99);
             this.actionsTextBox.Multiline = true;
             this.actionsTextBox.Name = "actionsTextBox";
+            this.actionsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.actionsTextBox.Size = new System.Drawing.Size(676, 45);
             this.actionsTextBox.TabIndex = 5;
             this.actionsTextBox.Leave += new System.EventHandler(this.ActionsTextBox_Changed);
@@ -123,6 +138,7 @@
             this.fluentsTextBox.Location = new System.Drawing.Point(106, 51);
             this.fluentsTextBox.Multiline = true;
             this.fluentsTextBox.Name = "fluentsTextBox";
+            this.fluentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.fluentsTextBox.Size = new System.Drawing.Size(676, 42);
             this.fluentsTextBox.TabIndex = 4;
             this.fluentsTextBox.Leave += new System.EventHandler(this.FluentsTextBox_Changed);
@@ -177,6 +193,7 @@
             this.actorsTextBox.Location = new System.Drawing.Point(106, 3);
             this.actorsTextBox.Multiline = true;
             this.actorsTextBox.Name = "actorsTextBox";
+            this.actorsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.actorsTextBox.Size = new System.Drawing.Size(676, 42);
             this.actorsTextBox.TabIndex = 3;
             this.actorsTextBox.Leave += new System.EventHandler(this.ActorsTextBox_Changed);
@@ -205,7 +222,7 @@
             // 
             this.StatementsLabel.AutoSize = true;
             this.StatementsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.StatementsLabel.Location = new System.Drawing.Point(18, 311);
+            this.StatementsLabel.Location = new System.Drawing.Point(18, 341);
             this.StatementsLabel.Name = "StatementsLabel";
             this.StatementsLabel.Size = new System.Drawing.Size(197, 25);
             this.StatementsLabel.TabIndex = 3;
@@ -252,20 +269,20 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(257, 238);
+            this.label10.Location = new System.Drawing.Point(253, 238);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 16);
+            this.label10.Size = new System.Drawing.Size(31, 16);
             this.label10.TabIndex = 8;
-            this.label10.Text = "pi:";
+            this.label10.Text = "pi 1:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(375, 238);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(51, 16);
+            this.label11.Size = new System.Drawing.Size(61, 16);
             this.label11.TabIndex = 9;
-            this.label11.Text = "alpha/f:";
+            this.label11.Text = "alpha 1/f:";
             // 
             // ActionComboBox
             // 
@@ -294,7 +311,7 @@
             // FluentComboBox
             // 
             this.FluentComboBox.FormattingEnabled = true;
-            this.FluentComboBox.Location = new System.Drawing.Point(432, 235);
+            this.FluentComboBox.Location = new System.Drawing.Point(444, 235);
             this.FluentComboBox.Name = "FluentComboBox";
             this.FluentComboBox.Size = new System.Drawing.Size(85, 24);
             this.FluentComboBox.TabIndex = 13;
@@ -311,7 +328,7 @@
             // 
             // StatementsTextBox
             // 
-            this.StatementsTextBox.Location = new System.Drawing.Point(256, 311);
+            this.StatementsTextBox.Location = new System.Drawing.Point(256, 341);
             this.StatementsTextBox.Name = "StatementsTextBox";
             this.StatementsTextBox.Size = new System.Drawing.Size(554, 96);
             this.StatementsTextBox.TabIndex = 15;
@@ -351,10 +368,10 @@
             this.ProgramActorComboBox.Size = new System.Drawing.Size(108, 24);
             this.ProgramActorComboBox.TabIndex = 19;
             // 
-            // richTextBox2
+            // ProgramTextBox
             // 
             this.ProgramTextBox.Location = new System.Drawing.Point(349, 453);
-            this.ProgramTextBox.Name = "richTextBox2";
+            this.ProgramTextBox.Name = "ProgramTextBox";
             this.ProgramTextBox.Size = new System.Drawing.Size(461, 122);
             this.ProgramTextBox.TabIndex = 20;
             this.ProgramTextBox.Text = "";
@@ -396,18 +413,18 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(22, 654);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(131, 16);
+            this.label15.Size = new System.Drawing.Size(141, 16);
             this.label15.TabIndex = 25;
-            this.label15.Text = "pi (stan początkowy):";
+            this.label15.Text = "pi (stan początkowy) 1:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(309, 654);
+            this.label16.Location = new System.Drawing.Point(299, 654);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(117, 16);
+            this.label16.Size = new System.Drawing.Size(127, 16);
             this.label16.TabIndex = 26;
-            this.label16.Text = "gamma (warunek):";
+            this.label16.Text = "gamma (warunek) 1:";
             // 
             // label17
             // 
@@ -421,9 +438,9 @@
             // Pi2ComboBox
             // 
             this.Pi2ComboBox.FormattingEnabled = true;
-            this.Pi2ComboBox.Location = new System.Drawing.Point(166, 651);
+            this.Pi2ComboBox.Location = new System.Drawing.Point(169, 651);
             this.Pi2ComboBox.Name = "Pi2ComboBox";
-            this.Pi2ComboBox.Size = new System.Drawing.Size(125, 24);
+            this.Pi2ComboBox.Size = new System.Drawing.Size(122, 24);
             this.Pi2ComboBox.TabIndex = 28;
             // 
             // GammaComboBox
@@ -474,7 +491,7 @@
             // 
             // ResetStatementButton
             // 
-            this.ResetStatementButton.Location = new System.Drawing.Point(28, 359);
+            this.ResetStatementButton.Location = new System.Drawing.Point(28, 389);
             this.ResetStatementButton.Name = "ResetStatementButton";
             this.ResetStatementButton.Size = new System.Drawing.Size(99, 35);
             this.ResetStatementButton.TabIndex = 34;
@@ -505,30 +522,6 @@
             this.ConfirmStatementButton.UseVisualStyleBackColor = true;
             this.ConfirmStatementButton.Visible = false;
             this.ConfirmStatementButton.Click += new System.EventHandler(this.ConfirmStatementButton_Click);
-            // 
-            // AddCondition2Button
-            // 
-            this.AddCondition2Button.Enabled = false;
-            this.AddCondition2Button.Location = new System.Drawing.Point(415, 684);
-            this.AddCondition2Button.Name = "AddCondition2Button";
-            this.AddCondition2Button.Size = new System.Drawing.Size(171, 35);
-            this.AddCondition2Button.TabIndex = 37;
-            this.AddCondition2Button.Text = "Dodaj warunek";
-            this.AddCondition2Button.UseVisualStyleBackColor = true;
-            this.AddCondition2Button.Visible = false;
-            this.AddCondition2Button.Click += new System.EventHandler(this.AddCondition2Button_Click);
-            // 
-            // AddInitialStateButton
-            // 
-            this.AddInitialStateButton.Enabled = false;
-            this.AddInitialStateButton.Location = new System.Drawing.Point(149, 684);
-            this.AddInitialStateButton.Name = "AddInitialStateButton";
-            this.AddInitialStateButton.Size = new System.Drawing.Size(171, 35);
-            this.AddInitialStateButton.TabIndex = 38;
-            this.AddInitialStateButton.Text = "Dodaj stan początkowy";
-            this.AddInitialStateButton.UseVisualStyleBackColor = true;
-            this.AddInitialStateButton.Visible = false;
-            this.AddInitialStateButton.Click += new System.EventHandler(this.AddInitialStateButton_Click);
             // 
             // label5
             // 
@@ -571,7 +564,7 @@
             // 
             // DeleteLastStatementButton
             // 
-            this.DeleteLastStatementButton.Location = new System.Drawing.Point(133, 359);
+            this.DeleteLastStatementButton.Location = new System.Drawing.Point(133, 389);
             this.DeleteLastStatementButton.Name = "DeleteLastStatementButton";
             this.DeleteLastStatementButton.Size = new System.Drawing.Size(117, 35);
             this.DeleteLastStatementButton.TabIndex = 43;
@@ -589,6 +582,142 @@
             this.DeleteLastProgramButton.UseVisualStyleBackColor = true;
             this.DeleteLastProgramButton.Click += new System.EventHandler(this.DeleteLastProgramButton_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(217, 273);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 16);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "operator:";
+            // 
+            // LogicOperatorComboBox1
+            // 
+            this.LogicOperatorComboBox1.FormattingEnabled = true;
+            this.LogicOperatorComboBox1.Location = new System.Drawing.Point(284, 270);
+            this.LogicOperatorComboBox1.Name = "LogicOperatorComboBox1";
+            this.LogicOperatorComboBox1.Size = new System.Drawing.Size(85, 24);
+            this.LogicOperatorComboBox1.TabIndex = 46;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(375, 273);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 16);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "operator:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(253, 306);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 16);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "pi 2:";
+            // 
+            // LogicOperatorComboBox2
+            // 
+            this.LogicOperatorComboBox2.FormattingEnabled = true;
+            this.LogicOperatorComboBox2.Location = new System.Drawing.Point(444, 270);
+            this.LogicOperatorComboBox2.Name = "LogicOperatorComboBox2";
+            this.LogicOperatorComboBox2.Size = new System.Drawing.Size(85, 24);
+            this.LogicOperatorComboBox2.TabIndex = 49;
+            // 
+            // PiComboBox2
+            // 
+            this.PiComboBox2.FormattingEnabled = true;
+            this.PiComboBox2.Location = new System.Drawing.Point(284, 306);
+            this.PiComboBox2.Name = "PiComboBox2";
+            this.PiComboBox2.Size = new System.Drawing.Size(85, 24);
+            this.PiComboBox2.TabIndex = 50;
+            // 
+            // FluentComboBox2
+            // 
+            this.FluentComboBox2.FormattingEnabled = true;
+            this.FluentComboBox2.Location = new System.Drawing.Point(444, 306);
+            this.FluentComboBox2.Name = "FluentComboBox2";
+            this.FluentComboBox2.Size = new System.Drawing.Size(85, 24);
+            this.FluentComboBox2.TabIndex = 51;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(382, 309);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(54, 16);
+            this.label18.TabIndex = 52;
+            this.label18.Text = "alpha 2:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(22, 718);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(141, 16);
+            this.label19.TabIndex = 53;
+            this.label19.Text = "pi (stan początkowy) 2:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(299, 718);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(127, 16);
+            this.label20.TabIndex = 54;
+            this.label20.Text = "gamma (warunek) 2:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(99, 684);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(61, 16);
+            this.label21.TabIndex = 55;
+            this.label21.Text = "operator:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(365, 684);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 16);
+            this.label22.TabIndex = 56;
+            this.label22.Text = "operator:";
+            // 
+            // LogicOperatorComboBox3
+            // 
+            this.LogicOperatorComboBox3.FormattingEnabled = true;
+            this.LogicOperatorComboBox3.Location = new System.Drawing.Point(169, 681);
+            this.LogicOperatorComboBox3.Name = "LogicOperatorComboBox3";
+            this.LogicOperatorComboBox3.Size = new System.Drawing.Size(81, 24);
+            this.LogicOperatorComboBox3.TabIndex = 57;
+            // 
+            // Pi2ComboBox2
+            // 
+            this.Pi2ComboBox2.FormattingEnabled = true;
+            this.Pi2ComboBox2.Location = new System.Drawing.Point(169, 715);
+            this.Pi2ComboBox2.Name = "Pi2ComboBox2";
+            this.Pi2ComboBox2.Size = new System.Drawing.Size(122, 24);
+            this.Pi2ComboBox2.TabIndex = 58;
+            // 
+            // GammaComboBox2
+            // 
+            this.GammaComboBox2.FormattingEnabled = true;
+            this.GammaComboBox2.Location = new System.Drawing.Point(432, 718);
+            this.GammaComboBox2.Name = "GammaComboBox2";
+            this.GammaComboBox2.Size = new System.Drawing.Size(134, 24);
+            this.GammaComboBox2.TabIndex = 59;
+            // 
+            // LogicOperatorComboBox4
+            // 
+            this.LogicOperatorComboBox4.FormattingEnabled = true;
+            this.LogicOperatorComboBox4.Location = new System.Drawing.Point(432, 684);
+            this.LogicOperatorComboBox4.Name = "LogicOperatorComboBox4";
+            this.LogicOperatorComboBox4.Size = new System.Drawing.Size(85, 24);
+            this.LogicOperatorComboBox4.TabIndex = 60;
+            // 
             // RWGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -596,14 +725,28 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(862, 971);
+            this.Controls.Add(this.LogicOperatorComboBox4);
+            this.Controls.Add(this.GammaComboBox2);
+            this.Controls.Add(this.Pi2ComboBox2);
+            this.Controls.Add(this.LogicOperatorComboBox3);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.FluentComboBox2);
+            this.Controls.Add(this.PiComboBox2);
+            this.Controls.Add(this.LogicOperatorComboBox2);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.LogicOperatorComboBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.DeleteLastProgramButton);
             this.Controls.Add(this.DeleteLastStatementButton);
             this.Controls.Add(this.AddQueryButton);
             this.Controls.Add(this.QueryTextBox);
             this.Controls.Add(this.ResetQueryButton);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.AddInitialStateButton);
-            this.Controls.Add(this.AddCondition2Button);
             this.Controls.Add(this.AddConditionButton);
             this.Controls.Add(this.ConfirmStatementButton);
             this.Controls.Add(this.ResetStatementButton);
@@ -696,14 +839,28 @@
         private System.Windows.Forms.Button ResetStatementButton;
         private System.Windows.Forms.Button AddConditionButton;
         private System.Windows.Forms.Button ConfirmStatementButton;
-        private System.Windows.Forms.Button AddCondition2Button;
-        private System.Windows.Forms.Button AddInitialStateButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button ResetQueryButton;
         private System.Windows.Forms.TextBox QueryTextBox;
         private System.Windows.Forms.Button AddQueryButton;
         private System.Windows.Forms.Button DeleteLastStatementButton;
         private System.Windows.Forms.Button DeleteLastProgramButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox LogicOperatorComboBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox LogicOperatorComboBox2;
+        private System.Windows.Forms.ComboBox PiComboBox2;
+        private System.Windows.Forms.ComboBox FluentComboBox2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox LogicOperatorComboBox3;
+        private System.Windows.Forms.ComboBox Pi2ComboBox2;
+        private System.Windows.Forms.ComboBox GammaComboBox2;
+        private System.Windows.Forms.ComboBox LogicOperatorComboBox4;
     }
 }
 

@@ -13,11 +13,14 @@ namespace RWProgram.Classes
 
     public abstract class ConditionStatement : Statement
     {
-        public List<Fluent> Pi { get; set; }
 
-        public ConditionStatement(List<Fluent> Pi)
+        public State Pi { get; set; }
+
+        public ConditionStatement(List<Fluent> Pi, List<LogicOperator> Operators)
         {
-            this.Pi = Pi == null ? new List<Fluent>() : Pi.Where(a => a != null).ToList();
+            this.Pi = new State();
+            this.Pi.Fluents.AddRange(Pi.Where(a => a != null).ToList());
+            this.Pi.Operators.AddRange(Operators.Where(a => a != null).ToList());
         }
     }
 
@@ -27,7 +30,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public ConditionActionByActorStatement(Action Action, Actor Actor, List<Fluent> Pi) : base(Pi)
+        public ConditionActionByActorStatement(Action Action, Actor Actor, List<Fluent> PiFluents, List<LogicOperator> Operators) : base(PiFluents, Operators)
         {
             this.Action = Action;
             this.Actor = Actor;
@@ -49,7 +52,7 @@ namespace RWProgram.Classes
     //Same as FluentAfterActionbyActor but actors and action empty
     public class InitiallyFluent : FluentAfterActionbyActor
     {
-        public InitiallyFluent(Fluent Alpha) : base(Alpha, null)
+        public InitiallyFluent(List<Fluent> Alpha, List<LogicOperator> LogicOperators) : base(Alpha, LogicOperators, null)
         { }
 
         public override string ToString()
@@ -61,16 +64,18 @@ namespace RWProgram.Classes
 
     public class FluentAfterActionbyActor : StatementAfterActionByUser
     {
-        public Fluent Alpha { get; set; }
+        public State Alpha { get; set; }
 
-        public FluentAfterActionbyActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors) 
+        public FluentAfterActionbyActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors) 
         {
-            this.Alpha = Alpha; 
+            this.Alpha = new State();
+            this.Alpha.Fluents.AddRange(Alpha);
+            this.Alpha.Operators.AddRange(Operators);
         }
 
         public override string ToString()
         {
-            var str = $"{Alpha} after";
+            var str = $"{Alpha.ToString()} after";
             for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
@@ -83,11 +88,13 @@ namespace RWProgram.Classes
 
     public class FluentTypicallyAfterActionbyActor : StatementAfterActionByUser
     {
-        public Fluent Alpha { get; set; }
+        public State Alpha { get; set; }
 
-        public FluentTypicallyAfterActionbyActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
+        public FluentTypicallyAfterActionbyActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
-            this.Alpha = Alpha;
+            this.Alpha = new State();
+            this.Alpha.Fluents.AddRange(Alpha);
+            this.Alpha.Operators.AddRange(Operators);
         }
 
         public override string ToString()
@@ -105,16 +112,18 @@ namespace RWProgram.Classes
 
     public class ObservableFluentAfterActionByActor : StatementAfterActionByUser
     {
-        public Fluent Alpha { get; set; }
+        public State Alpha { get; set; }
 
-        public ObservableFluentAfterActionByActor(Fluent Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
+        public ObservableFluentAfterActionByActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
-            this.Alpha = Alpha;
+            this.Alpha = new State();
+            this.Alpha.Fluents.AddRange(Alpha);
+            this.Alpha.Operators.AddRange(Operators);
         }
 
         public override string ToString()
         {
-            var str = $"observable {Alpha} after";
+            var str = $"observable {Alpha.ToString()} after";
             for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
@@ -126,17 +135,19 @@ namespace RWProgram.Classes
 
     public class ActionByActorCausesAlphaIfFluents : ConditionActionByActorStatement
     {
-        public Fluent Alpha { get; set; }
+        public State Alpha { get; set; }
 
 
-        public ActionByActorCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action ,Actor, Pi)
+        public ActionByActorCausesAlphaIfFluents(List<Fluent> Alpha, List<LogicOperator> Operators, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action ,Actor, Pi, OperatorsPi)
         {
-            this.Alpha = Alpha;
+            this.Alpha = new State();
+            this.Alpha.Fluents.AddRange(Alpha);
+            this.Alpha.Operators.AddRange(Operators);
         }
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} casues {Alpha} if {string.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} casues {Alpha.ToString()} if {Pi.ToString()}";
         }
     }
 
@@ -144,29 +155,31 @@ namespace RWProgram.Classes
     {
         public Fluent F { get; set; }
 
-        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Action ,Actor, Pi)
+        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action ,Actor, Pi, OperatorsPi)
         {
             this.F = F;
         }
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} releases {F} if {string.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} releases {F} if {Pi.ToString()}";
         }
     }
 
     public class ActionByActorTypicallyCausesAlphaIfFluents : ConditionActionByActorStatement
     {
-        public Fluent Alpha { get; set; }
+        public State Alpha { get; set; }
 
-        public ActionByActorTypicallyCausesAlphaIfFluents(Fluent Alpha, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
+        public ActionByActorTypicallyCausesAlphaIfFluents(List<Fluent> Alpha, List<LogicOperator> Operators, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi)
         {
-            this.Alpha = Alpha;
+            this.Alpha = new State();
+            this.Alpha.Fluents.AddRange(Alpha);
+            this.Alpha.Operators.AddRange(Operators);
         }
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically casues {Alpha} if {string.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} typically casues {Alpha} if {Pi.ToString()}";
         }
     }
 
@@ -174,37 +187,37 @@ namespace RWProgram.Classes
     {
         public Fluent F { get; set; }
 
-        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi)
+        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi)
         {
             this.F = F;
         }
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically releases {F} if {string.Join(",", Pi.Select(p => p.Name))}";
+            return $"{Action} by {Actor} typically releases {F} if {Pi.ToString()}";
         }
     }
 
     public class ImpossibleActionByActorIfFluents : ConditionActionByActorStatement
     {
-        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi) : base(Action, Actor, Pi) { }
+        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi) { }
 
         public override string ToString()
         {
             var str = $"impossible {Action} by {Actor}";
-            if (Pi == null || Pi.Count == 0) return str;
-            return $"{str} if {string.Join(",", Pi.Select(p => p.Name))}";
+            if (Pi.ToString() == string.Empty) return str;
+            return $"{str} if {Pi.ToString()}";
         }
     }
 
     public class AlwaysPi : ConditionStatement
     {
-        public AlwaysPi(List<Fluent> Pi) : base(Pi) { }
+        public AlwaysPi(List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Pi, OperatorsPi) { }
         public override string ToString()
         {
-            if (Pi == null || Pi.Count == 0) return string.Empty;
+            if (Pi == null || Pi.Fluents.Count == 0) return string.Empty;
 
-            return $"always {string.Join(", ", Pi.Select(p => p?.Name))}";
+            return Pi.ToString();
         }
     }
 
