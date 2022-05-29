@@ -283,7 +283,7 @@ namespace RWProgram
                     break;
             }
 
-            if (statementEnum == StatementEnum.FluentAfterActionbyActor || statementEnum != StatementEnum.FluentTypicallyAfterActionbyActor || statementEnum == StatementEnum.ObservableFluentAfterActionByActor)
+            if (statementEnum == StatementEnum.FluentAfterActionbyActor || statementEnum == StatementEnum.FluentTypicallyAfterActionbyActor || statementEnum == StatementEnum.ObservableFluentAfterActionByActor)
                 ShowButtons();
 
             SetStatementsText();
