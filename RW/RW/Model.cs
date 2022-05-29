@@ -15,10 +15,7 @@ namespace RW
         public List<State> initial { get; private set; } // lista stanow poczatkowych
         public string[] agent { get; } // agenci z nazwami
         public string[] action { get; } // akcje z nazwami
-
-        // to sa te dziwne znaczki T i odwrocone T, nie wiem czy to potrzebne do czegokolwiek
-        public readonly int[] TRUE;
-        public readonly int[] FALSE;
+        
 
         public class State
         {
@@ -66,15 +63,7 @@ namespace RW
         // generujemy zbior wszystkich mozliwych stanow i takie tam
         public Model(List<string> fluent, List<string> agent, List<string> action)
         {
-            TRUE = new int[fluent.Count];
-            FALSE = new int[fluent.Count];
-
             initial = new();
-            for(int i=0;i<fluent.Count;i++)
-            {
-                TRUE[i] = -1;
-                FALSE[i] = 2;
-            }
 
             int stateCount = (int)Math.Pow(2, fluent.Count);
             bool[] fluentValues = new bool[fluent.Count];
