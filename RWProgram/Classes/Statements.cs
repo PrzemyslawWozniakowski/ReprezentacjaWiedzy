@@ -103,7 +103,7 @@ namespace RWProgram.Classes
             for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
-                str = str + $"{comma}  {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
+                str = str + $"{comma} {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
             }
             return str;
         }
@@ -127,7 +127,7 @@ namespace RWProgram.Classes
             for (var i = 0; i < ActionsByActors.Count; i++)
             {
                 var comma = i != 0 ? "," : "";
-                str = str + $"{comma}  {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
+                str = str + $"{comma} {ActionsByActors[i].action} by {ActionsByActors[i].actor}";
             }
             return str;
         }
