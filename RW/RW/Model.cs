@@ -36,16 +36,17 @@ namespace RW
                 possibleEffects = new List<State>[agents, actions];
             }
 
-            public bool SatisfiesCondition(int[] conditions) // czy stan spelnia warunek
+            public bool SatisfiesCondition(Formula condition) // czy stan spelnia warunek
             {
-                if (conditions[0] == 2) return false;
-                for (int i = 0; i < fluents.Length; i++)
-                {
-                    if (conditions[i] == -1) continue;
-                    if (conditions[i] == 1 && fluents[i] == false) return false;
-                    if (conditions[i] == 0 && fluents[i] == true) return false;
-                }
-                return true;
+                return condition.CheckCondition(this);
+                //if (conditions[0] == 2) return false;
+                //for (int i = 0; i < fluents.Length; i++)
+                //{
+                //    if (conditions[i] == -1) continue;
+                //    if (conditions[i] == 1 && fluents[i] == false) return false;
+                //    if (conditions[i] == 0 && fluents[i] == true) return false;
+                //}
+                //return true;
             }
 
             public string Print()
