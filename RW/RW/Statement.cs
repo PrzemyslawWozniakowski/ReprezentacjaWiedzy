@@ -30,16 +30,16 @@ namespace RW
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        Formula condition { get; } 
+        Formula effect { get; } 
     }
 
     public class Causes : CausesOrTypicallyCauses
     {
         public int agent { get; } //id agenta
         public int action { get; } //id akcji
-        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        public Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula condition { get; } 
+        public Formula effect { get; } 
 
         public Causes(int agent, int action, Formula effect, Formula condition)
         {
@@ -62,8 +62,8 @@ namespace RW
     {
         public int agent { get; } //id agenta
         public int action { get; } //id akcji
-        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        public Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula condition { get; } 
+        public Formula effect { get; } 
 
         public TypicallyCauses(int agent, int action, Formula effect, Formula condition)
         {
@@ -86,16 +86,16 @@ namespace RW
     {
         int agent { get; } //id agenta
         int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        Formula condition { get; }
+        int fluent { get; }
     }
 
     public class Releases : ReleasesOrTypicallyReleases
     {
         public int agent { get; } //id agenta
         public int action { get; } //id akcji
-        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        public int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula condition { get; }
+        public int fluent { get; }
 
         public Releases(int agent, int action, int fluent, Formula condition)
         {
@@ -119,8 +119,8 @@ namespace RW
     {
         public int agent { get; } //id agenta
         public int action { get; } //id akcji
-        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        public int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula condition { get; } 
+        public int fluent { get; }
 
         public TypicallyReleases(int agent, int action, int fluent, Formula condition)
         {
@@ -190,39 +190,39 @@ namespace RW
 
     // dalej syntaktyka kwerend
 
-    public interface Query_ExecutableAlways
+    public class Query_ExecutableAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
     }
     
-    public interface Query_ExecutableEver
+    public class Query_ExecutableEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
     }
 
-    public interface Query_AccessibleAlways
+    public class Query_AccessibleAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        int[] pi_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        int[] gamma_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        Formula pi_condition { get; }
+        Formula gamma_condition { get; }
     }
 
-    public interface Query_AccessibleEver
+    public class Query_AccessibleEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        int[] pi_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        int[] gamma_condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        Formula pi_condition { get; }
+        Formula gamma_condition { get; } 
     }
 
-    public interface Query_InvolvedAlways
+    public class Query_InvolvedAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        int action { get; } //id akcji
+        int agent { get; } //id agenta
     }
 
-    public interface Query_InvolvedEver
+    public class Query_InvolvedEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        int action { get; } //id akcji
+        int agent { get; } //id agenta
     }
 }
