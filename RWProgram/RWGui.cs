@@ -547,7 +547,7 @@ namespace RWProgram
         //                    {
         //                        query.Gamma.Add((Fluent)GammaComboBox.SelectedItem);
         //                    }
-                            
+
         //                }
         //                break;
         //            }
@@ -557,6 +557,32 @@ namespace RWProgram
 
         //    SetQueryTextBox();
         //}
+
+
+        private void SetTest1Domain(object sender, EventArgs e)
+        {
+            SetLogicInFrontEnd(Tests.Test1);
+        }
+
+        private void SetTest2Domain(object sender, EventArgs e)
+        {
+            SetLogicInFrontEnd(Tests.Test2);
+        }
+
+        private void SetTest3Domain(object sender, EventArgs e)
+        {
+            SetLogicInFrontEnd(Tests.Test3);
+        }
+
+        private void SetTest4Domain(object sender, EventArgs e)
+        {
+            SetLogicInFrontEnd(Tests.Test4);
+        }
+
+        private void SetTest5Domain(object sender, EventArgs e)
+        {
+            SetLogicInFrontEnd(Tests.Test5);
+        }
 
         private void ResetComboBoxes2()
         {
@@ -594,6 +620,17 @@ namespace RWProgram
             if (index == 0) return new And();
             if (index == 1) return new Or();
             return new Implies();
+        }
+        private void SetLogicInFrontEnd(Logic logic)
+        {
+            actorsTextBox.Text = string.Join(", ", logic.Actors.Select(x => x.ToString()));
+            ActorsTextBox_Changed(null, null);
+            fluentsTextBox.Text = string.Join(", ", logic.Fluents.Where(f => !(f is NegatedFluent)).Select(x => x.ToString()));
+            FluentsTextBox_Changed(null, null);
+            actionsTextBox.Text = string.Join(", ", logic.Actions.Select(x => x.ToString()));
+            ActionsTextBox_Changed(null, null);
+            Logic = logic;
+            SetStatementsText();
         }
     }
 }
