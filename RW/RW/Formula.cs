@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +8,9 @@ namespace RW
 {
     public class Formula // reprezentuje takie wyrazeania jak a OR b, a AND b, IF a THEN b
     {
-        private readonly (int id, bool value) fluent1;
-        private readonly (int id, bool value) fluent2;
-        private readonly symbol op = symbol.NULL;
+        private (int id, bool value) fluent1;
+        private (int id, bool value) fluent2;
+        private symbol op = symbol.NULL;
 
         public enum symbol
         {
@@ -20,11 +20,12 @@ namespace RW
             THEN = 2
         }
 
-        private readonly bool specialTreatmentFlag; // traktujemy wartosc warunku jako zawsze true albo zawsze false
-        private readonly bool specialValue; // tutaj ta wartosc
+        private bool specialTreatmentFlag; // traktujemy wartosc warunku jako zawsze true albo zawsze false
+        private bool specialValue; // tutaj ta wartosc
 
         public Formula((int, bool) fluent1) // warunek typu A causes alfa if fluent1
         {
+            specialTreatmentFlag = false;
             this.fluent1 = fluent1;
             this.fluent2 = (0, true);
             this.op = symbol.NULL;
