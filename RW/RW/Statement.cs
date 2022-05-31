@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace RW
 {
-    public interface Always
+    public class Always
     {
-        Formula condition { get; }
+        public Formula condition { get; }
+
+        public Always(Formula condition)
+        {
+            this.condition = condition;
+        }
     }
 
-    public interface Noninertial
+    public class Noninertial
     {
-        int fluent { get; }
+        public int fluent { get; }
+
+        public Noninertial(int fluent)
+        {
+            this.fluent = fluent;
+        }
     }
 
     public interface CausesOrTypicallyCauses
@@ -24,20 +34,52 @@ namespace RW
         Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
     }
 
-    public interface Causes : CausesOrTypicallyCauses
+    public class Causes : CausesOrTypicallyCauses
     {
-        int agent { get; } //id agenta
-        int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int agent { get; } //id agenta
+        public int action { get; } //id akcji
+        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+
+        public Causes(int agent, int action, Formula effect, Formula condition)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = condition;
+            this.effect = effect;
+        }
+
+        public Causes(int agent, int action, Formula effect)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = new Formula(true);
+            this.effect = effect;
+        }
     }
 
-    public interface TypicallyCauses : CausesOrTypicallyCauses
+    public class TypicallyCauses : CausesOrTypicallyCauses
     {
-        int agent { get; } //id agenta
-        int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int agent { get; } //id agenta
+        public int action { get; } //id akcji
+        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+
+        public TypicallyCauses(int agent, int action, Formula effect, Formula condition)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = condition;
+            this.effect = effect;
+        }
+
+        public TypicallyCauses(int agent, int action, Formula effect)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = new Formula(true);
+            this.effect = effect;
+        }
     }
 
     public interface ReleasesOrTypicallyReleases
@@ -45,46 +87,105 @@ namespace RW
         int agent { get; } //id agenta
         int action { get; } //id akcji
         Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
     }
 
-    public interface Releases : ReleasesOrTypicallyReleases
+    public class Releases : ReleasesOrTypicallyReleases
     {
-        int agent { get; } //id agenta
-        int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int agent { get; } //id agenta
+        public int action { get; } //id akcji
+        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+
+        public Releases(int agent, int action, int fluent, Formula condition)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = condition;
+            this.fluent = fluent;
+        }
+
+        public Releases(int agent, int action, int fluent)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = new Formula(true);
+            this.fluent = fluent;
+        }
+
     }
 
-    public interface TypicallyReleases : ReleasesOrTypicallyReleases
+    public class TypicallyReleases : ReleasesOrTypicallyReleases
     {
-        int agent { get; } //id agenta
-        int action { get; } //id akcji
-        Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
-        Formula effect { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int agent { get; } //id agenta
+        public int action { get; } //id akcji
+        public Formula condition { get; } //tablica wartosci fluentow w warunku: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+        public int fluent { get; } //tablica wartosci fluentow w efekcie akcji: 1 = prawda, 0 = falsz, -1 = bez znaczenia
+
+        public TypicallyReleases(int agent, int action, int fluent, Formula condition)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = condition;
+            this.fluent = fluent;
+        }
+
+        public TypicallyReleases(int agent, int action, int fluent)
+        {
+            this.agent = agent;
+            this.action = action;
+            this.condition = new Formula(true);
+            this.fluent = fluent;
+        }
+
     }
 
-    public interface Initially
+    public class Initially
     {
-        Formula condition { get; }
+        public Formula condition { get; }
+
+        public Initially(Formula condition)
+        {
+            this.condition = condition;
+        }
     }
 
-    public interface After
+    public class After
     {
-        List<(int agent, int action)> activity { get; }
-        Formula effect { get; }
+        public List<(int agent, int action)> activity { get; }
+        public Formula effect { get; }
+
+        public After(List<(int agent, int action)> activity, Formula effect)
+        {
+            this.activity = activity;
+            this.effect = effect;
+        }
+
     }
 
-    public interface TypicallyAfter
+    public class TypicallyAfter
     {
-        List<(int agent, int action)> activity { get; }
-        Formula effect { get; }
+        public List<(int agent, int action)> activity { get; }
+        public Formula effect { get; }
+
+        public TypicallyAfter(List<(int agent, int action)> activity, Formula effect)
+        {
+            this.activity = activity;
+            this.effect = effect;
+        }
+
     }
 
-    public interface ObservableAfter
+    public class ObservableAfter
     {
-        List<(int agent, int action)> activity { get; }
-        Formula effect { get; }
+        public List<(int agent, int action)> activity { get; }
+        public Formula effect { get; }
+
+        public ObservableAfter(List<(int agent, int action)> activity, Formula effect)
+        {
+            this.activity = activity;
+            this.effect = effect;
+        }
     }
 
     // dalej syntaktyka kwerend
