@@ -20,14 +20,17 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
+                var anyone = new Actor { Name = "Anyone", Index = 2 };
+                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
+                var anything = new Action { Name = "Anything", Index = 2 };
 
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
-                    Actors = new List<Actor> { bill, jim },
-                    Actions = new List<Action> { load, shoot },
+                    Actors = new List<Actor> { bill, jim, anyone, empty },
+                    Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> { 
                         new InitiallyFluent(new List<Fluent> { notLoaded }, new List<LogicOperator>()),
                         new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
@@ -49,14 +52,17 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
+                var anyone = new Actor { Name = "Anyone", Index = 2 };
+                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
+                var anything = new Action { Name = "Anything", Index = 2 };
 
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
-                    Actors = new List<Actor> { bill, jim },
-                    Actions = new List<Action> { load, shoot },
+                    Actors = new List<Actor> { bill, jim, anyone, empty },
+                    Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
                         new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
                         new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
@@ -77,15 +83,18 @@ namespace RWProgram
                 var alive = new Fluent { Name = "alive" };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
+                var anyone = new Actor { Name = "Anyone", Index = 1 };
+                var empty = new Actor { Name = "ɛ", Index = 2 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
                 var spin = new Action { Name = "SPIN", Index = 2 };
+                var anything = new Action { Name = "Anything", Index = 3 };
 
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
-                    Actors = new List<Actor> { bill },
-                    Actions = new List<Action> { load, shoot },
+                    Actors = new List<Actor> { bill, anyone, empty },
+                    Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
                         new InitiallyFluent(new List<Fluent> { notLoaded, alive }, new List<LogicOperator> { new And() }),
                         new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
@@ -106,13 +115,16 @@ namespace RWProgram
                 var hasCard = new Fluent { Name = "hasCard" };
                 var notHasCard = new NegatedFluent { Name = "hasCard", Original = hasCard };
                 var bill = new Actor { Name = "Bill", Index = 0 };
+                var anyone = new Actor { Name = "Anyone", Index = 1 };
+                var empty = new Actor { Name = "ɛ", Index = 2 };
                 var insertCard = new Action { Name = "INSERT_CARD", Index = 0 };
+                var anything = new Action { Name = "Anything", Index = 1 };
 
                 return new Logic
                 {
                     Fluents = new List<Fluent> { open, notOpen, hasCard, notHasCard },
-                    Actors = new List<Actor> { bill },
-                    Actions = new List<Action> { insertCard },
+                    Actors = new List<Actor> { bill, anyone, empty },
+                    Actions = new List<Action> { insertCard, anything },
                     Statements = new List<Statement> {
                         new InitiallyFluent(new List<Fluent> { notOpen }, new List<LogicOperator>()),
                         new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ open }, new List<LogicOperator>(), insertCard, bill, new List<Fluent>(), new List<LogicOperator>()),
@@ -132,14 +144,17 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
+                var anyone = new Actor { Name = "Anyone", Index = 2 };
+                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
+                var anything = new Action { Name = "Anything", Index = 2 };
 
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
-                    Actors = new List<Actor> { bill, jim },
-                    Actions = new List<Action> { load, shoot },
+                    Actors = new List<Actor> { bill, jim, anyone, empty },
+                    Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
                         new InitiallyFluent(new List<Fluent> { notLoaded }, new List<LogicOperator>()),
                         new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
