@@ -69,6 +69,9 @@ namespace RWProgram
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
+            Logic.Actions.Add(new Action() { Name = "Anything", Index = Logic.Actions.Count() });
+            ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
         }
 
         private void ActorsTextBox_Changed(object sender, EventArgs e)
@@ -138,7 +141,7 @@ namespace RWProgram
             actions_names = actions_names.Select(a => a.Trim()).Where(a => a != string.Empty).ToArray();
 
             var to_create = actions_names.Where(a => !Logic.Actions.Any(x => x.Name == a));
-            Logic.Actions = Logic.Actions.Where(x => actions_names.Any(a => a == x.Name)).ToList();
+            Logic.Actions = Logic.Actions.Where(x => actions_names.Any(a => a == x.Name) || x.Name == "Anything").ToList();
             foreach (var f in to_create)
                 Logic.Actions.Add(new Action() { Name = f, Index = Logic.Actions.Count()});
             ActionComboBox.Items.Clear();
