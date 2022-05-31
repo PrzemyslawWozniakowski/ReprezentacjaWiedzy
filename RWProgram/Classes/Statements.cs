@@ -208,9 +208,8 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            var str = $"impossible {Action} by {Actor}";
-            if (Pi.ToString() == string.Empty) return str;
-            return $"{str} if {Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            return $"impossible {Action} by {Actor} {conditionStr}";
         }
     }
 
