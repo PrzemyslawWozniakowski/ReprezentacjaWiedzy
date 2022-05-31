@@ -31,6 +31,18 @@ namespace RW
                 this.fluents = new bool[fluents.Length];
                 for (int i = 0; i < fluents.Length; i++) this.fluents[i] = fluents[i];
                 possibleEffects = new List<State>[agents, actions];
+                typicalEffects = new List<State>[agents, actions];
+                abnormalEffects = new List<State>[agents, actions];
+
+                for (int i = 0; i < agents; i++)
+                {
+                    for (int j = 0; j < actions; j++)
+                    {
+                        possibleEffects[i, j] = new();
+                        typicalEffects[i, j] = new();
+                        abnormalEffects[i, j] = new();
+                    }
+                }
             }
 
             public bool SatisfiesCondition(Formula condition) // czy stan spelnia warunek
@@ -63,8 +75,7 @@ namespace RW
         // generujemy zbior wszystkich mozliwych stanow i takie tam
         public Model(List<string> fluent, List<string> agent, List<string> action)
         {
-            initial = new();
-
+            initial = new List<State>();
             int stateCount = (int)Math.Pow(2, fluent.Count);
             bool[] fluentValues = new bool[fluent.Count];
             noninertial = new bool[fluent.Count];
@@ -74,10 +85,10 @@ namespace RW
             {
                 for(int j=0; j < fluent.Count; j++)
                 {
-                    t = stateCount;
+                    t = i; //t = stateCount;
                     t %= ((int)Math.Pow(2, j+1));
                     t /= ((int)Math.Pow(2, j));
-                    fluentValues[i] = t==1 ? true : false;
+                    fluentValues[j] = t==1 ? true : false;
                 }
                 state[i] = new State(fluentValues, agent.Count, action.Count);
             }
@@ -151,12 +162,16 @@ namespace RW
                         for (int j = 0; j < action.Length; j++)
                         {
                             result.Clear();
-                            result.AddRange(s.possibleEffects[i, j]);
-                            foreach(State state in result)
+                            foreach(State res in s.possibleEffects[i, j])
                             {
-                                if (s.typicalEffects[i, j].Contains(state)) result.Remove(state);
+                                if (!s.typicalEffects[i, j].Contains(res)) result.Add(res);
                             }
-                            s.abnormalEffects[i, j] = result;
+                            //result.AddRange(s.possibleEffects[i, j]);
+                            //foreach(State state in result)
+                            //{
+                            //    if (s.typicalEffects[i, j].Contains(state)) result.Remove(state);
+                            //}
+                            s.abnormalEffects[i, j].AddRange(result);
                         }
                     }
             }
@@ -165,125 +180,143 @@ namespace RW
 
         public void SetInitialStates(List<Initially> initially, List<After> after, List<TypicallyAfter> typicallyAfter, List<ObservableAfter> observableAfter)
         {
+            List<State> result = new List<State>();
+
             //initially
-            foreach(State s in state)
+            if (initially.Count != 0)
             {
-                initial.Add(s);
-                foreach(Initially statement in initially)
+                foreach (State s in state)
                 {
-                    if (!s.SatisfiesCondition(statement.condition)) initial.Remove(s);
+                    initial.Add(s);
+                    foreach (Initially statement in initially)
+                    {
+                        if (!s.SatisfiesCondition(statement.condition)) initial.Remove(s);
+                    }
                 }
+
             }
-            List<State> result = new();
+            else initial.AddRange(state);
 
             //after
-            foreach(State s in initial)
+            if (after.Count != 0)
             {
-                result.Add(s);
-                bool end = false;
-                foreach(After statement in after)
+                foreach (State s in initial)
                 {
-                    if (end) break;
-                    Stack<(State state, int i)> DFS = new();
-                    (State state, int index) current;
-                    DFS.Push((s, 0));
-                    while(DFS.Count != 0)
+                    result.Add(s);
+                    bool end = false;
+                    foreach (After statement in after)
                     {
-                        current = DFS.Pop();
-                        if(current.index == statement.activity.Count)
+                        if (end) break;
+                        Stack<(State state, int i)> DFS = new Stack<(State state, int i)>();
+                        (State state, int index) current;
+                        DFS.Push((s, 0));
+                        while (DFS.Count != 0)
                         {
-                            if(!current.state.SatisfiesCondition(statement.effect))
+                            current = DFS.Pop();
+                            if (current.index == statement.activity.Count)
                             {
-                                result.Remove(s);
-                                end = true;
-                                break;
+                                if (!current.state.SatisfiesCondition(statement.effect))
+                                {
+                                    result.Remove(s);
+                                    end = true;
+                                    break;
+                                }
                             }
+                            else foreach (State res in current.state.possibleEffects[
+                                                    statement.activity[current.index].agent,
+                                                    statement.activity[current.index].action])
+                                {
+                                    DFS.Push((res, current.index + 1));
+                                }
                         }
-                        else foreach(State res in current.state.possibleEffects[
-                                                statement.activity[current.index].agent,
-                                                statement.activity[current.index].action])
-                            {
-                                DFS.Push((res, current.index + 1));
-                            }
-                    }
 
+                    }
                 }
+                initial.Clear();
+                initial.AddRange(result);
+                result.Clear();
             }
-            initial.Clear();
-            initial.AddRange(result);
-            result.Clear();
+
 
             //typically after
-            foreach (State s in initial)
+            if(typicallyAfter.Count != 0)
             {
-                result.Add(s);
-                bool end = false;
-                foreach (TypicallyAfter statement in typicallyAfter)
+                foreach (State s in initial)
                 {
-                    if (end) break;
-                    Stack<(State state, int i)> DFS = new();
-                    (State state, int index) current;
-                    DFS.Push((s, 0));
-                    while (DFS.Count != 0)
+                    result.Add(s);
+                    bool end = false;
+                    foreach (TypicallyAfter statement in typicallyAfter)
                     {
-                        current = DFS.Pop();
-                        if (current.index == statement.activity.Count)
+                        if (end) break;
+                        Stack<(State state, int i)> DFS = new Stack<(State state, int i)>();
+                        (State state, int index) current;
+                        DFS.Push((s, 0));
+                        while (DFS.Count != 0)
                         {
-                            if (!current.state.SatisfiesCondition(statement.effect))
+                            current = DFS.Pop();
+                            if (current.index == statement.activity.Count)
                             {
-                                result.Remove(s);
-                                end = true;
-                                break;
+                                if (!current.state.SatisfiesCondition(statement.effect))
+                                {
+                                    result.Remove(s);
+                                    end = true;
+                                    break;
+                                }
                             }
+                            else foreach (State res in current.state.possibleEffects[
+                                                    statement.activity[current.index].agent,
+                                                    statement.activity[current.index].action])
+                                {
+                                    DFS.Push((res, current.index + 1));
+                                }
                         }
-                        else foreach (State res in current.state.possibleEffects[
-                                                statement.activity[current.index].agent,
-                                                statement.activity[current.index].action])
-                            {
-                                DFS.Push((res, current.index + 1));
-                            }
-                    }
 
+                    }
                 }
+                initial.Clear();
+                initial.AddRange(result);
+                result.Clear();
             }
-            initial.Clear();
-            initial.AddRange(result);
-            result.Clear();
+
 
             //observable
-            foreach (State s in initial)
+            if(observableAfter.Count != 0)
             {
-                result.Add(s);
-                bool end = false;
-                foreach (ObservableAfter statement in observableAfter)
+                foreach (State s in initial)
                 {
-                    if (end) break;
-                    Stack<(State state, int i)> DFS = new();
-                    (State state, int index) current;
-                    DFS.Push((s, 0));
-                    while (DFS.Count != 0)
+                    result.Add(s);
+                    bool end = false;
+                    foreach (ObservableAfter statement in observableAfter)
                     {
-                        current = DFS.Pop();
-                        if (current.index == statement.activity.Count)
+                        if (end) break;
+                        Stack<(State state, int i)> DFS = new Stack<(State state, int i)>();
+                        (State state, int index) current;
+                        DFS.Push((s, 0));
+                        while (DFS.Count != 0)
                         {
-                            if (current.state.SatisfiesCondition(statement.effect))
+                            current = DFS.Pop();
+                            if (current.index == statement.activity.Count)
                             {
-                                end = true;
-                                break;
+                                if (current.state.SatisfiesCondition(statement.effect))
+                                {
+                                    end = true;
+                                    break;
+                                }
                             }
+                            else foreach (State res in current.state.possibleEffects[
+                                                    statement.activity[current.index].agent,
+                                                    statement.activity[current.index].action])
+                                {
+                                    DFS.Push((res, current.index + 1));
+                                }
                         }
-                        else foreach (State res in current.state.possibleEffects[
-                                                statement.activity[current.index].agent, 
-                                                statement.activity[current.index].action])
-                            {
-                                DFS.Push((res, current.index + 1));
-                            }
+                        if (!end) result.Remove(s);
                     }
-                    if(!end) result.Remove(s);
                 }
+                initial.Clear();
+                initial.AddRange(result);
             }
-            initial.Clear();
-            initial.AddRange(result);
+
 
             return;
         }
@@ -356,16 +389,16 @@ namespace RW
                 return true;
             }
 
-            List<State> result = new();
-            bool[] contains = new bool[state.Length];
+            List<State> result = new List<State>();
+            //bool[] contains = new bool[state.Length];
             for (int i = 0; i < state.Length; i++)
             {
                 if (!state[i].forbidden && Res0_Condition(s, agent, action, state[i], causes))
                 {
-                    if (!contains[i])
+                    //if (!contains[i])
                     {
                         result.Add(state[i]);
-                        contains[i] = true;
+                        //contains[i] = true;
                     }
                 }
             }
@@ -386,7 +419,7 @@ namespace RW
                         if(statement.agent == agent &&
                             statement.action == action &&
                             s.SatisfiesCondition(statement.condition) &&
-                            !res.SatisfiesCondition(statement.effect))
+                            statement.fluent == i)//!res.SatisfiesCondition(statement.effect))
                         {
                             result[i] = true;
                             break;
@@ -399,6 +432,11 @@ namespace RW
 
         private bool Subset(bool[] A, bool[] B)
         {
+            bool identical = true;
+            for(int i=0;i<A.Length;i++)
+                if(A[i]!=B[i]) identical = false;
+            if (identical) return false;
+
             for(int i=0;i<A.Length;i++)
             {
                 if (A[i] && !B[i]) return false;
@@ -409,7 +447,7 @@ namespace RW
         private List<State> Res(State s, int agent, int action, List<Causes> causes, List<Releases> releases)
         {
             List<State> res0 = Res0(s, agent, action, causes);
-            List<bool[]> newSet = new();
+            List<bool[]> newSet = new List<bool[]>();
             foreach(State res in res0)
             {
                 newSet.Add(New(s, agent, action, res, releases));
@@ -420,13 +458,14 @@ namespace RW
 
             for(int i=0;i<newSet.Count;i++)
             {
-                for(int j=i+1;j<newSet.Count;j++)
+                for(int j=0;j<newSet.Count;j++)
                 {
+                    if(!isMinimal[i] || !isMinimal[j] || i == j) continue; // tutaj jeszcze raz zerknac
                     if(Subset(newSet[i], newSet[j])) isMinimal[j] = false;
                 }
             }
 
-            List<State> result = new();
+            List<State> result = new List<State>();
             for(int i=0;i<res0.Count;i++)
             {
                 if (isMinimal[i]) result.Add(res0[i]);
@@ -438,16 +477,16 @@ namespace RW
 
         private List<State> TypicalRes0(State s, int agent, int action, List<Causes> causes, List<TypicallyCauses> typically)
         {
-            bool Res0_Condition(State s, int agent, int action, State res, List<Causes> causes, List<TypicallyCauses> typically)
+            bool Res0_Condition(State s0, int agent0, int action0, State res, List<Causes> causes0, List<TypicallyCauses> typically0)
             {
-                List<CausesOrTypicallyCauses> statements = new();
-                statements.AddRange(causes);
-                statements.AddRange(typically);
+                List<CausesOrTypicallyCauses> statements = new List<CausesOrTypicallyCauses>();
+                statements.AddRange(causes0);
+                statements.AddRange(typically0);
                 foreach (CausesOrTypicallyCauses c in statements)
                 {
-                    if ((c.agent == agent &&
-                        c.action == action &&
-                        s.SatisfiesCondition(c.condition)) &&
+                    if ((c.agent == agent0 &&
+                        c.action == action0 &&
+                        s0.SatisfiesCondition(c.condition)) &&
                         !res.SatisfiesCondition(c.effect))
                     {
                         return false;
@@ -456,7 +495,7 @@ namespace RW
                 return true;
             }
 
-            List<State> result = new();
+            List<State> result = new List<State>();
             bool[] contains = new bool[state.Length];
             for (int i = 0; i < state.Length; i++)
             {
@@ -474,7 +513,7 @@ namespace RW
 
         private bool[] TypicalNew(State s, int agent, int action, State res, List<Releases> releases, List<TypicallyReleases> typically)
         {
-            List<ReleasesOrTypicallyReleases> statements = new();
+            List<ReleasesOrTypicallyReleases> statements = new List<ReleasesOrTypicallyReleases>();
             statements.AddRange(releases);
             statements.AddRange(typically);
 
@@ -490,7 +529,7 @@ namespace RW
                         if (statement.agent == agent &&
                             statement.action == action &&
                             s.SatisfiesCondition(statement.condition) &&
-                            !res.SatisfiesCondition(statement.effect))
+                            statement.fluent == i)//!res.SatisfiesCondition(statement.effect))
                         {
                             result[i] = true;
                             break;
@@ -504,7 +543,7 @@ namespace RW
         private List<State> TypicalRes(State s, int agent, int action, List<Causes> causes, List<TypicallyCauses> typicallyCauses, List<Releases> releases, List<TypicallyReleases> typicallyReleases)
         {
             List<State> res0 = TypicalRes0(s, agent, action, causes, typicallyCauses);
-            List<bool[]> newSet = new();
+            List<bool[]> newSet = new List<bool[]>();
             foreach (State res in res0)
             {
                 newSet.Add(TypicalNew(s, agent, action, res, releases, typicallyReleases));
@@ -515,13 +554,14 @@ namespace RW
 
             for (int i = 0; i < newSet.Count; i++)
             {
-                for (int j = i + 1; j < newSet.Count; j++)
+                for (int j = 0; j < newSet.Count; j++)
                 {
+                    if (!isMinimal[i] || !isMinimal[j] || i == j) continue; // tutaj jeszcze raz zerknac
                     if (Subset(newSet[i], newSet[j])) isMinimal[j] = false;
                 }
             }
 
-            List<State> result = new();
+            List<State> result = new List<State>();
             for (int i = 0; i < res0.Count; i++)
             {
                 if (isMinimal[i]) result.Add(res0[i]);
