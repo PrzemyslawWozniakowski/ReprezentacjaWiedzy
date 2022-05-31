@@ -147,7 +147,8 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} casues {Alpha.ToString()} if {Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            return $"{Action} by {Actor} casues {Alpha.ToString()} {conditionStr}";
         }
     }
 
@@ -162,7 +163,8 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} releases {F} if {Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            return $"{Action} by {Actor} releases {F} {conditionStr}";
         }
     }
 
@@ -179,7 +181,8 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically casues {Alpha} if {Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            return $"{Action} by {Actor} typically casues {Alpha} {conditionStr}";
         }
     }
 
@@ -194,7 +197,8 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"{Action} by {Actor} typically releases {F} if {Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            return $"{Action} by {Actor} typically releases {F} {conditionStr}";
         }
     }
 
