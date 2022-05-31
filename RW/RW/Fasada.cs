@@ -42,25 +42,51 @@ namespace RW
             for (int i = 0; i < model.fluent.Length; i++) log += model.fluent[i] + " ";
             log += ")\n";
             log += "stany poczatkowe to:\n";
-            for(int i=0;i<model.initial.Count;i++) model.initial[i].Print();
+            for (int i = 0; i < model.initial.Count; i++) log += model.initial[i].Print();
             log += "efekty akcji:\n";
             for(int i=0;i<model.state.Length;i++)
             {
-                log += "stan " + model.state[i].Print();
+                log += "\nstan " + model.state[i].Print();
                 if (model.state[i].forbidden)
                 {
-                    log += "jest nieosiagalny\n";
+                    log += "jest niezgodny z dziedzina\n";
                     continue;
                 }
-                log += "mozliwe efekty: \n";
+                /*log += "- mozliwe efekty: \n";
                 for(int action=0; action < model.action.Length;action++)
                 {
                     for(int agent=0; agent<model.agent.Length;agent++)
                     {
                         if (model.state[i].possibleEffects[agent, action].Count != 0)
                         {
-                            log += model.agent[agent] + " by " + model.action[action] + ":\n";
+                            log += model.action[action] + " by " + model.agent[agent] + ":\n";
                             foreach(Model.State s in model.state[i].possibleEffects[agent, action]) log += s.Print();
+                        }
+
+                    }
+                }*/
+                log += "- typowe efekty: \n";
+                for (int action = 0; action < model.action.Length; action++)
+                {
+                    for (int agent = 0; agent < model.agent.Length; agent++)
+                    {
+                        if (model.state[i].typicalEffects[agent, action].Count != 0)
+                        {
+                            log += model.action[action] + " by " + model.agent[agent] + ":\n";
+                            foreach (Model.State s in model.state[i].typicalEffects[agent, action]) log += s.Print();
+                        }
+
+                    }
+                }
+                log += "- nietypowe efekty: \n";
+                for (int action = 0; action < model.action.Length; action++)
+                {
+                    for (int agent = 0; agent < model.agent.Length; agent++)
+                    {
+                        if (model.state[i].abnormalEffects[agent, action].Count != 0)
+                        {
+                            log += model.action[action] + " by " + model.agent[agent] + ":\n";
+                            foreach (Model.State s in model.state[i].abnormalEffects[agent, action]) log += s.Print();
                         }
 
                     }
