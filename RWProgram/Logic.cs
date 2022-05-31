@@ -8,7 +8,7 @@ using Action = RWProgram.Classes.Action;
 
 namespace RWProgram
 {
-    public class RWLogic
+    public class Logic
     {
         public List<Actor> Actors = new List<Actor>();
 

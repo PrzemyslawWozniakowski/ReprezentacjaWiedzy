@@ -48,12 +48,12 @@ namespace RWProgram
             "→"
         };
 
-        public RWLogic Logic { get; set; }
+        public Logic Logic { get; set; }
         
         public RWGui()
         {
             InitializeComponent();
-            Logic = new RWLogic();
+            Logic = new Logic();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
             QueriesComboBox.Items.AddRange(Querends.ToArray());
             LogicOperatorComboBox1.Items.AddRange(Operators.ToArray());
@@ -395,6 +395,8 @@ namespace RWProgram
         {
             if(Query != null)
                ResponseTextBox.Text =  Query.Response().ToString();
+
+            new RWLogic.Test().Run();
         }
 
         private void ResetQueryButton_Click(object sender, EventArgs e)
