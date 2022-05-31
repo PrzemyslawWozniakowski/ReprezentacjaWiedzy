@@ -64,6 +64,11 @@ namespace RWProgram
             LogicOperatorComboBox3.SelectedIndex = 0;
             LogicOperatorComboBox4.Items.AddRange(Operators.ToArray());
             LogicOperatorComboBox4.SelectedIndex = 0;
+            Logic.Actors.Add(new Actor() { Name = "Anyone", Index = Logic.Actors.Count() });
+            Logic.Actors.Add(new Actor() { Name = "ɛ", Index = Logic.Actors.Count() });
+            ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
+            ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
+            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
         }
 
         private void ActorsTextBox_Changed(object sender, EventArgs e)
@@ -72,9 +77,10 @@ namespace RWProgram
             actors_names = actors_names.Select(a => a.Trim()).Where(a => a != string.Empty).ToArray();
 
             var to_create = actors_names.Where(a => !Logic.Actors.Any(x => x.Name == a));
-            Logic.Actors = Logic.Actors.Where(x => actors_names.Any(a => a == x.Name)).ToList();
+            Logic.Actors = Logic.Actors.Where(x => actors_names.Any(a => a == x.Name) || x.Name == "Anyone" || x.Name == "ɛ").ToList();
             foreach (var a in to_create)
                 Logic.Actors.Add(new Actor() { Name = a, Index = Logic.Actors.Count() });
+
             ActorComboBox.Items.Clear();
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
 
