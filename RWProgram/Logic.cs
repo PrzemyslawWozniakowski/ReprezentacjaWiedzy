@@ -19,5 +19,11 @@ namespace RWProgram
         public List<Statement> Statements = new List<Statement>();
 
         public List<(Action action, Actor actor)> Program = new List<(Action, Actor)>();
+
+        public bool ExecuteQuery(Query query)
+        {
+            new RWLogic.Test().Run();
+            return true;
+        }
     }
 }

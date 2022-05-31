@@ -393,10 +393,11 @@ namespace RWProgram
 
         private void AskQueryButton_Click(object sender, EventArgs e)
         {
-            if(Query != null)
-               ResponseTextBox.Text =  Query.Response().ToString();
-
-            new RWLogic.Test().Run();
+            //if (Query != null)
+            //{
+                var response = Logic.ExecuteQuery(Query);
+                ResponseTextBox.Text = response.ToString();
+            //}
         }
 
         private void ResetQueryButton_Click(object sender, EventArgs e)
