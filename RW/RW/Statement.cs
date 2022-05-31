@@ -193,36 +193,72 @@ namespace RW
     public class Query_ExecutableAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
+
+        public Query_ExecutableAlways(List<(int agent, int action)> program)
+        {
+            this.program = program;
+        }
     }
     
     public class Query_ExecutableEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
+
+        public Query_ExecutableEver(List<(int agent, int action)> program)
+        {
+            this.program = program;
+        }
     }
 
     public class Query_AccessibleAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        Formula pi_condition { get; }
-        Formula gamma_condition { get; }
+        Formula initialCondition { get; }
+        Formula endCondition { get; }
+
+        public Query_AccessibleAlways(List<(int agent, int action)> program, Formula initialCondition, Formula endCondition)
+        {
+            this.program = program;
+            this.initialCondition = initialCondition;
+            this.endCondition = endCondition;
+        }
     }
 
     public class Query_AccessibleEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
-        Formula pi_condition { get; }
-        Formula gamma_condition { get; } 
+        Formula initialCondition { get; }
+        Formula endCondition { get; }
+
+        public Query_AccessibleEver(List<(int agent, int action)> program, Formula initialCondition, Formula endCondition)
+        {
+            this.program = program;
+            this.initialCondition = initialCondition;
+            this.endCondition = endCondition;
+        }
     }
 
     public class Query_InvolvedAlways
     {
         List<(int agent, int action)> program { get; } //program dzialan
         int agent { get; } //id agenta
+
+        public Query_InvolvedAlways(List<(int agent, int action)> program, int agent)
+        {
+            this.program = program;
+            this.agent = agent;
+        }
     }
 
     public class Query_InvolvedEver
     {
         List<(int agent, int action)> program { get; } //program dzialan
         int agent { get; } //id agenta
+
+        public Query_InvolvedEver(List<(int agent, int action)> program, int agent)
+        {
+            this.program = program;
+            this.agent = agent;
+        }
     }
 }
