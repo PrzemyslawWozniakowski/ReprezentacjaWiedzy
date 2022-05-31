@@ -621,7 +621,7 @@
             this.DeleteLastStatementButton.Name = "DeleteLastStatementButton";
             this.DeleteLastStatementButton.Size = new System.Drawing.Size(88, 28);
             this.DeleteLastStatementButton.TabIndex = 43;
-            this.DeleteLastStatementButton.Text = "Remove last";
+            this.DeleteLastStatementButton.Text = "Usuń ostatni";
             this.DeleteLastStatementButton.UseVisualStyleBackColor = true;
             this.DeleteLastStatementButton.Click += new System.EventHandler(this.DeleteLastStatementButton_Click);
             // 
@@ -632,7 +632,7 @@
             this.DeleteLastProgramButton.Name = "DeleteLastProgramButton";
             this.DeleteLastProgramButton.Size = new System.Drawing.Size(85, 28);
             this.DeleteLastProgramButton.TabIndex = 44;
-            this.DeleteLastProgramButton.Text = "Remove last";
+            this.DeleteLastProgramButton.Text = "Usuń ostatni";
             this.DeleteLastProgramButton.UseVisualStyleBackColor = true;
             this.DeleteLastProgramButton.Click += new System.EventHandler(this.DeleteLastProgramButton_Click);
             // 
@@ -813,7 +813,7 @@
             // przykład1ToolStripMenuItem
             // 
             this.przykład1ToolStripMenuItem.Name = "przykład1ToolStripMenuItem";
-            this.przykład1ToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+            this.przykład1ToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.przykład1ToolStripMenuItem.Text = "Przykład 1 - Yale Shooting Problem";
             this.przykład1ToolStripMenuItem.Click += new System.EventHandler(this.SetTest1Domain);
             // 
@@ -842,7 +842,7 @@
             // 
             this.przykład5ModificationOfYSPToolStripMenuItem.Name = "przykład5ModificationOfYSPToolStripMenuItem";
             this.przykład5ModificationOfYSPToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.przykład5ModificationOfYSPToolStripMenuItem.Text = "Przykład 5 - Modification of YSP";
+            this.przykład5ModificationOfYSPToolStripMenuItem.Text = "Przykład 5 - YSP with default effect";
             this.przykład5ModificationOfYSPToolStripMenuItem.Click += new System.EventHandler(this.SetTest5Domain);
             // 
             // RWGui
