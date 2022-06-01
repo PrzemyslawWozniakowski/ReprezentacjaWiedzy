@@ -95,5 +95,35 @@ namespace RWLogic
             return log;
         }
         // tutaj bedzie obsluga kwerend
+        
+        public bool Query(Query_ExecutableAlways query)
+        {
+            return model.IsAlwaysExecutable(query);
+        }
+
+        public bool Query(Query_ExecutableEver query)
+        {
+            return model.IsEverExecutable(query);
+        }
+
+        public bool Query(Query_AccessibleAlways query)
+        {
+            return model.IsAlwaysAccessible(query);
+        }
+
+        public bool Query(Query_AccessibleEver query)
+        {
+            return model.IsEverAccessible(query);
+        }
+
+        public bool Query(Query_InvolvedAlways query)
+        {
+            return model.IsAlwaysInvolved(query);
+        }
+
+        public bool Query(Query_InvolvedEver query)
+        {
+            return model.IsEverInvolved(query);
+        }
     }
 }
