@@ -31,7 +31,7 @@ namespace RWProgram
         public bool ExecuteQuery(Query query)
         {
             var fasada = new RWLogic.Fasada(
-                fluents: Fluents.Select(f => f.ToString()).ToList(),
+                fluents: Fluents.Where(f => !(f is NegatedFluent)).Select(f => f.ToString()).ToList(),
                 agents: Actors.Where(a => a.Name != "Anyone").Select(a => a.ToString()).ToList(),
                 actions: Actions.Where(a => a.Name != "Anything").Select(a => a.ToString()).ToList(),
                 noninertial: GetStatements<NoninertialFluent, RWLogic.Noninertial>().ToList(),

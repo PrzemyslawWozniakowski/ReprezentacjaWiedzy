@@ -14,9 +14,9 @@ namespace RWProgram
         {
             get
             {
-                var loaded = new Fluent { Name = "loaded" };
+                var loaded = new Fluent { Name = "loaded", Index = 0 };
                 var notLoaded = new NegatedFluent { Name = "loaded", Original = loaded };
-                var alive = new Fluent { Name = "alive" };
+                var alive = new Fluent { Name = "alive", Index = 1 };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
@@ -46,9 +46,9 @@ namespace RWProgram
         {
             get
             {
-                var loaded = new Fluent { Name = "loaded" };
+                var loaded = new Fluent { Name = "loaded", Index = 0 };
                 var notLoaded = new NegatedFluent { Name = "loaded", Original = loaded };
-                var alive = new Fluent { Name = "alive" };
+                var alive = new Fluent { Name = "alive", Index = 1 };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
@@ -78,9 +78,9 @@ namespace RWProgram
         {
             get
             {
-                var loaded = new Fluent { Name = "loaded" };
+                var loaded = new Fluent { Name = "loaded", Index = 0 };
                 var notLoaded = new NegatedFluent { Name = "loaded", Original = loaded };
-                var alive = new Fluent { Name = "alive" };
+                var alive = new Fluent { Name = "alive", Index = 1 };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var anyone = new Actor { Name = "Anyone", Index = 1 };
@@ -110,9 +110,9 @@ namespace RWProgram
         {
             get
             {
-                var open = new Fluent { Name = "open" };
+                var open = new Fluent { Name = "open", Index = 0 };
                 var notOpen = new NegatedFluent { Name = "open", Original = open };
-                var hasCard = new Fluent { Name = "hasCard" };
+                var hasCard = new Fluent { Name = "hasCard", Index = 1 };
                 var notHasCard = new NegatedFluent { Name = "hasCard", Original = hasCard };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var anyone = new Actor { Name = "Anyone", Index = 1 };
@@ -138,9 +138,9 @@ namespace RWProgram
         {
             get
             {
-                var loaded = new Fluent { Name = "loaded" };
+                var loaded = new Fluent { Name = "loaded", Index = 0 };
                 var notLoaded = new NegatedFluent { Name = "loaded", Original = loaded };
-                var alive = new Fluent { Name = "alive" };
+                var alive = new Fluent { Name = "alive", Index = 1 };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
