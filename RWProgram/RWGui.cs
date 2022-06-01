@@ -14,6 +14,12 @@ namespace RWProgram
 {
     public partial class RWGui : Form
     {
+        public int ActorCounter { get; set; } = 0;
+
+        public int ActionCounter { get; set; } = 0;
+
+        public int FluentCounter { get; set; } = 0;
+
         public Query Query { get; set; } = null;
 
         public List<string> Statements = new List<string>()
@@ -64,12 +70,12 @@ namespace RWProgram
             LogicOperatorComboBox3.SelectedIndex = 0;
             LogicOperatorComboBox4.Items.AddRange(Operators.ToArray());
             LogicOperatorComboBox4.SelectedIndex = 0;
-            Logic.Actors.Add(new Actor() { Name = "Anyone", Index = Logic.Actors.Count() });
-            Logic.Actors.Add(new Actor() { Name = "ɛ", Index = Logic.Actors.Count() });
+            Logic.Actors.Add(new Actor() { Name = "Anyone", Index = ActorCounter++ });
+            Logic.Actors.Add(new Actor() { Name = "ɛ", Index = ActorCounter++ });
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
-            Logic.Actions.Add(new Action() { Name = "Anything", Index = Logic.Actions.Count() });
+            Logic.Actions.Add(new Action() { Name = "Anything", Index = ActionCounter++ });
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
             ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
         }
@@ -82,7 +88,7 @@ namespace RWProgram
             var to_create = actors_names.Where(a => !Logic.Actors.Any(x => x.Name == a));
             Logic.Actors = Logic.Actors.Where(x => actors_names.Any(a => a == x.Name) || x.Name == "Anyone" || x.Name == "ɛ").ToList();
             foreach (var a in to_create)
-                Logic.Actors.Add(new Actor() { Name = a, Index = Logic.Actors.Count() });
+                Logic.Actors.Add(new Actor() { Name = a, Index = ActorCounter++ });
 
             ActorComboBox.Items.Clear();
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
@@ -106,9 +112,9 @@ namespace RWProgram
             Logic.Fluents = Logic.Fluents.Where(x => fluents_names.Any(f => f == x.Name)).ToList();
             foreach (var f in to_create)
             {
-                var fluent = new Fluent() { Name = f};
+                var fluent = new Fluent() { Name = f, Index = FluentCounter++};
                 Logic.Fluents.Add(fluent);
-                Logic.Fluents.Add(new NegatedFluent() { Name = f, Original = fluent });
+                Logic.Fluents.Add(new NegatedFluent() { Name = f, Original = fluent, Index = FluentCounter++ });
             }
             FluentComboBox.Items.Clear();
             FluentComboBox.Items.AddRange(Logic.Fluents.ToArray());
@@ -143,7 +149,7 @@ namespace RWProgram
             var to_create = actions_names.Where(a => !Logic.Actions.Any(x => x.Name == a));
             Logic.Actions = Logic.Actions.Where(x => actions_names.Any(a => a == x.Name) || x.Name == "Anything").ToList();
             foreach (var f in to_create)
-                Logic.Actions.Add(new Action() { Name = f, Index = Logic.Actions.Count()});
+                Logic.Actions.Add(new Action() { Name = f, Index = ActionCounter++ });
             ActionComboBox.Items.Clear();
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
             ProgramActionComboBox.Items.Clear();
