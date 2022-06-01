@@ -192,7 +192,7 @@ namespace RW
 
     public class Query_ExecutableAlways
     {
-        List<(int agent, int action)> program { get; } //program dzialan
+        public List<(int agent, int action)> program { get; } //program dzialan
 
         public Query_ExecutableAlways(List<(int agent, int action)> program)
         {
@@ -202,7 +202,7 @@ namespace RW
     
     public class Query_ExecutableEver
     {
-        List<(int agent, int action)> program { get; } //program dzialan
+        public List<(int agent, int action)> program { get; } //program dzialan
 
         public Query_ExecutableEver(List<(int agent, int action)> program)
         {
@@ -212,9 +212,9 @@ namespace RW
 
     public class Query_AccessibleAlways
     {
-        List<(int agent, int action)> program { get; } //program dzialan
-        Formula initialCondition { get; }
-        Formula endCondition { get; }
+        public List<(int agent, int action)> program { get; } //program dzialan
+        public Formula initialCondition { get; }
+        public Formula endCondition { get; }
 
         public Query_AccessibleAlways(List<(int agent, int action)> program, Formula initialCondition, Formula endCondition)
         {
@@ -226,9 +226,9 @@ namespace RW
 
     public class Query_AccessibleEver
     {
-        List<(int agent, int action)> program { get; } //program dzialan
-        Formula initialCondition { get; }
-        Formula endCondition { get; }
+        public List<(int agent, int action)> program { get; } //program dzialan
+        public Formula initialCondition { get; }
+        public Formula endCondition { get; }
 
         public Query_AccessibleEver(List<(int agent, int action)> program, Formula initialCondition, Formula endCondition)
         {
@@ -240,8 +240,8 @@ namespace RW
 
     public class Query_InvolvedAlways
     {
-        List<(int agent, int action)> program { get; } //program dzialan
-        int agent { get; } //id agenta
+        public List<(int agent, int action)> program { get; } //program dzialan
+        public int agent { get; } //id agenta
 
         public Query_InvolvedAlways(List<(int agent, int action)> program, int agent)
         {
@@ -252,8 +252,8 @@ namespace RW
 
     public class Query_InvolvedEver
     {
-        List<(int agent, int action)> program { get; } //program dzialan
-        int agent { get; } //id agenta
+        public List<(int agent, int action)> program { get; } //program dzialan
+        public int agent { get; } //id agenta
 
         public Query_InvolvedEver(List<(int agent, int action)> program, int agent)
         {

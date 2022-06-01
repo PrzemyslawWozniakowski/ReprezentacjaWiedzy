@@ -339,36 +339,198 @@ namespace RW
 
         public bool IsAlwaysExecutable(Query_ExecutableAlways query)
         {
-            throw new NotImplementedException();
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            for (int step = 0; step < query.program.Count; step++)
+            {
+                foreach (State state in currentStates)
+                {
+                    if (state.forbidden) return false;
+
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+
+                    if (possibleNextStates.Count == 0 || possibleNextStates is null) return false;
+
+                    nextStates.AddRange(possibleNextStates);
+                }
+
+                currentStates = nextStates;
+                nextStates = new List<State>();
+            }
+
+            foreach (State state in currentStates)
+            {
+                if (state.forbidden) return false;
+            }
+
+            return true;
         }
 
         public bool IsEverExecutable(Query_ExecutableEver query)
         {
-            throw new NotImplementedException();
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            for (int step = 0; step < query.program.Count; step++)
+            {
+                if (currentStates.Count == 0) return false;
+
+                foreach (State state in currentStates)
+                {
+                    if (state.forbidden) continue;
+
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+
+                    if (possibleNextStates.Count == 0 || possibleNextStates is null) continue;
+
+                    nextStates.AddRange(possibleNextStates);
+                }
+
+                currentStates = nextStates;
+                nextStates = new List<State>();
+            }
+
+            if (currentStates.Count > 0) return true;
+            else return false;
         }
 
         public bool IsAlwaysAccessible(Query_AccessibleAlways query)
         {
-            throw new NotImplementedException();
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            foreach (State state in currentStates)
+            {
+                if (!state.SatisfiesCondition(query.initialCondition)) return false;
+            }
+
+            for (int step = 0; step < query.program.Count; step++)
+            {
+                foreach (State state in currentStates)
+                {
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                    nextStates.AddRange(possibleNextStates);
+                }
+
+                currentStates = nextStates;
+                nextStates = new List<State>();
+            }
+
+            foreach (State state in currentStates)
+            {
+                if (!state.SatisfiesCondition(query.endCondition)) return false;
+            }
+
+            return true;
+
         }
 
         public bool IsEverAccessible(Query_AccessibleEver query)
         {
-            throw new NotImplementedException();
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            foreach (State state in currentStates)
+            {
+                if (state.SatisfiesCondition(query.initialCondition)) nextStates.Add(state);
+            }
+
+            currentStates = nextStates;
+            nextStates = new List<State>();
+
+            for (int step = 0; step < query.program.Count; step++)
+            {
+                foreach (State state in currentStates)
+                {
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                    nextStates.AddRange(possibleNextStates);
+                }
+
+                currentStates = nextStates;
+                nextStates = new List<State>();
+            }
+
+            foreach (State state in currentStates)
+            {
+                if (state.SatisfiesCondition(query.endCondition)) nextStates.Add(state);
+            }
+
+            currentStates = nextStates;
+
+            if (currentStates.Count > 0) return true;
+            else return false;
         }
 
         public bool IsAlwaysInvolved(Query_InvolvedAlways query)
         {
-            throw new NotImplementedException();
+            if (!query.program.Select(p => p.agent).Contains(query.agent))
+                return false;
+
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            int step = 0;
+            while (step < query.program.Count)
+            {
+                while (!(query.program[step].agent == query.agent))
+                {
+                    foreach (State state in currentStates)
+                    {
+                        List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                        nextStates.AddRange(possibleNextStates);
+                    }
+
+                    currentStates = nextStates;
+                    nextStates = new List<State>();
+
+                    step++;
+                }
+
+                foreach (State state in currentStates)
+                {
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                    if (possibleNextStates.Count == 0 || possibleNextStates is null) return false;
+                }
+            }
+
+            return true;
         }
 
         public bool IsEverInvolved(Query_InvolvedEver query)
         {
-            throw new NotImplementedException();
+            if (!query.program.Select(p => p.agent).Contains(query.agent))
+                return false;
+
+            List<State> currentStates = initial;
+            List<State> nextStates = new List<State>();
+
+            int step = 0;
+            while (step < query.program.Count)
+            {
+                while (!(query.program[step].agent == query.agent))
+                {
+                    foreach (State state in currentStates)
+                    {
+                        List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                        nextStates.AddRange(possibleNextStates);
+                    }
+
+                    currentStates = nextStates;
+                    nextStates = new List<State>();
+
+                    step++;
+                }
+
+                foreach (State state in currentStates)
+                {
+                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                    if (possibleNextStates.Count != 0 && possibleNextStates is not null) return true;
+                }
+            }
+
+            return false;
         }
-
-
-
 
         // dalej jest magia, ktora dzieje przy generowaniu grafu
 
