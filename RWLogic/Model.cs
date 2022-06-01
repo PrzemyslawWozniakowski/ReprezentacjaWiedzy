@@ -525,7 +525,7 @@ namespace RWLogic
                 foreach (State state in currentStates)
                 {
                     List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
-                    if (possibleNextStates.Count != 0 && possibleNextStates is not null) return true;
+                    if (possibleNextStates.Count != 0 && !(possibleNextStates is null)) return true;
                 }
             }
 
