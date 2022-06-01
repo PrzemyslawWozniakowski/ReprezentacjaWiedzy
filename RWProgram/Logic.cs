@@ -75,7 +75,7 @@ namespace RWProgram
         private IEnumerable<T_Logic> GetStatements<T_Statement, T_Logic>() where T_Statement : Statement where T_Logic : class
         {
             return Statements
-                .Where(s => s is T_Statement)
+                .Where(s => s is T_Statement && !(typeof(T_Statement) == typeof(FluentAfterActionbyActor) && s is InitiallyFluent))
                 .Select(s => (s as T_Statement).ToLogic() as T_Logic);
         }
 

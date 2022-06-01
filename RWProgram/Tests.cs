@@ -20,11 +20,12 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
-                var anyone = new Actor { Name = "Anyone", Index = 2 };
-                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
-                var anything = new Action { Name = "Anything", Index = 2 };
+
+                var anyone = new Actor { Name = "Anyone", Index = 1000 };
+                var empty = new Actor { Name = "ɛ", Index = 1001 };
+                var anything = new Action { Name = "Anything", Index = 1000 };
 
                 return new Logic
                 {
@@ -52,11 +53,12 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
-                var anyone = new Actor { Name = "Anyone", Index = 2 };
-                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
-                var anything = new Action { Name = "Anything", Index = 2 };
+
+                var anyone = new Actor { Name = "Anyone", Index = 1000 };
+                var empty = new Actor { Name = "ɛ", Index = 1001 };
+                var anything = new Action { Name = "Anything", Index = 1000 };
 
                 return new Logic
                 {
@@ -83,13 +85,14 @@ namespace RWProgram
                 var alive = new Fluent { Name = "alive", Index = 1 };
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
-                var anyone = new Actor { Name = "Anyone", Index = 1 };
-                var empty = new Actor { Name = "ɛ", Index = 2 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
                 var spin = new Action { Name = "SPIN", Index = 2 };
-                var anything = new Action { Name = "Anything", Index = 3 };
 
+                var anyone = new Actor { Name = "Anyone", Index = 1000 };
+                var empty = new Actor { Name = "ɛ", Index = 1001 };
+                var anything = new Action { Name = "Anything", Index = 1000 };
+                
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
@@ -115,10 +118,11 @@ namespace RWProgram
                 var hasCard = new Fluent { Name = "hasCard", Index = 1 };
                 var notHasCard = new NegatedFluent { Name = "hasCard", Original = hasCard };
                 var bill = new Actor { Name = "Bill", Index = 0 };
-                var anyone = new Actor { Name = "Anyone", Index = 1 };
-                var empty = new Actor { Name = "ɛ", Index = 2 };
                 var insertCard = new Action { Name = "INSERT_CARD", Index = 0 };
-                var anything = new Action { Name = "Anything", Index = 1 };
+
+                var anyone = new Actor { Name = "Anyone", Index = 1000 };
+                var empty = new Actor { Name = "ɛ", Index = 1001 };
+                var anything = new Action { Name = "Anything", Index = 1000 };
 
                 return new Logic
                 {
@@ -144,11 +148,12 @@ namespace RWProgram
                 var notAlive = new NegatedFluent { Name = "alive", Original = alive };
                 var bill = new Actor { Name = "Bill", Index = 0 };
                 var jim = new Actor { Name = "Jim", Index = 1 };
-                var anyone = new Actor { Name = "Anyone", Index = 2 };
-                var empty = new Actor { Name = "ɛ", Index = 3 };
                 var load = new Action { Name = "LOAD", Index = 0 };
                 var shoot = new Action { Name = "SHOOT", Index = 1 };
-                var anything = new Action { Name = "Anything", Index = 2 };
+
+                var anyone = new Actor { Name = "Anyone", Index = 1000 };
+                var empty = new Actor { Name = "ɛ", Index = 1001 };
+                var anything = new Action { Name = "Anything", Index = 1000 };
 
                 return new Logic
                 {
