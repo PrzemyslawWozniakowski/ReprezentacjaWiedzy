@@ -264,7 +264,7 @@ namespace RWProgram.Classes
         {
             if (Pi == null || Pi.Fluents.Count == 0) return string.Empty;
 
-            return Pi.ToString();
+            return $"always {Pi.ToString()}";
         }
         public override object ToLogic()
         {
