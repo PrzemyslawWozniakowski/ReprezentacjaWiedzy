@@ -369,6 +369,8 @@ namespace RWLogic
 
         public bool IsEverExecutable(Query_ExecutableEver query)
         {
+            if (initial.Count == 0) return true;
+
             List<State> currentStates = initial;
             List<State> nextStates = new List<State>();
 
