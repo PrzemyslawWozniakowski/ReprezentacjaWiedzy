@@ -278,7 +278,7 @@ namespace RWProgram
                     ));
                     break;
                 case StatementEnum.AlwaysPi:
-                    if (Pi2ComboBox.SelectedItem == null)
+                    if (PiComboBox.SelectedItem == null)
                         return;
                     Logic.Statements.Add(new AlwaysPi
                     (
