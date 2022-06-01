@@ -59,7 +59,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
+            return $"Is {Gamma.ToString()} ever accessible from {Pi.ToString()} with P?";
         }
     }
 
