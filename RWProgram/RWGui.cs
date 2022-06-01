@@ -70,8 +70,8 @@ namespace RWProgram
             LogicOperatorComboBox3.SelectedIndex = 0;
             LogicOperatorComboBox4.Items.AddRange(Operators.ToArray());
             LogicOperatorComboBox4.SelectedIndex = 0;
+            Logic.Actors.Add(new Actor() { Name = "ɛ", Index = ActorCounter++ });
             Logic.Actors.Add(new Actor() { Name = "Anyone", Index = 1000 });
-            Logic.Actors.Add(new Actor() { Name = "ɛ", Index = 1001 });
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
             Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
