@@ -8,7 +8,7 @@ using Action = RWProgram.Classes.Action;
 
 namespace RWProgram
 {
-    public class RWLogic
+    public class Logic
     {
         public List<Actor> Actors = new List<Actor>();
 
@@ -19,5 +19,11 @@ namespace RWProgram
         public List<Statement> Statements = new List<Statement>();
 
         public List<(Action action, Actor actor)> Program = new List<(Action, Actor)>();
+
+        public bool ExecuteQuery(Query query)
+        {
+            new RWLogic.Test().Run();
+            return true;
+        }
     }
 }

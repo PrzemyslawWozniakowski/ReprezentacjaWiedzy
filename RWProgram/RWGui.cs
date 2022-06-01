@@ -48,12 +48,12 @@ namespace RWProgram
             "→"
         };
 
-        public RWLogic Logic { get; set; }
+        public Logic Logic { get; set; }
         
         public RWGui()
         {
             InitializeComponent();
-            Logic = new RWLogic();
+            Logic = new Logic();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
             QueriesComboBox.Items.AddRange(Querends.ToArray());
             LogicOperatorComboBox1.Items.AddRange(Operators.ToArray());
@@ -402,8 +402,11 @@ namespace RWProgram
 
         private void AskQueryButton_Click(object sender, EventArgs e)
         {
-            if(Query != null)
-               ResponseTextBox.Text =  Query.Response().ToString();
+            //if (Query != null)
+            //{
+                var response = Logic.ExecuteQuery(Query);
+                ResponseTextBox.Text = response.ToString();
+            //}
         }
 
         private void ResetQueryButton_Click(object sender, EventArgs e)
@@ -553,7 +556,7 @@ namespace RWProgram
         //                    {
         //                        query.Gamma.Add((Fluent)GammaComboBox.SelectedItem);
         //                    }
-                            
+
         //                }
         //                break;
         //            }
@@ -563,6 +566,32 @@ namespace RWProgram
 
         //    SetQueryTextBox();
         //}
+
+
+        private void SetTest1Domain(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests.Test1);
+        }
+
+        private void SetTest2Domain(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests.Test2);
+        }
+
+        private void SetTest3Domain(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests.Test3);
+        }
+
+        private void SetTest4Domain(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests.Test4);
+        }
+
+        private void SetTest5Domain(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests.Test5);
+        }
 
         private void ResetComboBoxes2()
         {
@@ -600,6 +629,17 @@ namespace RWProgram
             if (index == 0) return new And();
             if (index == 1) return new Or();
             return new Implies();
+        }
+        private void SetHardcodedLogicInFrontEnd(Logic logic)
+        {
+            actorsTextBox.Text = string.Join(", ", logic.Actors.Where(a => a.Name != "Anyone" && a.Name != "ɛ").Select(x => x.ToString()));
+            ActorsTextBox_Changed(null, null);
+            fluentsTextBox.Text = string.Join(", ", logic.Fluents.Where(f => !(f is NegatedFluent)).Select(x => x.ToString()));
+            FluentsTextBox_Changed(null, null);
+            actionsTextBox.Text = string.Join(", ", logic.Actions.Where(a => a.Name != "Anything").Select(x => x.ToString()));
+            ActionsTextBox_Changed(null, null);
+            Logic = logic;
+            SetStatementsText();
         }
     }
 }

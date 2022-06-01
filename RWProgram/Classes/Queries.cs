@@ -8,7 +8,7 @@ namespace RWProgram.Classes
 {
     public abstract class Query
     {
-        public abstract bool Response();
+
     }
 
     public abstract class QueryWithGammaAndPi : Query
@@ -34,10 +34,6 @@ namespace RWProgram.Classes
         {
             return "Is program always executable?";
         }
-        public override bool Response()
-        {
-            return true;
-        }
     }
 
     public class EverExecutable : Query
@@ -45,10 +41,6 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             return "Is program ever executable?";
-        }
-        public override bool Response()
-        {
-            return true;
         }
     }
 
@@ -58,10 +50,6 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
-        }
-        public override bool Response()
-        {
-            return true;
         }
     }
 
@@ -73,10 +61,6 @@ namespace RWProgram.Classes
         {
             return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
         }
-        public override bool Response()
-        {
-            return true;
-        }
     }
 
     public class AlwaysWInvolved : QueryWithW
@@ -85,10 +69,6 @@ namespace RWProgram.Classes
         {
             return $"Always {W.ToString()} involved with P?";
         }
-        public override bool Response()
-        {
-            return true;
-        }
     }
 
     public class EverWInvolved : QueryWithW
@@ -96,10 +76,6 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             return $"Ever {W.ToString()} involved with P?";
-        }
-        public override bool Response()
-        {
-            return true;
         }
     }
 }
