@@ -114,7 +114,7 @@ namespace RWProgram
             {
                 var fluent = new Fluent() { Name = f, Index = FluentCounter++};
                 Logic.Fluents.Add(fluent);
-                Logic.Fluents.Add(new NegatedFluent() { Name = f, Original = fluent, Index = FluentCounter++ });
+                Logic.Fluents.Add(new NegatedFluent() { Name = f, Original = fluent, Index = fluent.Index });
             }
             FluentComboBox.Items.Clear();
             FluentComboBox.Items.AddRange(Logic.Fluents.ToArray());
