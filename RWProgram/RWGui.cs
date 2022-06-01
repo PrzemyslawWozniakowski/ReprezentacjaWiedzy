@@ -278,7 +278,7 @@ namespace RWProgram
                     ));
                     break;
                 case StatementEnum.AlwaysPi:
-                    if (FluentComboBox.SelectedItem == null)
+                    if (Pi2ComboBox.SelectedItem == null)
                         return;
                     Logic.Statements.Add(new AlwaysPi
                     (
@@ -471,7 +471,7 @@ namespace RWProgram
                         QueryAlways.Gamma.Fluents = gamma;
                         QueryAlways.Gamma.Operators = gammaOperator;
                         QueryAlways.Pi.Fluents = pi;
-                        QueryAlways.Pi.Operators = piOperator = new List<LogicOperator>();
+                        QueryAlways.Pi.Operators = piOperator;
                         Query = QueryAlways;
                     }
                     break;
