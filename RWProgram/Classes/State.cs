@@ -23,7 +23,7 @@ namespace RWProgram.Classes
         public RWLogic.Formula ToLogic()
         {
             if (Fluents == null || Fluents.Count == 0)
-                return null;
+                return new RWLogic.Formula(true);
 
             var fluents = Fluents.Select(f => f.ToLogic()).ToList();
             var operators = Operators?.Select(o => o.ToLogic())?.ToList();

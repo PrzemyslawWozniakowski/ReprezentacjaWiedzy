@@ -20,6 +20,14 @@ namespace RWProgram
 
         public List<(Action action, Actor actor)> Program = new List<(Action, Actor)>();
 
+        private List<(int agent, int action)> LogicProgram
+        {
+            get
+            {
+                return Program.Select(p => (p.actor.Index, p.action.Index)).ToList();
+            }
+        }
+
         public bool ExecuteQuery(Query query)
         {
             var fasada = new RWLogic.Fasada(
@@ -37,7 +45,24 @@ namespace RWProgram
                 typicallyAfter: GetStatements<FluentTypicallyAfterActionbyActor, RWLogic.TypicallyAfter>().ToList(),
                 observableAfter: GetStatements<ObservableFluentAfterActionByActor, RWLogic.ObservableAfter>().ToList()
             );
-            return true;
+
+            switch (query)
+            {
+                case AlwaysExecutable q:
+                    return fasada.Query(new RWLogic.Query_ExecutableAlways(LogicProgram));
+                case EverExecutable q:
+                    return fasada.Query(new RWLogic.Query_ExecutableEver(LogicProgram));
+                case AlwaysAccesibleYFromPi q:
+                    return fasada.Query(new RWLogic.Query_AccessibleAlways(LogicProgram, q.Pi.ToLogic(), q.Gamma.ToLogic()));
+                case EverAccesibleYFromPi q:
+                    return fasada.Query(new RWLogic.Query_AccessibleEver(LogicProgram, q.Pi.ToLogic(), q.Gamma.ToLogic()));
+                case AlwaysWInvolved q:
+                    return fasada.Query(new RWLogic.Query_InvolvedAlways(LogicProgram, q.W.Index));
+                case EverWInvolved q:
+                    return fasada.Query(new RWLogic.Query_InvolvedEver(LogicProgram, q.W.Index));
+                default:
+                    return true;
+            }
         }
 
         private IEnumerable<T_Logic> GetStatementsForConditionActionByActor<T_Statement, T_Logic>() where T_Statement : ConditionActionByActorStatement where T_Logic : class

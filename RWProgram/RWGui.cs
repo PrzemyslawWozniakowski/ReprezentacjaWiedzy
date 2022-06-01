@@ -408,11 +408,11 @@ namespace RWProgram
 
         private void AskQueryButton_Click(object sender, EventArgs e)
         {
-            //if (Query != null)
-            //{
+            if (Query != null && Logic?.Program != null)
+            {
                 var response = Logic.ExecuteQuery(Query);
                 ResponseTextBox.Text = response.ToString();
-            //}
+            }
         }
 
         private void ResetQueryButton_Click(object sender, EventArgs e)
