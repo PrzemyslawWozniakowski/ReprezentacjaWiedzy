@@ -16,6 +16,11 @@ namespace RWProgram.Classes
         {
             return Name;
         }
+
+        public virtual (int, bool) ToLogic()
+        {
+            return (Index, true);
+        }
     }
 
     public class NegatedFluent : Fluent
@@ -24,6 +29,10 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             return "not " + Name;
+        }
+        public override (int, bool) ToLogic()
+        {
+            return (Index, false);
         }
     }
 }

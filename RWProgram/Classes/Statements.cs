@@ -9,6 +9,8 @@ namespace RWProgram.Classes
     public abstract class Statement
     {
         public override string ToString() { return string.Empty; }
+
+        public abstract object ToLogic();
     }
 
     public abstract class ConditionStatement : Statement
@@ -60,6 +62,10 @@ namespace RWProgram.Classes
             return $"initially {Alpha.ToString()}";
         }
 
+        public override object ToLogic()
+        {
+            return new RWLogic.Initially(Alpha.ToLogic());
+        }
     }
 
     public class FluentAfterActionbyActor : StatementAfterActionByUser
@@ -84,6 +90,10 @@ namespace RWProgram.Classes
             return str;
         }
 
+        public override object ToLogic()
+        {
+            return new RWLogic.After(ActionsByActors.Select(actionByActor => (actionByActor.actor.Index, actionByActor.action.Index)).ToList(), Alpha.ToLogic());
+        }
     }
 
     public class FluentTypicallyAfterActionbyActor : StatementAfterActionByUser
@@ -108,6 +118,10 @@ namespace RWProgram.Classes
             return str;
         }
 
+        public override object ToLogic()
+        {
+            return new RWLogic.TypicallyAfter(ActionsByActors.Select(actionByActor => (actionByActor.actor.Index, actionByActor.action.Index)).ToList(), Alpha.ToLogic());
+        }
     }
 
     public class ObservableFluentAfterActionByActor : StatementAfterActionByUser
@@ -131,6 +145,11 @@ namespace RWProgram.Classes
             }
             return str;
         }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.ObservableAfter(ActionsByActors.Select(actionByActor => (actionByActor.actor.Index, actionByActor.action.Index)).ToList(), Alpha.ToLogic());
+        }
     }
 
     public class ActionByActorCausesAlphaIfFluents : ConditionActionByActorStatement
@@ -150,6 +169,11 @@ namespace RWProgram.Classes
             var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"{Action} by {Actor} casues {Alpha.ToString()} {conditionStr}";
         }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.Causes(Actor.Index, Action.Index, Alpha.ToLogic(), Pi.ToLogic());
+        }
     }
 
     public class ActionByActorReleasesFluent1IfFluents : ConditionActionByActorStatement
@@ -165,6 +189,11 @@ namespace RWProgram.Classes
         {
             var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"{Action} by {Actor} releases {F} {conditionStr}";
+        }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.Releases(Actor.Index, Action.Index, F.Index, Pi.ToLogic());
         }
     }
 
@@ -184,6 +213,11 @@ namespace RWProgram.Classes
             var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"{Action} by {Actor} typically casues {Alpha} {conditionStr}";
         }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.TypicallyCauses(Actor.Index, Action.Index, Alpha.ToLogic(), Pi.ToLogic());
+        }
     }
 
     public class ActionByActorTypicallyReleasesFluent1IfFluents : ConditionActionByActorStatement
@@ -200,16 +234,26 @@ namespace RWProgram.Classes
             var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"{Action} by {Actor} typically releases {F} {conditionStr}";
         }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.TypicallyReleases(Actor.Index, Action.Index, F.Index, Pi.ToLogic());
+        }
     }
 
-    public class ImpossibleActionByActorIfFluents : ConditionActionByActorStatement
+    public class ImpossibleActionByActorIfFluents : ActionByActorCausesAlphaIfFluents
     {
-        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi) { }
+        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(new List<Fluent>(), new List<LogicOperator>(), Action, Actor, Pi, OperatorsPi) { }
 
         public override string ToString()
         {
             var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"impossible {Action} by {Actor} {conditionStr}";
+        }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.Causes(Actor.Index, Action.Index, new RWLogic.Formula(true), Pi.ToLogic());
         }
     }
 
@@ -221,6 +265,10 @@ namespace RWProgram.Classes
             if (Pi == null || Pi.Fluents.Count == 0) return string.Empty;
 
             return Pi.ToString();
+        }
+        public override object ToLogic()
+        {
+            return new RWLogic.Always(Pi.ToLogic());
         }
     }
 
@@ -236,6 +284,11 @@ namespace RWProgram.Classes
         public override string ToString()
         {
             return $"noninertial {Fluent}";
+        }
+
+        public override object ToLogic()
+        {
+            return new RWLogic.Noninertial(Fluent.Index);
         }
     }
 }

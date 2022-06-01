@@ -47,6 +47,8 @@ namespace RWLogic
 
             public bool SatisfiesCondition(Formula condition) // czy stan spelnia warunek
             {
+                if (condition == null) 
+                    return true;
                 return condition.CheckCondition(this);
                 //if (conditions[0] == 2) return false;
                 //for (int i = 0; i < fluents.Length; i++)
