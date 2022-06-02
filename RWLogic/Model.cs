@@ -492,6 +492,7 @@ namespace RWLogic
                     List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
                     if (possibleNextStates.Count == 0 || possibleNextStates is null) return false;
                 }
+                step++;
             }
 
             return true;
