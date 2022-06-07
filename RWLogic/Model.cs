@@ -445,7 +445,9 @@ namespace RWLogic
             {
                 foreach (State state in currentStates)
                 {
-                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
+                    List<State> possibleNextStates = state.abnormalEffects[query.program[step].agent, query.program[step].action];
+                    nextStates.AddRange(possibleNextStates);
+                    possibleNextStates = state.typicalEffects[query.program[step].agent, query.program[step].action];
                     nextStates.AddRange(possibleNextStates);
                 }
 
