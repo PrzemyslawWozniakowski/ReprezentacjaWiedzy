@@ -429,8 +429,13 @@ namespace RWProgram
             var queryIndex = QueriesComboBox.SelectedIndex;
             var queryEnum = (QueriesEnum)queryIndex;
 
-            var gamma = new List<Fluent> { (Fluent)GammaComboBox.SelectedItem };
-            var pi = new List<Fluent> { (Fluent)Pi2ComboBox.SelectedItem };
+            var gamma = new List<Fluent>();
+            if (GammaComboBox.SelectedItem != null)
+                gamma.Add((Fluent)GammaComboBox.SelectedItem);
+            var pi = new List<Fluent>();
+            if (Pi2ComboBox.SelectedItem != null)
+                pi.Add((Fluent)GammaComboBox.SelectedItem);
+
             var gammaOperator = new List<LogicOperator>();
             var piOperator = new List<LogicOperator>();
 
@@ -454,7 +459,7 @@ namespace RWProgram
                     Query = new EverExecutable();
                     break;
                 case QueriesEnum.AlwaysAccesibleYFromPi:
-                    if (GammaComboBox.SelectedItem != null && Pi2ComboBox.SelectedItem != null)
+                    if (GammaComboBox.SelectedItem != null)
                     {
                         var QueryAlways = new AlwaysAccesibleYFromPi();
                         QueryAlways.Gamma.Fluents = gamma;
@@ -465,7 +470,7 @@ namespace RWProgram
                     }
                     break;
                 case QueriesEnum.EverAccesibleYFromPi:
-                    if (GammaComboBox.SelectedItem != null && Pi2ComboBox.SelectedItem != null)
+                    if (GammaComboBox.SelectedItem != null)
                     {
                         var QueryAlways = new EverAccesibleYFromPi();
                         QueryAlways.Gamma.Fluents = gamma;

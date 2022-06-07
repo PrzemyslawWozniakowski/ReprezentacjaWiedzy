@@ -49,7 +49,10 @@ namespace RWProgram.Classes
         public AlwaysAccesibleYFromPi() : base() { }
         public override string ToString()
         {
-            return $"Is {Gamma.ToString()} always accessible from {Pi.ToString()} with P?";
+            var str = $"Is {Gamma.ToString()} always accessible";
+            if (Pi.Fluents.Any())
+                str = str + $" from {Pi.ToString()}";
+            return str;
         }
     }
 
@@ -59,7 +62,10 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return $"Is {Gamma.ToString()} ever accessible from {Pi.ToString()} with P?";
+            var str = $"Is {Gamma.ToString()} ever accessible";
+            if (Pi.Fluents.Any())
+                str = str + $" from {Pi.ToString()}";
+            return str;
         }
     }
 
