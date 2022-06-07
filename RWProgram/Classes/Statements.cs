@@ -11,6 +11,8 @@ namespace RWProgram.Classes
         public override string ToString() { return string.Empty; }
 
         public abstract object ToLogic();
+
+        public virtual T Clone<T>() where T: Statement { return (T)MemberwiseClone(); }
     }
 
     public abstract class ConditionStatement : Statement

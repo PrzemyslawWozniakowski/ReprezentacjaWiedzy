@@ -91,16 +91,18 @@ namespace RWProgram
             {
                 foreach (var actor in Actors.Where(a => a.Name != "Anyone"))
                 {
-                    statement.Actor = actor;
-                    statements.Add(statement.ToLogic() as T_Logic);
+                    var newStatement = statement.Clone<T_Statement>();
+                    newStatement.Actor = actor;
+                    statements.Add(newStatement.ToLogic() as T_Logic);
                 }
             }
             if (statement.Action.Name == "Anything")
             {
                 foreach (var action in Actions.Where(a => a.Name != "Anything"))
                 {
-                    statement.Action = action;
-                    statements.Add(statement.ToLogic() as T_Logic);
+                    var newStatement = statement.Clone<T_Statement>();
+                    newStatement.Action = action;
+                    statements.Add(newStatement.ToLogic() as T_Logic);
                 }
             }
             return statements;
