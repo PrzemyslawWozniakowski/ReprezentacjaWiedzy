@@ -581,27 +581,27 @@ namespace RWProgram
 
         private void SetTest1Domain(object sender, EventArgs e)
         {
-            SetHardcodedLogicInFrontEnd(Tests.Test1);
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test1);
         }
 
         private void SetTest2Domain(object sender, EventArgs e)
         {
-            SetHardcodedLogicInFrontEnd(Tests.Test2);
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test2);
         }
 
         private void SetTest3Domain(object sender, EventArgs e)
         {
-            SetHardcodedLogicInFrontEnd(Tests.Test3);
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test3);
         }
 
         private void SetTest4Domain(object sender, EventArgs e)
         {
-            SetHardcodedLogicInFrontEnd(Tests.Test4);
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test4);
         }
 
         private void SetTest5Domain(object sender, EventArgs e)
         {
-            SetHardcodedLogicInFrontEnd(Tests.Test5);
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
         }
 
         private void ResetComboBoxes2()
@@ -651,6 +651,123 @@ namespace RWProgram
             ActionsTextBox_Changed(null, null);
             Logic = logic;
             SetStatementsText();
+        }
+
+        private void SetHardcodedProgramInFrontEnd(List<(Action action, Actor actor)> Program)
+        {
+            Logic.Program = Program;
+            SetProgramText();
+        }
+
+        private void SetHardcodedQueryInFrontEnd(Query query)
+        {
+            Query = query;
+            SetQueryTextBox();
+        }
+
+        private void przykładKwerenda1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test1);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test1a);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test1a);
+        }
+
+        private void przykładKwerenda2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test1);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test1b);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test1b);
+        }
+
+        private void przykładKwerenda3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test1);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test1c);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test1c);
+        }
+
+        private void przykładKwerenda1ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test2);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test2a);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test2a);
+        }
+
+        private void przykładKwerenda2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test2);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test2b);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test2b);
+        }
+
+        private void przykładKwerenda3ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test2);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test2c);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test2c);
+        }
+
+        private void przykładKwerenda1ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test3);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test3a);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test3a);
+        }
+
+        private void przykładKwerenda2ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test3);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test3b);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test3b);
+        }
+
+        private void przykładKwerenda3ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test3);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test3c);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test3c);
+        }
+
+        private void przykładKwerenda1ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test4);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test4a);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test4a);
+        }
+
+        private void przykładKwerenda2ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test4);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test4b);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test4b);
+        }
+
+        private void przykładKwerenda3ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test4);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test4c);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test4c);
+        }
+
+        private void przykładKwerenda1ToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test5a);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test5a);
+        }
+
+        private void przykładKwerenda2ToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test5b);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test5b);
+        }
+
+        private void przykładKwerenda3ToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
+            SetHardcodedProgramInFrontEnd(Tests_Programs.Test5c);
+            SetHardcodedQueryInFrontEnd(Tests_Queries.Test5c);
         }
     }
 }

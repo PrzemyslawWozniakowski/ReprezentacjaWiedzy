@@ -8,7 +8,7 @@ using Action = RWProgram.Classes.Action;
 
 namespace RWProgram
 {
-    public static class Tests
+    public static class Tests_Logic
     {
         public static Logic Test1
         {
@@ -97,7 +97,7 @@ namespace RWProgram
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
                     Actors = new List<Actor> { bill, anyone, empty },
-                    Actions = new List<Action> { load, shoot, anything },
+                    Actions = new List<Action> { load, shoot, spin, anything },
                     Statements = new List<Statement> {
                         new InitiallyFluent(new List<Fluent> { notLoaded, alive }, new List<LogicOperator> { new And() }),
                         new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
