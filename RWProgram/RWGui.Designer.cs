@@ -281,7 +281,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(25, 273);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(21, 17);
+            this.label8.Size = new System.Drawing.Size(19, 16);
             this.label8.TabIndex = 6;
             this.label8.Text = "A:";
             // 
@@ -290,7 +290,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(141, 273);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(21, 17);
+            this.label9.Size = new System.Drawing.Size(19, 16);
             this.label9.TabIndex = 7;
             this.label9.Text = "w:";
             // 
@@ -299,7 +299,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(253, 273);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 17);
+            this.label10.Size = new System.Drawing.Size(31, 16);
             this.label10.TabIndex = 8;
             this.label10.Text = "pi 1:";
             // 
@@ -308,7 +308,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(375, 273);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 17);
+            this.label11.Size = new System.Drawing.Size(61, 16);
             this.label11.TabIndex = 9;
             this.label11.Text = "alpha 1/f:";
             // 
@@ -373,7 +373,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(13, 530);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 17);
+            this.label12.Size = new System.Drawing.Size(47, 16);
             this.label12.TabIndex = 16;
             this.label12.Text = "Action:";
             // 
@@ -391,7 +391,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(181, 530);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 17);
+            this.label13.Size = new System.Drawing.Size(25, 16);
             this.label13.TabIndex = 18;
             this.label13.Text = "by:";
             // 
@@ -451,7 +451,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(21, 689);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(153, 17);
+            this.label15.Size = new System.Drawing.Size(141, 16);
             this.label15.TabIndex = 25;
             this.label15.Text = "pi (stan początkowy) 1:";
             // 
@@ -460,7 +460,7 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(299, 689);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(137, 17);
+            this.label16.Size = new System.Drawing.Size(127, 16);
             this.label16.TabIndex = 26;
             this.label16.Text = "gamma (warunek) 1:";
             // 
@@ -469,7 +469,7 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(572, 689);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(106, 17);
+            this.label17.Size = new System.Drawing.Size(100, 16);
             this.label17.TabIndex = 27;
             this.label17.Text = "w (wykonawca):";
             // 
@@ -608,7 +608,7 @@
             this.AddQueryButton.Name = "AddQueryButton";
             this.AddQueryButton.Size = new System.Drawing.Size(179, 34);
             this.AddQueryButton.TabIndex = 42;
-            this.AddQueryButton.Text = "Dodaj kwerende";
+            this.AddQueryButton.Text = "Dodaj kwerendę";
             this.AddQueryButton.UseVisualStyleBackColor = true;
             this.AddQueryButton.Click += new System.EventHandler(this.AddQueryButton_Click);
             // 
@@ -639,7 +639,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(217, 309);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 17);
+            this.label6.Size = new System.Drawing.Size(61, 16);
             this.label6.TabIndex = 45;
             this.label6.Text = "operator:";
             // 
@@ -657,7 +657,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(375, 309);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 17);
+            this.label7.Size = new System.Drawing.Size(61, 16);
             this.label7.TabIndex = 47;
             this.label7.Text = "operator:";
             // 
@@ -666,7 +666,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(253, 342);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(35, 17);
+            this.label14.Size = new System.Drawing.Size(31, 16);
             this.label14.TabIndex = 48;
             this.label14.Text = "pi 2:";
             // 
@@ -702,7 +702,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(381, 345);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 17);
+            this.label18.Size = new System.Drawing.Size(54, 16);
             this.label18.TabIndex = 52;
             this.label18.Text = "alpha 2:";
             // 
@@ -711,7 +711,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(21, 753);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(153, 17);
+            this.label19.Size = new System.Drawing.Size(141, 16);
             this.label19.TabIndex = 53;
             this.label19.Text = "pi (stan początkowy) 2:";
             // 
@@ -720,7 +720,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(299, 753);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(137, 17);
+            this.label20.Size = new System.Drawing.Size(127, 16);
             this.label20.TabIndex = 54;
             this.label20.Text = "gamma (warunek) 2:";
             // 
@@ -729,7 +729,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(99, 720);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(66, 17);
+            this.label21.Size = new System.Drawing.Size(61, 16);
             this.label21.TabIndex = 55;
             this.label21.Text = "operator:";
             // 
@@ -738,7 +738,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(365, 720);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(66, 17);
+            this.label22.Size = new System.Drawing.Size(61, 16);
             this.label22.TabIndex = 56;
             this.label22.Text = "operator:";
             // 
@@ -785,8 +785,7 @@
             this.przykładyToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(861, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(861, 30);
             this.menuStrip1.TabIndex = 61;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -799,7 +798,7 @@
             this.przykład4OpeningTheDoorToolStripMenuItem,
             this.przykład5ModificationOfYSPToolStripMenuItem});
             this.przykładyToolStripMenuItem.Name = "przykładyToolStripMenuItem";
-            this.przykładyToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.przykładyToolStripMenuItem.Size = new System.Drawing.Size(85, 26);
             this.przykładyToolStripMenuItem.Text = "Przykłady";
             // 
             // przykład1ToolStripMenuItem
@@ -809,7 +808,7 @@
             this.przykładKwerenda2ToolStripMenuItem,
             this.przykładKwerenda3ToolStripMenuItem});
             this.przykład1ToolStripMenuItem.Name = "przykład1ToolStripMenuItem";
-            this.przykład1ToolStripMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.przykład1ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład1ToolStripMenuItem.Text = "Przykład 1 - Yale Shooting Problem";
             this.przykład1ToolStripMenuItem.Click += new System.EventHandler(this.SetTest1Domain);
             // 
@@ -820,7 +819,7 @@
             this.przykładKwerenda2ToolStripMenuItem1,
             this.przykładKwerenda3ToolStripMenuItem1});
             this.przykład2ToolStripMenuItem.Name = "przykład2ToolStripMenuItem";
-            this.przykład2ToolStripMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.przykład2ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład2ToolStripMenuItem.Text = "Przykład 2 - Stanford Murder Mystery";
             this.przykład2ToolStripMenuItem.Click += new System.EventHandler(this.SetTest2Domain);
             // 
@@ -831,7 +830,7 @@
             this.przykładKwerenda2ToolStripMenuItem2,
             this.przykładKwerenda3ToolStripMenuItem2});
             this.przykład3ToolStripMenuItem.Name = "przykład3ToolStripMenuItem";
-            this.przykład3ToolStripMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.przykład3ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład3ToolStripMenuItem.Text = "Przykład 3 - Russian Turkey Scenario";
             this.przykład3ToolStripMenuItem.Click += new System.EventHandler(this.SetTest3Domain);
             // 
@@ -842,7 +841,7 @@
             this.przykładKwerenda2ToolStripMenuItem3,
             this.przykładKwerenda3ToolStripMenuItem3});
             this.przykład4OpeningTheDoorToolStripMenuItem.Name = "przykład4OpeningTheDoorToolStripMenuItem";
-            this.przykład4OpeningTheDoorToolStripMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.przykład4OpeningTheDoorToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład4OpeningTheDoorToolStripMenuItem.Text = "Przykład 4 - Opening the door";
             this.przykład4OpeningTheDoorToolStripMenuItem.Click += new System.EventHandler(this.SetTest4Domain);
             // 
@@ -853,7 +852,7 @@
             this.przykładKwerenda2ToolStripMenuItem4,
             this.przykładKwerenda3ToolStripMenuItem4});
             this.przykład5ModificationOfYSPToolStripMenuItem.Name = "przykład5ModificationOfYSPToolStripMenuItem";
-            this.przykład5ModificationOfYSPToolStripMenuItem.Size = new System.Drawing.Size(329, 26);
+            this.przykład5ModificationOfYSPToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład5ModificationOfYSPToolStripMenuItem.Text = "Przykład 5 - YSP with default effect";
             this.przykład5ModificationOfYSPToolStripMenuItem.Click += new System.EventHandler(this.SetTest5Domain);
             // 
