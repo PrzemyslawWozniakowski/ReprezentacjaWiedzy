@@ -434,7 +434,7 @@ namespace RWProgram
                 gamma.Add((Fluent)GammaComboBox.SelectedItem);
             var pi = new List<Fluent>();
             if (Pi2ComboBox.SelectedItem != null)
-                pi.Add((Fluent)GammaComboBox.SelectedItem);
+                pi.Add((Fluent)Pi2ComboBox.SelectedItem);
 
             var gammaOperator = new List<LogicOperator>();
             var piOperator = new List<LogicOperator>();
