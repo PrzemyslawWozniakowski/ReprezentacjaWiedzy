@@ -59,6 +59,11 @@ namespace RWProgram
         public RWGui()
         {
             InitializeComponent();
+            InitializeGui();
+        }
+
+        private void InitializeGui()
+        {
             Logic = new Logic();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
             QueriesComboBox.Items.AddRange(Querends.ToArray());
@@ -72,12 +77,17 @@ namespace RWProgram
             LogicOperatorComboBox4.SelectedIndex = 0;
             Logic.Actors.Add(new Actor() { Name = "ɛ", Index = ActorCounter++ });
             Logic.Actors.Add(new Actor() { Name = "Anyone", Index = 1000 });
+            ActorComboBox.Items.Clear();
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
-            ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
-            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
+            ProgramActorComboBox.Items.Clear();
+            ProgramActorComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
+            Actor2ComboBox.Items.Clear();
+            Actor2ComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
             Logic.Actions.Add(new Action() { Name = "Anything", Index = 1000 });
+            ActionComboBox.Items.Clear();
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
-            ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            ProgramActionComboBox.Items.Clear();
+            ProgramActionComboBox.Items.AddRange(Logic.Actions.Where(n => n.Name != "Anything").ToArray());
         }
 
         private void ActorsTextBox_Changed(object sender, EventArgs e)
@@ -94,10 +104,10 @@ namespace RWProgram
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
 
             ProgramActorComboBox.Items.Clear();
-            ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
+            ProgramActorComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
 
             Actor2ComboBox.Items.Clear();
-            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
+            Actor2ComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
 
             Logic.Program = Logic.Program.Where(x => Logic.Actors.Contains(x.actor)).ToList();
             SetProgramText();
@@ -153,7 +163,7 @@ namespace RWProgram
             ActionComboBox.Items.Clear();
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
             ProgramActionComboBox.Items.Clear();
-            ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            ProgramActionComboBox.Items.AddRange(Logic.Actions.Where(n => n.Name != "Anything").ToArray());
 
             Logic.Program = Logic.Program.Where(x => Logic.Actions.Contains(x.action)).ToList();
             SetProgramText();
@@ -617,7 +627,7 @@ namespace RWProgram
 
         private void SetQueryTextBox()
         {
-            QueryTextBox.Text = Query != null ? Query.ToString() : string.Empty;
+            QueryTextBox.Text = Query != null ? Query.ToString() + $" with program:{string.Join(",",Logic.Program.Select(x => $" {x.action.Name} by {x.actor.Name}"))}?" : string.Empty;
         }
 
         private void DeleteLastStatementButton_Click(object sender, EventArgs e)
@@ -768,6 +778,35 @@ namespace RWProgram
             SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
             SetHardcodedProgramInFrontEnd(Tests_Programs.Test5c);
             SetHardcodedQueryInFrontEnd(Tests_Queries.Test5c);
+        }
+
+        private void ResetAllButton_Click(object sender, EventArgs e)
+        {
+            //TODO: refactor?
+            ActorCounter = 0;
+            ActionCounter = 0;
+            FluentCounter = 0;
+            actorsTextBox.Text = String.Empty;
+            fluentsTextBox.Text = String.Empty;
+            actionsTextBox.Text = String.Empty;
+            InitializeGui();
+            SetStatementsText();
+            ResetComboBoxes();
+            SetProgramText();
+            ResetComboBoxes2();
+            FluentComboBox.Items.Clear();
+            FluentComboBox2.Items.Clear();
+            PiComboBox.Items.Clear();
+            PiComboBox2.Items.Clear();
+            GammaComboBox.Items.Clear();
+            Pi2ComboBox.Items.Clear();
+            GammaComboBox2.Items.Clear();
+            Pi2ComboBox2.Items.Clear();
+            Query = null;
+            QueriesComboBox.SelectedIndex = -1;
+            ResponseTextBox.Text = string.Empty;
+            StatementsComboBox.SelectedIndex = -1; 
+            SetQueryTextBox();
         }
     }
 }

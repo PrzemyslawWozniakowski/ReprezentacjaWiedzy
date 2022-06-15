@@ -32,7 +32,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return "Is program always executable?";
+            return "Is program always executable";
         }
     }
 
@@ -40,7 +40,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return "Is program ever executable?";
+            return "Is program ever executable";
         }
     }
 
@@ -73,7 +73,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return $"Always {W.ToString()} involved with P?";
+            return $"Always {W.ToString()} involved";
         }
     }
 
@@ -81,7 +81,7 @@ namespace RWProgram.Classes
     {
         public override string ToString()
         {
-            return $"Ever {W.ToString()} involved with P?";
+            return $"Ever {W.ToString()} involved";
         }
     }
 }
