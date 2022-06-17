@@ -10,15 +10,19 @@ namespace RWProgram.Classes
     {
         public LogicalExpressionRoot LogicalExpressionRoot;
         public string LogicalExpressionString;
-
+        public string[] FluentNames;
         public State()
         {
             this.LogicalExpressionRoot = null;
             this.LogicalExpressionString = string.Empty;
         }
 
-        public State(string LogicalExpressionString)
+        public State(string LogicalExpressionString, List<Fluent> Fluents) : this(LogicalExpressionString, Fluents.Where(f => !f.IsNegation).Select(f => f.Name).ToArray())
+        { }
+
+        public State(string LogicalExpressionString, string[] Fluents)
         {
+            this.FluentNames = Fluents;
             if (string.IsNullOrEmpty(LogicalExpressionString.Trim()))
             {
                 this.LogicalExpressionRoot = null;
@@ -31,10 +35,14 @@ namespace RWProgram.Classes
             }
         }
 
-        public State(LogicalExpressionRoot logicalExpressionRoot, string logicalExpressionString)
+        public State(LogicalExpressionRoot LogicalExpressionRoot, string LogicalExpressionString, List<Fluent> Fluents) : this(LogicalExpressionRoot, LogicalExpressionString, Fluents.Where(f => !f.IsNegation).Select(f => f.Name).ToArray())
+        { }
+
+        public State(LogicalExpressionRoot LogicalExpressionRoot, string LogicalExpressionString, string[] Fluents)
         {
-            this.LogicalExpressionRoot = logicalExpressionRoot;
-            this.LogicalExpressionString = logicalExpressionString;
+            this.FluentNames = Fluents;
+            this.LogicalExpressionRoot = LogicalExpressionRoot;
+            this.LogicalExpressionString = LogicalExpressionString;
         }
 
         public override string ToString() { return LogicalExpressionString; }
@@ -44,7 +52,7 @@ namespace RWProgram.Classes
             if (string.IsNullOrEmpty(this.LogicalExpressionString))
                 return new RWLogic.Formula();
 
-            return new RWLogic.Formula(LogicalExpressionRoot);
+            return new RWLogic.Formula(LogicalExpressionRoot, FluentNames);
         }
 
     }

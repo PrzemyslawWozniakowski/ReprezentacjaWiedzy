@@ -12,10 +12,11 @@ namespace RWLogic
 
         private LogicalExpressionRoot LogicalExpressionRoot;
         private bool EmptyRoot = false;
-
-        public Formula(LogicalExpressionRoot root)
+        private string[] FluentNames;
+        public Formula(LogicalExpressionRoot root, string[] fluentName)
         {
             LogicalExpressionRoot = root;
+            FluentNames = fluentName;
         }
         public Formula()
         {
