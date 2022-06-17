@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogicExpressionsParser\LogicExpressionsParser.csproj">
+      <Project>{b47711b3-c74e-45bd-a1e2-a6debefec0c4}</Project>
+      <Name>LogicExpressionsParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RWLogic\RWLogic.csproj">
       <Project>{053fdfdd-35c5-4a74-b200-cbd73f9bfb98}</Project>
       <Name>RWLogic</Name>
