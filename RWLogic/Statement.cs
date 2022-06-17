@@ -53,7 +53,7 @@ namespace RWLogic
         {
             this.agent = agent;
             this.action = action;
-            this.condition = new Formula(true);
+            this.condition = new Formula();
             this.effect = effect;
         }
     }
@@ -77,7 +77,7 @@ namespace RWLogic
         {
             this.agent = agent;
             this.action = action;
-            this.condition = new Formula(true);
+            this.condition = new Formula();
             this.effect = effect;
         }
     }
@@ -109,7 +109,7 @@ namespace RWLogic
         {
             this.agent = agent;
             this.action = action;
-            this.condition = new Formula(true);
+            this.condition = new Formula();
             this.fluent = fluent;
         }
 
@@ -134,7 +134,7 @@ namespace RWLogic
         {
             this.agent = agent;
             this.action = action;
-            this.condition = new Formula(true);
+            this.condition = new Formula();
             this.fluent = fluent;
         }
 

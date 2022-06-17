@@ -32,7 +32,7 @@ namespace LogicExpressionsParser
             msg = "ParserException";
         }
     }
-    static class Parser
+    public static class Parser
     {
         static Terminal StringToTerminal(string s)
         {

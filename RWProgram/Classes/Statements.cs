@@ -20,11 +20,9 @@ namespace RWProgram.Classes
 
         public State Pi { get; set; }
 
-        public ConditionStatement(List<Fluent> Pi, List<LogicOperator> Operators)
+        public ConditionStatement(State Pi)
         {
-            this.Pi = new State();
-            this.Pi.Fluents.AddRange(Pi.Where(a => a != null).ToList());
-            this.Pi.Operators.AddRange(Operators.Where(a => a != null).ToList());
+            this.Pi = Pi;
         }
     }
 
@@ -34,7 +32,7 @@ namespace RWProgram.Classes
 
         public Actor Actor { get; set; }
 
-        public ConditionActionByActorStatement(Action Action, Actor Actor, List<Fluent> PiFluents, List<LogicOperator> Operators) : base(PiFluents, Operators)
+        public ConditionActionByActorStatement(Action Action, Actor Actor, State Pi) : base(Pi)
         {
             this.Action = Action;
             this.Actor = Actor;
@@ -56,7 +54,7 @@ namespace RWProgram.Classes
     //Same as FluentAfterActionbyActor but actors and action empty
     public class InitiallyFluent : FluentAfterActionbyActor
     {
-        public InitiallyFluent(List<Fluent> Alpha, List<LogicOperator> LogicOperators) : base(Alpha, LogicOperators, null)
+        public InitiallyFluent(State Alpha) : base(Alpha, new List<(Action action, Actor actor)>())
         { }
 
         public override string ToString()
@@ -74,11 +72,9 @@ namespace RWProgram.Classes
     {
         public State Alpha { get; set; }
 
-        public FluentAfterActionbyActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors) 
+        public FluentAfterActionbyActor(State Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors) 
         {
-            this.Alpha = new State();
-            this.Alpha.Fluents.AddRange(Alpha);
-            this.Alpha.Operators.AddRange(Operators);
+            this.Alpha = Alpha;
         }
 
         public override string ToString()
@@ -102,11 +98,9 @@ namespace RWProgram.Classes
     {
         public State Alpha { get; set; }
 
-        public FluentTypicallyAfterActionbyActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
+        public FluentTypicallyAfterActionbyActor(State Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
-            this.Alpha = new State();
-            this.Alpha.Fluents.AddRange(Alpha);
-            this.Alpha.Operators.AddRange(Operators);
+            this.Alpha = Alpha;
         }
 
         public override string ToString()
@@ -130,11 +124,9 @@ namespace RWProgram.Classes
     {
         public State Alpha { get; set; }
 
-        public ObservableFluentAfterActionByActor(List<Fluent> Alpha, List<LogicOperator> Operators, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
+        public ObservableFluentAfterActionByActor(State Alpha, List<(Action action, Actor actor)> actionsByActors) : base(actionsByActors)
         {
-            this.Alpha = new State();
-            this.Alpha.Fluents.AddRange(Alpha);
-            this.Alpha.Operators.AddRange(Operators);
+            this.Alpha = Alpha;
         }
 
         public override string ToString()
@@ -159,11 +151,9 @@ namespace RWProgram.Classes
         public State Alpha { get; set; }
 
 
-        public ActionByActorCausesAlphaIfFluents(List<Fluent> Alpha, List<LogicOperator> Operators, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action ,Actor, Pi, OperatorsPi)
+        public ActionByActorCausesAlphaIfFluents(State Alpha, Action Action, Actor Actor, State Pi) : base(Action ,Actor, Pi)
         {
-            this.Alpha = new State();
-            this.Alpha.Fluents.AddRange(Alpha);
-            this.Alpha.Operators.AddRange(Operators);
+            this.Alpha = Alpha;
         }
 
         public override string ToString()
@@ -182,14 +172,14 @@ namespace RWProgram.Classes
     {
         public Fluent F { get; set; }
 
-        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action ,Actor, Pi, OperatorsPi)
+        public ActionByActorReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, State Pi) : base(Action ,Actor, Pi)
         {
             this.F = F;
         }
 
         public override string ToString()
         {
-            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi?.ToString().Trim()) ? string.Empty : $"if {Pi}";
             return $"{Action} by {Actor} releases {F} {conditionStr}";
         }
 
@@ -203,16 +193,14 @@ namespace RWProgram.Classes
     {
         public State Alpha { get; set; }
 
-        public ActionByActorTypicallyCausesAlphaIfFluents(List<Fluent> Alpha, List<LogicOperator> Operators, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi)
+        public ActionByActorTypicallyCausesAlphaIfFluents(State Alpha, Action Action, Actor Actor, State Pi) : base(Action, Actor, Pi)
         {
-            this.Alpha = new State();
-            this.Alpha.Fluents.AddRange(Alpha);
-            this.Alpha.Operators.AddRange(Operators);
+            this.Alpha = Alpha;
         }
 
         public override string ToString()
         {
-            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi?.ToString().Trim()) ? string.Empty : $"if { Pi}";
             return $"{Action} by {Actor} typically casues {Alpha} {conditionStr}";
         }
 
@@ -226,14 +214,14 @@ namespace RWProgram.Classes
     {
         public Fluent F { get; set; }
 
-        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Action, Actor, Pi, OperatorsPi)
+        public ActionByActorTypicallyReleasesFluent1IfFluents(Fluent F, Action Action, Actor Actor, State Pi) : base(Action, Actor, Pi)
         {
             this.F = F;
         }
 
         public override string ToString()
         {
-            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi?.ToString().Trim()) ? string.Empty : $"if { Pi}";
             return $"{Action} by {Actor} typically releases {F} {conditionStr}";
         }
 
@@ -245,26 +233,26 @@ namespace RWProgram.Classes
 
     public class ImpossibleActionByActorIfFluents : ActionByActorCausesAlphaIfFluents
     {
-        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(new List<Fluent>(), new List<LogicOperator>(), Action, Actor, Pi, OperatorsPi) { }
+        public ImpossibleActionByActorIfFluents(Action Action, Actor Actor, State Pi) : base(new State(), Action, Actor, Pi) { }
 
         public override string ToString()
         {
-            var conditionStr = string.IsNullOrEmpty(Pi.ToString()?.Trim()) ? string.Empty : $"if { Pi.ToString()}";
+            var conditionStr = string.IsNullOrEmpty(Pi?.ToString().Trim()) ? string.Empty : $"if { Pi.ToString()}";
             return $"impossible {Action} by {Actor} {conditionStr}";
         }
 
         public override object ToLogic()
         {
-            return new RWLogic.Causes(Actor.Index, Action.Index, new RWLogic.Formula(true), Pi.ToLogic());
+            return new RWLogic.Causes(Actor.Index, Action.Index, new RWLogic.Formula(), Pi.ToLogic());
         }
     }
 
     public class AlwaysPi : ConditionStatement
     {
-        public AlwaysPi(List<Fluent> Pi, List<LogicOperator> OperatorsPi) : base(Pi, OperatorsPi) { }
+        public AlwaysPi(State Pi) : base(Pi) { }
         public override string ToString()
         {
-            if (Pi == null || Pi.Fluents.Count == 0) return string.Empty;
+            if (string.IsNullOrEmpty(Pi.ToString())) return string.Empty;
 
             return $"always {Pi.ToString()}";
         }

@@ -45,19 +45,19 @@ namespace RWLogic
 
             // Przyklad 3
 
-            List<string> fluents = new List<string>() { "loaded", "alive" };
-            List<string> agents = new List<string>() { "Bill" };
-            List<string> actions = new List<string>() { "LOAD", "SHOOT", "SPIN" };
+            //List<string> fluents = new List<string>() { "loaded", "alive" };
+            //List<string> agents = new List<string>() { "Bill" };
+            //List<string> actions = new List<string>() { "LOAD", "SHOOT", "SPIN" };
 
-            initially.Add(new Initially(new Formula((0, false))));
-            causes.Add(new Causes(0, 0, new Formula((0, true))));
-            causes.Add(new Causes(0, 1, new Formula((0, false))));
-            causes.Add(new Causes(0, 1, new Formula((1, false)), new Formula((0, true))));
-            releases.Add(new Releases(0, 2, 0, new Formula((0, true))));
-            after.Add(new After(new List<(int agent, int action)>() { (0, 1) }, new Formula((1, false))));
+            //initially.Add(new Initially(new Formula((0, false))));
+            //causes.Add(new Causes(0, 0, new Formula((0, true))));
+            //causes.Add(new Causes(0, 1, new Formula((0, false))));
+            //causes.Add(new Causes(0, 1, new Formula((1, false)), new Formula((0, true))));
+            //releases.Add(new Releases(0, 2, 0, new Formula((0, true))));
+            //after.Add(new After(new List<(int agent, int action)>() { (0, 1) }, new Formula((1, false))));
 
-            Fasada X = new Fasada(fluents, agents, actions, noninertial, always, causes, typicallyCauses, releases, typicallyReleases, initially, after, typicallyAfter, observableAfter);
-            Console.WriteLine(X.test());
+            //Fasada X = new Fasada(fluents, agents, actions, noninertial, always, causes, typicallyCauses, releases, typicallyReleases, initially, after, typicallyAfter, observableAfter);
+            //Console.WriteLine(X.test());
         }
     }
 }

@@ -16,10 +16,10 @@ namespace RWProgram.Classes
         public State Gamma { get; set; }
         public State Pi { get; set; }
 
-        public QueryWithGammaAndPi()
+        public QueryWithGammaAndPi(State Gamma, State Pi)
         {
-            Gamma = new State();
-            Pi = new State();
+            this.Gamma = Gamma;
+            this.Pi = Pi;
         }
     }
 
@@ -46,11 +46,11 @@ namespace RWProgram.Classes
 
     public class AlwaysAccesibleYFromPi : QueryWithGammaAndPi
     {
-        public AlwaysAccesibleYFromPi() : base() { }
+        public AlwaysAccesibleYFromPi(State Gamma, State Pi) : base(Gamma, Pi) { }
         public override string ToString()
         {
             var str = $"Is {Gamma.ToString()} always accessible";
-            if (Pi.Fluents.Any())
+            if (!string.IsNullOrEmpty(Pi.ToString()))
                 str = str + $" from {Pi.ToString()}";
             return str;
         }
@@ -58,12 +58,25 @@ namespace RWProgram.Classes
 
     public class EverAccesibleYFromPi : QueryWithGammaAndPi
     {
-        public EverAccesibleYFromPi() : base() { }
+        public EverAccesibleYFromPi(State Gamma, State Pi) : base(Gamma, Pi) { }
 
         public override string ToString()
         {
             var str = $"Is {Gamma.ToString()} ever accessible";
-            if (Pi.Fluents.Any())
+            if (!string.IsNullOrEmpty(Pi.ToString()))
+                str = str + $" from {Pi.ToString()}";
+            return str;
+        }
+    }
+
+    public class TypicallyAccesibleYFromPi : QueryWithGammaAndPi
+    {
+        public TypicallyAccesibleYFromPi(State Gamma, State Pi) : base(Gamma, Pi) { }
+
+        public override string ToString()
+        {
+            var str = $"Is {Gamma.ToString()} typically accessible";
+            if (!string.IsNullOrEmpty(Pi.ToString()))
                 str = str + $" from {Pi.ToString()}";
             return str;
         }

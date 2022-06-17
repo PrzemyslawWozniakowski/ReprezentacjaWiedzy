@@ -14,7 +14,7 @@ namespace LogicExpressionsParser
 
     public interface ITerminalSymbol : ISymbol { }
 
-    class Terminal : ITerminalSymbol
+    public class Terminal : ITerminalSymbol
     {
         private int id;
         private char type;
@@ -27,7 +27,7 @@ namespace LogicExpressionsParser
         }
     }
 
-    class NonTerminal : ISymbol
+    public class NonTerminal : ISymbol
     {
         private int id;
         private char type;
@@ -39,7 +39,7 @@ namespace LogicExpressionsParser
             type = 'V';
         }
     }
-    class SpecialTerminal : ITerminalSymbol
+    public class SpecialTerminal : ITerminalSymbol
     {
         private int id;
         private char type;
@@ -72,7 +72,7 @@ namespace LogicExpressionsParser
             fluentname = n;
         }
     }
-    class FluentSpecialTerminal : SpecialTerminal, IFluentSymbol
+    public class FluentSpecialTerminal : SpecialTerminal, IFluentSymbol
     {
         string fluentname;
         public string FluentName { get { return fluentname; } }

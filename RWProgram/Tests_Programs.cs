@@ -64,7 +64,7 @@ namespace RWProgram
                 {
                     (new Action { Name = "SHOOT", Index = 1 }, new Actor { Name = "Jim", Index = 1 })
                 };
-        }
+            }
         }
 
         public static List<(Action action, Actor actor)> Test2c

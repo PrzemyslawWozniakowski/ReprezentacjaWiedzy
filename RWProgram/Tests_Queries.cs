@@ -14,31 +14,7 @@ namespace RWProgram
         {
             get
             {
-                return new AlwaysAccesibleYFromPi
-                {
-                    Gamma = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new NegatedFluent { Name = "alive", Original = new Fluent { Name = "alive", Index = 1 } }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-                        }
-                    },
-                    Pi = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new Fluent { Name = "alive", Index = 1 },
-                            new NegatedFluent { Name = "loaded", Original = new Fluent { Name = "loaded", Index = 0 } }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-                            new And()
-                        }
-                    }
-                };
+                return new AlwaysAccesibleYFromPi(new State("alive"),new State("alive && not loaded"));
             }
         }
 
@@ -68,31 +44,7 @@ namespace RWProgram
         {
             get
             {
-                return new EverAccesibleYFromPi
-                {
-                    Gamma = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new NegatedFluent { Name = "alive", Original = new Fluent { Name = "alive", Index = 1 } }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-
-                        }
-                    },
-                    Pi = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new Fluent { Name = "alive", Index = 1 }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-
-                        }
-                    }
-                };
+                return new EverAccesibleYFromPi(new State("alive"), new State("alive"));
             }
         }
 
@@ -130,29 +82,8 @@ namespace RWProgram
         {
             get
             {
-                return new AlwaysAccesibleYFromPi
-                {
-                    Gamma = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new Fluent { Name = "loaded", Index = 0 }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-                        }
-                    },
-                    Pi = new State
-                    {
-                        Fluents = new List<Fluent>
-                        {
-                            new NegatedFluent { Name = "loaded", Original = new Fluent { Name = "loaded", Index = 0 } }
-                        },
-                        Operators = new List<LogicOperator>
-                        {
-                        }
-                    }
-                };
+                return new AlwaysAccesibleYFromPi(new State("loaded"), new State("not loaded"));
+
             }
         }
 

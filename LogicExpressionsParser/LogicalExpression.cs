@@ -22,7 +22,7 @@ namespace LogicExpressionsParser
     {
         string OperatorName { get; }
     }
-    abstract class LogicalExpression
+    public abstract class LogicalExpression
     {
         static protected LogicalExpression GetChild(Stack<SpecialTerminal> expression)
         {
@@ -62,9 +62,9 @@ namespace LogicExpressionsParser
         abstract public bool Compute(State s);
         abstract public void SetFluentId(string[] fluentsName);
     }
-    class LogicalExpressionRoot : LogicalExpression
+    public class LogicalExpressionRoot : LogicalExpression
     {
-        static bool[] addOne(bool[] tab)
+        public static bool[] addOne(bool[] tab)
         {
             for (int i = 0; i < tab.Length; i++)
             {
