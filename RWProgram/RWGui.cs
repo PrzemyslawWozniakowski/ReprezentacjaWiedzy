@@ -420,11 +420,10 @@ namespace RWProgram
             State gammaState, piState;
             try
             {
-
-          
                 gammaString = AlphaTextBox.Text.Trim();
                 if(string.IsNullOrEmpty(gammaString))
                     gammaState = new State();
+                else
                 {
                     gammaExpression = Parser.Parse(GammaTextBox.Text);
                     gammaState = new State(gammaExpression, gammaString, Logic.Fluents);
@@ -775,11 +774,6 @@ namespace RWProgram
             ResponseTextBox.Text = string.Empty;
             StatementsComboBox.SelectedIndex = -1; 
             SetQueryTextBox();
-        }
-
-        private void RWGui_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -894,7 +894,6 @@
             this.MinimumSize = new System.Drawing.Size(879, 899);
             this.Name = "RWGui";
             this.Text = "Programy działań z efektami domyślnymi";
-            this.Load += new System.EventHandler(this.RWGui_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
