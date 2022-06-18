@@ -244,7 +244,7 @@ namespace RWProgram.Classes
 
         public override object ToLogic()
         {
-            return new RWLogic.Causes(Actor.Index, Action.Index, new RWLogic.Formula(), Pi.ToLogic());
+            return new RWLogic.Causes(Actor.Index, Action.Index, new Formula(), Pi.ToLogic());
         }
     }
 
