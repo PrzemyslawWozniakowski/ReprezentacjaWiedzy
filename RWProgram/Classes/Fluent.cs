@@ -32,7 +32,7 @@ namespace RWProgram.Classes
 
         public override string ToString()
         {
-            return "~" + Name;
+            return "not " + Name;
         }
         public override (int, bool) ToLogic()
         {
