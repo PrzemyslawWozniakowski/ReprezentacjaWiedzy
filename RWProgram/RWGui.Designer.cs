@@ -284,7 +284,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(69, 354);
+            this.label10.Location = new System.Drawing.Point(69, 342);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(21, 16);
             this.label10.TabIndex = 8;
@@ -293,7 +293,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(38, 312);
+            this.label11.Location = new System.Drawing.Point(47, 305);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 16);
             this.label11.TabIndex = 9;
@@ -418,7 +418,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 760);
+            this.label15.Location = new System.Drawing.Point(10, 758);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(131, 16);
             this.label15.TabIndex = 25;
@@ -427,7 +427,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 720);
+            this.label16.Location = new System.Drawing.Point(24, 718);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(117, 16);
             this.label16.TabIndex = 26;
@@ -800,7 +800,7 @@
             // 
             // PiTextBox2
             // 
-            this.PiTextBox2.Location = new System.Drawing.Point(144, 757);
+            this.PiTextBox2.Location = new System.Drawing.Point(156, 755);
             this.PiTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PiTextBox2.Name = "PiTextBox2";
             this.PiTextBox2.Size = new System.Drawing.Size(557, 36);
@@ -809,7 +809,7 @@
             // 
             // GammaTextBox
             // 
-            this.GammaTextBox.Location = new System.Drawing.Point(144, 715);
+            this.GammaTextBox.Location = new System.Drawing.Point(156, 715);
             this.GammaTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GammaTextBox.Name = "GammaTextBox";
             this.GammaTextBox.Size = new System.Drawing.Size(557, 36);
