@@ -608,7 +608,7 @@ namespace RWProgram
 
         private void SetQueryTextBox()
         {
-            QueryTextBox.Text = Query != null ? Query.ToString() + $" with program:{string.Join(",",Logic.Program.Select(x => $" {x.action.Name} by {x.actor.Name}"))}?" : string.Empty;
+            QueryTextBox.Text = Query != null ? Query.ToString() + $" with program: {string.Join(",",Logic.Program.Select(x => $" {x.action.Name} by {x.actor.Name}"))}?" : string.Empty;
         }
 
         private void DeleteLastStatementButton_Click(object sender, EventArgs e)
