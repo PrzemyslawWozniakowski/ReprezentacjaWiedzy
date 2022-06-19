@@ -40,7 +40,11 @@ namespace LogicExpressionsParser
             {
                 case "||":
                     return new Terminal(0);
+                case "OR":
+                    return new Terminal(0);
                 case "&&":
+                    return new Terminal(1);
+                case "AND":
                     return new Terminal(1);
                 case "->":
                     return new Terminal(2);
@@ -49,6 +53,8 @@ namespace LogicExpressionsParser
                 case "<->":
                     return new Terminal(4);
                 case "~":
+                    return new Terminal(5);
+                case "NOT":
                     return new Terminal(5);
                 case "(":
                     return new Terminal(6);
