@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LogicExpressionsParser;
 
 namespace RWProgram.Classes
 {
@@ -243,7 +244,7 @@ namespace RWProgram.Classes
 
         public override object ToLogic()
         {
-            return new RWLogic.Causes(Actor.Index, Action.Index, new RWLogic.Formula(), Pi.ToLogic());
+            return new RWLogic.Causes(Actor.Index, Action.Index, new Formula(), Pi.ToLogic());
         }
     }
 

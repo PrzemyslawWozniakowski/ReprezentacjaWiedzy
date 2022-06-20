@@ -34,7 +34,7 @@ namespace RWProgram
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new State("not_loaded", fluents)),
+                        new InitiallyFluent(new State("~loaded", fluents)),
                         new InitiallyFluent(new State("alive", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
                         new ActionByActorCausesAlphaIfFluents(new State("~loaded", fluents), shoot, bill, new State()),

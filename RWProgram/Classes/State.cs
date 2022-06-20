@@ -47,12 +47,12 @@ namespace RWProgram.Classes
 
         public override string ToString() { return LogicalExpressionString; }
 
-        public RWLogic.Formula ToLogic()
+        public Formula ToLogic()
         {
             if (string.IsNullOrEmpty(this.LogicalExpressionString))
-                return new RWLogic.Formula();
+                return new Formula();
 
-            return new RWLogic.Formula(LogicalExpressionRoot, FluentNames);
+            return new Formula(LogicalExpressionRoot, FluentNames);
         }
 
     }
