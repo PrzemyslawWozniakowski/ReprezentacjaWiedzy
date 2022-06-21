@@ -139,7 +139,7 @@
             this.actionsTextBox.Name = "actionsTextBox";
             this.actionsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.actionsTextBox.Size = new System.Drawing.Size(676, 46);
-            this.actionsTextBox.TabIndex = 5;
+            this.actionsTextBox.TabIndex = 3;
             this.actionsTextBox.Leave += new System.EventHandler(this.ActionsTextBox_Changed);
             // 
             // fluentsTextBox
@@ -153,7 +153,7 @@
             this.fluentsTextBox.Name = "fluentsTextBox";
             this.fluentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.fluentsTextBox.Size = new System.Drawing.Size(676, 44);
-            this.fluentsTextBox.TabIndex = 4;
+            this.fluentsTextBox.TabIndex = 2;
             this.fluentsTextBox.Leave += new System.EventHandler(this.FluentsTextBox_Changed);
             // 
             // label1
@@ -209,7 +209,7 @@
             this.actorsTextBox.Name = "actorsTextBox";
             this.actorsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.actorsTextBox.Size = new System.Drawing.Size(676, 44);
-            this.actorsTextBox.TabIndex = 3;
+            this.actorsTextBox.TabIndex = 1;
             this.actorsTextBox.Leave += new System.EventHandler(this.ActorsTextBox_Changed);
             // 
             // label4
@@ -230,7 +230,7 @@
             this.StatementsComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StatementsComboBox.Name = "StatementsComboBox";
             this.StatementsComboBox.Size = new System.Drawing.Size(653, 28);
-            this.StatementsComboBox.TabIndex = 2;
+            this.StatementsComboBox.TabIndex = 4;
             this.StatementsComboBox.SelectedIndexChanged += new System.EventHandler(this.StatementsComboBox_SelectedIndexChanged);
             // 
             // StatementsLabel
@@ -306,7 +306,7 @@
             this.ActionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActionComboBox.Name = "ActionComboBox";
             this.ActionComboBox.Size = new System.Drawing.Size(108, 24);
-            this.ActionComboBox.TabIndex = 10;
+            this.ActionComboBox.TabIndex = 5;
             // 
             // ActorComboBox
             // 
@@ -315,7 +315,7 @@
             this.ActorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActorComboBox.Name = "ActorComboBox";
             this.ActorComboBox.Size = new System.Drawing.Size(110, 24);
-            this.ActorComboBox.TabIndex = 11;
+            this.ActorComboBox.TabIndex = 6;
             // 
             // button1
             // 
@@ -323,7 +323,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 34);
-            this.button1.TabIndex = 14;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Dodaj";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ClickAddStatementButton);
@@ -334,7 +334,7 @@
             this.StatementsTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StatementsTextBox.Name = "StatementsTextBox";
             this.StatementsTextBox.Size = new System.Drawing.Size(553, 96);
-            this.StatementsTextBox.TabIndex = 15;
+            this.StatementsTextBox.TabIndex = 101;
             this.StatementsTextBox.Text = "";
             // 
             // label12
@@ -353,7 +353,7 @@
             this.ProgramActionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ProgramActionComboBox.Name = "ProgramActionComboBox";
             this.ProgramActionComboBox.Size = new System.Drawing.Size(111, 24);
-            this.ProgramActionComboBox.TabIndex = 17;
+            this.ProgramActionComboBox.TabIndex = 15;
             // 
             // label13
             // 
@@ -371,7 +371,7 @@
             this.ProgramActorComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ProgramActorComboBox.Name = "ProgramActorComboBox";
             this.ProgramActorComboBox.Size = new System.Drawing.Size(108, 24);
-            this.ProgramActorComboBox.TabIndex = 19;
+            this.ProgramActorComboBox.TabIndex = 16;
             // 
             // ProgramTextBox
             // 
@@ -379,7 +379,7 @@
             this.ProgramTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ProgramTextBox.Name = "ProgramTextBox";
             this.ProgramTextBox.Size = new System.Drawing.Size(461, 122);
-            this.ProgramTextBox.TabIndex = 20;
+            this.ProgramTextBox.TabIndex = 102;
             this.ProgramTextBox.Text = "";
             // 
             // ResponseTextBox
@@ -390,7 +390,7 @@
             this.ResponseTextBox.Multiline = true;
             this.ResponseTextBox.Name = "ResponseTextBox";
             this.ResponseTextBox.Size = new System.Drawing.Size(175, 25);
-            this.ResponseTextBox.TabIndex = 22;
+            this.ResponseTextBox.TabIndex = 104;
             // 
             // QueriesComboBox
             // 
@@ -400,7 +400,7 @@
             this.QueriesComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.QueriesComboBox.Name = "QueriesComboBox";
             this.QueriesComboBox.Size = new System.Drawing.Size(653, 28);
-            this.QueriesComboBox.TabIndex = 23;
+            this.QueriesComboBox.TabIndex = 20;
             this.QueriesComboBox.SelectedIndexChanged += new System.EventHandler(this.QueriesComboBox_SelectedIndexChanged);
             // 
             // QueriesOutcomeLabel
@@ -449,7 +449,7 @@
             this.Actor2ComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Actor2ComboBox.Name = "Actor2ComboBox";
             this.Actor2ComboBox.Size = new System.Drawing.Size(146, 24);
-            this.Actor2ComboBox.TabIndex = 30;
+            this.Actor2ComboBox.TabIndex = 23;
             // 
             // AskQueryButton
             // 
@@ -457,7 +457,7 @@
             this.AskQueryButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AskQueryButton.Name = "AskQueryButton";
             this.AskQueryButton.Size = new System.Drawing.Size(179, 34);
-            this.AskQueryButton.TabIndex = 31;
+            this.AskQueryButton.TabIndex = 26;
             this.AskQueryButton.Text = "Odpytaj";
             this.AskQueryButton.UseVisualStyleBackColor = true;
             this.AskQueryButton.Click += new System.EventHandler(this.AskQueryButton_Click);
@@ -468,7 +468,7 @@
             this.AddToProgramButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddToProgramButton.Name = "AddToProgramButton";
             this.AddToProgramButton.Size = new System.Drawing.Size(99, 34);
-            this.AddToProgramButton.TabIndex = 32;
+            this.AddToProgramButton.TabIndex = 19;
             this.AddToProgramButton.Text = "Dodaj";
             this.AddToProgramButton.UseVisualStyleBackColor = true;
             this.AddToProgramButton.Click += new System.EventHandler(this.AddToProgramButton_Click);
@@ -479,7 +479,7 @@
             this.ResetProgramButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResetProgramButton.Name = "ResetProgramButton";
             this.ResetProgramButton.Size = new System.Drawing.Size(104, 34);
-            this.ResetProgramButton.TabIndex = 33;
+            this.ResetProgramButton.TabIndex = 17;
             this.ResetProgramButton.Text = "Reset";
             this.ResetProgramButton.UseVisualStyleBackColor = true;
             this.ResetProgramButton.Click += new System.EventHandler(this.ResetProgramButton_Click);
@@ -490,7 +490,7 @@
             this.ResetStatementButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResetStatementButton.Name = "ResetStatementButton";
             this.ResetStatementButton.Size = new System.Drawing.Size(99, 34);
-            this.ResetStatementButton.TabIndex = 34;
+            this.ResetStatementButton.TabIndex = 13;
             this.ResetStatementButton.Text = "Reset";
             this.ResetStatementButton.UseVisualStyleBackColor = true;
             this.ResetStatementButton.Click += new System.EventHandler(this.ResetStatementsButton_Click);
@@ -502,7 +502,7 @@
             this.AddConditionButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddConditionButton.Name = "AddConditionButton";
             this.AddConditionButton.Size = new System.Drawing.Size(121, 34);
-            this.AddConditionButton.TabIndex = 36;
+            this.AddConditionButton.TabIndex = 9;
             this.AddConditionButton.Text = "Dodaj warunek";
             this.AddConditionButton.UseVisualStyleBackColor = true;
             this.AddConditionButton.Visible = false;
@@ -515,7 +515,7 @@
             this.ConfirmStatementButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ConfirmStatementButton.Name = "ConfirmStatementButton";
             this.ConfirmStatementButton.Size = new System.Drawing.Size(120, 34);
-            this.ConfirmStatementButton.TabIndex = 35;
+            this.ConfirmStatementButton.TabIndex = 10;
             this.ConfirmStatementButton.Text = "Zatwierdź";
             this.ConfirmStatementButton.UseVisualStyleBackColor = true;
             this.ConfirmStatementButton.Visible = false;
@@ -537,7 +537,7 @@
             this.ResetQueryButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResetQueryButton.Name = "ResetQueryButton";
             this.ResetQueryButton.Size = new System.Drawing.Size(179, 34);
-            this.ResetQueryButton.TabIndex = 40;
+            this.ResetQueryButton.TabIndex = 25;
             this.ResetQueryButton.Text = "Reset";
             this.ResetQueryButton.UseVisualStyleBackColor = true;
             this.ResetQueryButton.Click += new System.EventHandler(this.ResetQueryButton_Click);
@@ -551,7 +551,7 @@
             this.QueryTextBox.Name = "QueryTextBox";
             this.QueryTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.QueryTextBox.Size = new System.Drawing.Size(485, 58);
-            this.QueryTextBox.TabIndex = 41;
+            this.QueryTextBox.TabIndex = 103;
             // 
             // AddQueryButton
             // 
@@ -559,7 +559,7 @@
             this.AddQueryButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddQueryButton.Name = "AddQueryButton";
             this.AddQueryButton.Size = new System.Drawing.Size(179, 34);
-            this.AddQueryButton.TabIndex = 42;
+            this.AddQueryButton.TabIndex = 24;
             this.AddQueryButton.Text = "Dodaj kwerendę";
             this.AddQueryButton.UseVisualStyleBackColor = true;
             this.AddQueryButton.Click += new System.EventHandler(this.AddQueryButton_Click);
@@ -570,7 +570,7 @@
             this.DeleteLastStatementButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeleteLastStatementButton.Name = "DeleteLastStatementButton";
             this.DeleteLastStatementButton.Size = new System.Drawing.Size(117, 34);
-            this.DeleteLastStatementButton.TabIndex = 43;
+            this.DeleteLastStatementButton.TabIndex = 14;
             this.DeleteLastStatementButton.Text = "Usuń ostatni";
             this.DeleteLastStatementButton.UseVisualStyleBackColor = true;
             this.DeleteLastStatementButton.Click += new System.EventHandler(this.DeleteLastStatementButton_Click);
@@ -581,7 +581,7 @@
             this.DeleteLastProgramButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeleteLastProgramButton.Name = "DeleteLastProgramButton";
             this.DeleteLastProgramButton.Size = new System.Drawing.Size(113, 34);
-            this.DeleteLastProgramButton.TabIndex = 44;
+            this.DeleteLastProgramButton.TabIndex = 18;
             this.DeleteLastProgramButton.Text = "Usuń ostatni";
             this.DeleteLastProgramButton.UseVisualStyleBackColor = true;
             this.DeleteLastProgramButton.Click += new System.EventHandler(this.DeleteLastProgramButton_Click);
@@ -715,21 +715,21 @@
             // przykładKwerenda1ToolStripMenuItem3
             // 
             this.przykładKwerenda1ToolStripMenuItem3.Name = "przykładKwerenda1ToolStripMenuItem3";
-            this.przykładKwerenda1ToolStripMenuItem3.Size = new System.Drawing.Size(344, 26);
+            this.przykładKwerenda1ToolStripMenuItem3.Size = new System.Drawing.Size(360, 26);
             this.przykładKwerenda1ToolStripMenuItem3.Text = "Przykład 1 - Kwerenda AlwaysInvolved";
             this.przykładKwerenda1ToolStripMenuItem3.Click += new System.EventHandler(this.przykładKwerenda1ToolStripMenuItem3_Click);
             // 
             // przykładKwerenda2ToolStripMenuItem3
             // 
             this.przykładKwerenda2ToolStripMenuItem3.Name = "przykładKwerenda2ToolStripMenuItem3";
-            this.przykładKwerenda2ToolStripMenuItem3.Size = new System.Drawing.Size(344, 26);
+            this.przykładKwerenda2ToolStripMenuItem3.Size = new System.Drawing.Size(360, 26);
             this.przykładKwerenda2ToolStripMenuItem3.Text = "Przykład 2 - Kwerenda EverExecutable";
             this.przykładKwerenda2ToolStripMenuItem3.Click += new System.EventHandler(this.przykładKwerenda2ToolStripMenuItem3_Click);
             // 
             // przykładKwerenda3ToolStripMenuItem3
             // 
             this.przykładKwerenda3ToolStripMenuItem3.Name = "przykładKwerenda3ToolStripMenuItem3";
-            this.przykładKwerenda3ToolStripMenuItem3.Size = new System.Drawing.Size(344, 26);
+            this.przykładKwerenda3ToolStripMenuItem3.Size = new System.Drawing.Size(360, 26);
             this.przykładKwerenda3ToolStripMenuItem3.Text = "Przykład 3 - Kwerenda AlwaysExecutable";
             this.przykładKwerenda3ToolStripMenuItem3.Click += new System.EventHandler(this.przykładKwerenda3ToolStripMenuItem3_Click);
             // 
@@ -781,7 +781,7 @@
             this.PiTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PiTextBox1.Name = "PiTextBox1";
             this.PiTextBox1.Size = new System.Drawing.Size(605, 36);
-            this.PiTextBox1.TabIndex = 63;
+            this.PiTextBox1.TabIndex = 12;
             this.PiTextBox1.Text = "";
             // 
             // AlphaTextBox
@@ -790,7 +790,7 @@
             this.AlphaTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AlphaTextBox.Name = "AlphaTextBox";
             this.AlphaTextBox.Size = new System.Drawing.Size(605, 36);
-            this.AlphaTextBox.TabIndex = 64;
+            this.AlphaTextBox.TabIndex = 11;
             this.AlphaTextBox.Text = "";
             // 
             // PiTextBox2
@@ -799,7 +799,7 @@
             this.PiTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PiTextBox2.Name = "PiTextBox2";
             this.PiTextBox2.Size = new System.Drawing.Size(557, 36);
-            this.PiTextBox2.TabIndex = 65;
+            this.PiTextBox2.TabIndex = 22;
             this.PiTextBox2.Text = "";
             // 
             // GammaTextBox
@@ -808,7 +808,7 @@
             this.GammaTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GammaTextBox.Name = "GammaTextBox";
             this.GammaTextBox.Size = new System.Drawing.Size(557, 36);
-            this.GammaTextBox.TabIndex = 68;
+            this.GammaTextBox.TabIndex = 21;
             this.GammaTextBox.Text = "";
             // 
             // label6
@@ -827,7 +827,7 @@
             this.FluentComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FluentComboBox.Name = "FluentComboBox";
             this.FluentComboBox.Size = new System.Drawing.Size(110, 24);
-            this.FluentComboBox.TabIndex = 72;
+            this.FluentComboBox.TabIndex = 7;
             // 
             // RWGui
             // 
