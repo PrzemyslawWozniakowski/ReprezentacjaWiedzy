@@ -34,11 +34,11 @@ namespace RWProgram
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new State("~loaded", fluents)),
+                        new InitiallyFluent(new State("not loaded", fluents)),
                         new InitiallyFluent(new State("alive", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~loaded", fluents), shoot, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
                     }
                 };
             }
@@ -71,9 +71,9 @@ namespace RWProgram
                     Statements = new List<Statement> {
                         new InitiallyFluent(new State("alive", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~loaded", fluents), shoot, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~alive", fluents), shoot, bill, new State("loaded", fluents)),
-                        new FluentAfterActionbyActor(new State("~alive", fluents), new List<(Classes.Action action, Actor actor)> { (shoot, bill) })
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new FluentAfterActionbyActor(new State("not alive", fluents), new List<(Classes.Action action, Actor actor)> { (shoot, bill) })
                     }
                 };
             }
@@ -104,10 +104,10 @@ namespace RWProgram
                     Actors = new List<Actor> { bill, anyone, empty },
                     Actions = new List<Action> { load, shoot, spin, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new State("~loaded && alive", fluents)),
+                        new InitiallyFluent(new State("not loaded && alive", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~loaded", fluents), shoot, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
                         new ActionByActorReleasesFluent1IfFluents(loaded, spin, bill,  new State("loaded", fluents)),
                     }
                 };
@@ -137,7 +137,7 @@ namespace RWProgram
                     Actors = new List<Actor> { bill, anyone, empty },
                     Actions = new List<Action> { insertCard, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new State("~open", fluents)),
+                        new InitiallyFluent(new State("not open", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("open", fluents), insertCard, bill, new State()),
                         new ImpossibleActionByActorIfFluents(insertCard, bill, new State("hasCard", fluents))
                     }
@@ -170,11 +170,11 @@ namespace RWProgram
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new State("~loaded", fluents)),
+                        new InitiallyFluent(new State("not loaded", fluents)),
                         new InitiallyFluent(new State("alive", fluents)),
                         new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~loaded", fluents), shoot, bill, new State()),
-                        new ActionByActorCausesAlphaIfFluents(new State("~alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
                     }
                 };
             }

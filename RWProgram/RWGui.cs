@@ -420,7 +420,7 @@ namespace RWProgram
             State gammaState, piState;
             try
             {
-                gammaString = AlphaTextBox.Text.Trim();
+                gammaString = GammaTextBox.Text.Trim();
                 if(string.IsNullOrEmpty(gammaString))
                     gammaState = new State();
                 else

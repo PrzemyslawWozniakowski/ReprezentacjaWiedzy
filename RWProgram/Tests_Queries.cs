@@ -14,7 +14,7 @@ namespace RWProgram
         {
             get
             {
-                return new AlwaysAccesibleYFromPi(new State("alive", new string[] { "alive" }),new State("alive && ~loaded", new string[] { "alive", "loaded" }));
+                return new AlwaysAccesibleYFromPi(new State("alive", new string[] { "alive" }),new State("alive && not loaded", new string[] { "alive", "loaded" }));
             }
         }
 
@@ -82,7 +82,7 @@ namespace RWProgram
         {
             get
             {
-                return new AlwaysAccesibleYFromPi(new State("loaded", new string[] { "loaded" }), new State("~loaded", new string[] { "~loaded" }));
+                return new AlwaysAccesibleYFromPi(new State("loaded", new string[] { "loaded" }), new State("not loaded", new string[] { "loaded" }));
 
             }
         }
