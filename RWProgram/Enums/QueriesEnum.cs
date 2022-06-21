@@ -12,6 +12,7 @@ namespace RWProgram.Enums
         EverExecutable,
         AlwaysAccesibleYFromPi,
         EverAccesibleYFromPi,
+        TypicallyAccesibleYFromPi,
         AlwaysWInvolved,
         EverWInvolved,
         None

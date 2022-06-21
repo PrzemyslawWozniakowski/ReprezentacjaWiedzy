@@ -12,6 +12,8 @@ namespace RWProgram.Classes
 
         public string Name { get; set; }
 
+        public virtual bool IsNegation { get { return false; } }
+
         public override string ToString()
         {
             return Name;
@@ -26,6 +28,8 @@ namespace RWProgram.Classes
     public class NegatedFluent : Fluent
     {
         public Fluent Original { get; set; }
+        public override bool IsNegation { get { return true; } }
+
         public override string ToString()
         {
             return "not " + Name;

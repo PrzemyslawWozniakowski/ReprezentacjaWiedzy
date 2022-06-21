@@ -40,7 +40,7 @@ namespace RWProgram
                 return new List<(Action action, Actor actor)>
                 {
                     (new Action { Name = "LOAD", Index = 0 }, new Actor { Name = "Bill", Index = 0 }),
-                    (new Action { Name = "Anything", Index = 1000 }, new Actor { Name = "Bill", Index = 0 })
+                    (new Action { Name = "SHOOT", Index = 1 }, new Actor { Name = "Bill", Index = 0 })
                 };
             }
         }
@@ -64,7 +64,7 @@ namespace RWProgram
                 {
                     (new Action { Name = "SHOOT", Index = 1 }, new Actor { Name = "Jim", Index = 1 })
                 };
-        }
+            }
         }
 
         public static List<(Action action, Actor actor)> Test2c
@@ -109,8 +109,8 @@ namespace RWProgram
             {
                 return new List<(Action action, Actor actor)>
                 {
-                    (new Action { Name = "LOAD", Index = 0 }, new Actor { Name = "Anyone", Index = 1000 }),
-                    (new Action { Name = "SHOOT", Index = 1 }, new Actor { Name = "Anyone", Index = 1000 })
+                    (new Action { Name = "LOAD", Index = 0 }, new Actor { Name = "Bill", Index = 0 }),
+                    (new Action { Name = "SHOOT", Index = 1 }, new Actor { Name = "Bill", Index = 0 })
                 };
             }
         }
@@ -143,7 +143,7 @@ namespace RWProgram
             {
                 return new List<(Action action, Actor actor)>
                 {
-                    (new Action { Name = "Anything", Index = 1000 }, new Actor { Name = "Bill", Index = 0 })
+                    (new Action { Name = "INSERT_CARD", Index = 0 }, new Actor { Name = "Bill", Index = 0 })
                 };
             }
         }

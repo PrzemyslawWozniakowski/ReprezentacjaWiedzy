@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RWProgram.Classes;
 using Action = RWProgram.Classes.Action;
+using State = RWProgram.Classes.State;
 using RWProgram.Enums;
+using LogicExpressionsParser;
 namespace RWProgram
 {
     public partial class RWGui : Form
@@ -28,9 +30,9 @@ namespace RWProgram
             "alpha after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "alpha typically after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
             "observable alpha after A_1 by w_1, A_2 by w_2, ... ,A_n by w_n",
-            "A by w causes alfa if π",
+            "A by w causes alpha if π",
             "A by w releases f if π",
-            "A by w typically causes alfa if π",
+            "A by w typically causes alpha if π",
             "A by w typically release f if π",
             "impossible A by w if π",
             "always π",
@@ -43,6 +45,7 @@ namespace RWProgram
             "ever executable?",
             "always accessible γ from π with P?",
             "ever accessible γ from π with P?",
+            "typically accessible γ from π with P?",
             "always w involved with P?",
             "ever w involved with P?"
         };
@@ -59,25 +62,27 @@ namespace RWProgram
         public RWGui()
         {
             InitializeComponent();
+            InitializeGui();
+        }
+
+        private void InitializeGui()
+        {
             Logic = new Logic();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
             QueriesComboBox.Items.AddRange(Querends.ToArray());
-            LogicOperatorComboBox1.Items.AddRange(Operators.ToArray());
-            LogicOperatorComboBox1.SelectedIndex = 0;
-            LogicOperatorComboBox2.Items.AddRange(Operators.ToArray());
-            LogicOperatorComboBox2.SelectedIndex = 0;
-            LogicOperatorComboBox3.Items.AddRange(Operators.ToArray());
-            LogicOperatorComboBox3.SelectedIndex = 0;
-            LogicOperatorComboBox4.Items.AddRange(Operators.ToArray());
-            LogicOperatorComboBox4.SelectedIndex = 0;
             Logic.Actors.Add(new Actor() { Name = "ɛ", Index = ActorCounter++ });
             Logic.Actors.Add(new Actor() { Name = "Anyone", Index = 1000 });
+            ActorComboBox.Items.Clear();
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
-            ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
-            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
+            ProgramActorComboBox.Items.Clear();
+            ProgramActorComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
+            Actor2ComboBox.Items.Clear();
+            Actor2ComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
             Logic.Actions.Add(new Action() { Name = "Anything", Index = 1000 });
+            ActionComboBox.Items.Clear();
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
-            ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            ProgramActionComboBox.Items.Clear();
+            ProgramActionComboBox.Items.AddRange(Logic.Actions.Where(n => n.Name != "Anything").ToArray());
         }
 
         private void ActorsTextBox_Changed(object sender, EventArgs e)
@@ -94,12 +99,12 @@ namespace RWProgram
             ActorComboBox.Items.AddRange(Logic.Actors.ToArray());
 
             ProgramActorComboBox.Items.Clear();
-            ProgramActorComboBox.Items.AddRange(Logic.Actors.ToArray());
+            ProgramActorComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
 
             Actor2ComboBox.Items.Clear();
-            Actor2ComboBox.Items.AddRange(Logic.Actors.ToArray());
+            Actor2ComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
 
-            Logic.Program = Logic.Program.Where(x => Logic.Actors.Contains(x.actor)).ToList();
+            Logic.Program = Logic.Program.Where(x => Logic.Actors.Any(a => a.Index == x.actor.Index)).ToList();
             SetProgramText();
         }
 
@@ -118,27 +123,6 @@ namespace RWProgram
             }
             FluentComboBox.Items.Clear();
             FluentComboBox.Items.AddRange(Logic.Fluents.ToArray());
-
-            FluentComboBox2.Items.Clear();
-            FluentComboBox2.Items.AddRange(Logic.Fluents.ToArray());
-
-            PiComboBox.Items.Clear();
-            PiComboBox.Items.AddRange(Logic.Fluents.ToArray());
-
-            PiComboBox2.Items.Clear();
-            PiComboBox2.Items.AddRange(Logic.Fluents.ToArray());
-
-            GammaComboBox.Items.Clear();
-            GammaComboBox.Items.AddRange(Logic.Fluents.ToArray());
-
-            Pi2ComboBox.Items.Clear();
-            Pi2ComboBox.Items.AddRange(Logic.Fluents.ToArray());
-
-            GammaComboBox2.Items.Clear();
-            GammaComboBox2.Items.AddRange(Logic.Fluents.ToArray());
-
-            Pi2ComboBox2.Items.Clear();
-            Pi2ComboBox2.Items.AddRange(Logic.Fluents.ToArray());
         }
 
         private void ActionsTextBox_Changed(object sender, EventArgs e)
@@ -153,9 +137,9 @@ namespace RWProgram
             ActionComboBox.Items.Clear();
             ActionComboBox.Items.AddRange(Logic.Actions.ToArray());
             ProgramActionComboBox.Items.Clear();
-            ProgramActionComboBox.Items.AddRange(Logic.Actions.ToArray());
+            ProgramActionComboBox.Items.AddRange(Logic.Actions.Where(n => n.Name != "Anything").ToArray());
 
-            Logic.Program = Logic.Program.Where(x => Logic.Actions.Contains(x.action)).ToList();
+            Logic.Program = Logic.Program.Where(x => Logic.Actions.Any(a => a.Index == x.action.Index)).ToList();
             SetProgramText();
         }
 
@@ -165,34 +149,49 @@ namespace RWProgram
             var index = StatementsComboBox.SelectedIndex;
             StatementEnum statementEnum = (StatementEnum)index;
 
-            var alpha = new List<Fluent> { (Fluent)FluentComboBox.SelectedItem };
-            var pi = new List<Fluent> { (Fluent)PiComboBox.SelectedItem };
-            var alphaOperator = new List<LogicOperator>();
-            var piOperator = new List<LogicOperator>();
+            string alphaString, piString;
+            LogicalExpressionRoot alphaExpression, piExpression;
+            State alphaState, piState;
+            try
+            {
+                alphaString = AlphaTextBox.Text.Trim();
+                if (string.IsNullOrEmpty(alphaString))
+                    alphaState = new State();
+                else
+                {
+                    alphaExpression = Parser.Parse(AlphaTextBox.Text);
+                    alphaState = new State(alphaExpression, alphaString, Logic.Fluents);
+                }
 
-            if (FluentComboBox2.SelectedItem != null && LogicOperatorComboBox2.SelectedItem != null)
-            {
-                alpha.Add((Fluent)FluentComboBox2.SelectedItem);
-                alphaOperator.Add(GetOperator(LogicOperatorComboBox2.SelectedIndex));
+                piString = PiTextBox1.Text.Trim();
+                if (string.IsNullOrEmpty(piString))
+                    piState = new State();
+                else
+                {
+                    piExpression = Parser.Parse(PiTextBox1.Text);
+                    piState = new State(piExpression, piString, Logic.Fluents);
+                }
             }
-            if (PiComboBox2.SelectedItem != null && LogicOperatorComboBox1.SelectedItem != null)
+            catch (Exception)
             {
-                pi.Add((Fluent)PiComboBox2.SelectedItem);
-                piOperator.Add(GetOperator(LogicOperatorComboBox1.SelectedIndex));
+                MessageBox.Show("Nastąpił błąd podczas parsowania podanej formuły", "Sprawdź formułę.",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Question);
+                return;
             }
 
             switch (statementEnum)
             {
                 case StatementEnum.InitiallyFluent:
-                    Logic.Statements.Add(new InitiallyFluent (alpha, alphaOperator));
+                    if(!string.IsNullOrEmpty(alphaString))
+                        Logic.Statements.Add(new InitiallyFluent (alphaState));
                     break;
                 case StatementEnum.FluentAfterActionbyActor:
                     if (ActionComboBox.SelectedItem == null || ActorComboBox.SelectedItem == null)
                         return;
                     Logic.Statements.Add(new FluentAfterActionbyActor
                     (   
-                        alpha,
-                        alphaOperator,
+                        alphaState,
                         new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
@@ -201,8 +200,7 @@ namespace RWProgram
                         return;
                     Logic.Statements.Add(new FluentTypicallyAfterActionbyActor
                     (
-                        alpha,
-                        alphaOperator,
+                        alphaState,
                         new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
@@ -211,8 +209,7 @@ namespace RWProgram
                         return;
                     Logic.Statements.Add(new ObservableFluentAfterActionByActor
                     (
-                        alpha,
-                        alphaOperator,
+                        alphaState,
                         new List<(Action action, Actor actor)> { ((Action)ActionComboBox.SelectedItem, (Actor)ActorComboBox.SelectedItem)}
                     ));
                     break;
@@ -221,12 +218,10 @@ namespace RWProgram
                         return;
                     Logic.Statements.Add(new ActionByActorCausesAlphaIfFluents
                     (
-                        alpha,
-                        alphaOperator,
+                        alphaState,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
-                        pi,
-                        piOperator
+                        piState
                     ));
                     break;
                 case StatementEnum.ActionByActorReleasesFluent1IfFluents:
@@ -237,8 +232,7 @@ namespace RWProgram
                         (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
-                        pi,
-                        piOperator
+                        piState
                     ));
                     break;
                 case StatementEnum.ActionByActorTypicallyCausesAlphaIfFluents:
@@ -246,12 +240,10 @@ namespace RWProgram
                         return;
                     Logic.Statements.Add(new ActionByActorTypicallyCausesAlphaIfFluents
                     (
-                        alpha,
-                        alphaOperator,
+                        alphaState,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
-                        pi,
-                        piOperator
+                        piState
                     ));
                     break;
                 case StatementEnum.ActionByActorTypicallyReleasesFluent1IfFluents:
@@ -262,8 +254,7 @@ namespace RWProgram
                         (Fluent)FluentComboBox.SelectedItem,
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
-                        pi,
-                        piOperator 
+                        piState
                     ));
                     break;
                 case StatementEnum.ImpossibleActionByActorIfFluents:
@@ -273,17 +264,15 @@ namespace RWProgram
                     (
                         (Action)ActionComboBox.SelectedItem,
                         (Actor)ActorComboBox.SelectedItem,
-                        pi,
-                        piOperator
+                        piState
                     ));
                     break;
                 case StatementEnum.AlwaysPi:
-                    if (PiComboBox.SelectedItem == null)
+                    if (string.IsNullOrEmpty(piString))
                         return;
                     Logic.Statements.Add(new AlwaysPi
                     (
-                        pi,
-                        piOperator
+                        piState
                     ));
                     break;
                 case StatementEnum.NoninertialFluent:
@@ -341,12 +330,9 @@ namespace RWProgram
         {
             ActionComboBox.SelectedIndex = -1;
             ActorComboBox.SelectedIndex = -1;
-            PiComboBox.SelectedIndex = -1;
             FluentComboBox.SelectedIndex = -1;
-            PiComboBox2.SelectedIndex = -1;
-            FluentComboBox2.SelectedIndex = -1;
-            LogicOperatorComboBox1.SelectedIndex = 0;
-            LogicOperatorComboBox2.SelectedIndex = 0;
+            AlphaTextBox.Text = string.Empty;
+            PiTextBox1.Text =  string.Empty;
         }
 
         private void StatementsComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -429,25 +415,35 @@ namespace RWProgram
             var queryIndex = QueriesComboBox.SelectedIndex;
             var queryEnum = (QueriesEnum)queryIndex;
 
-            var gamma = new List<Fluent>();
-            if (GammaComboBox.SelectedItem != null)
-                gamma.Add((Fluent)GammaComboBox.SelectedItem);
-            var pi = new List<Fluent>();
-            if (Pi2ComboBox.SelectedItem != null)
-                pi.Add((Fluent)Pi2ComboBox.SelectedItem);
-
-            var gammaOperator = new List<LogicOperator>();
-            var piOperator = new List<LogicOperator>();
-
-            if (GammaComboBox2.SelectedItem != null && LogicOperatorComboBox4.SelectedItem != null)
+            string gammaString, piString;
+            LogicalExpressionRoot gammaExpression, piExpression;
+            State gammaState, piState;
+            try
             {
-                gamma.Add((Fluent)GammaComboBox2.SelectedItem);
-                gammaOperator.Add(GetOperator(LogicOperatorComboBox4.SelectedIndex));
+                gammaString = GammaTextBox.Text.Trim();
+                if(string.IsNullOrEmpty(gammaString))
+                    gammaState = new State();
+                else
+                {
+                    gammaExpression = Parser.Parse(GammaTextBox.Text);
+                    gammaState = new State(gammaExpression, gammaString, Logic.Fluents);
+                }
+
+                piString = PiTextBox2.Text.Trim();
+                if (string.IsNullOrEmpty(piString))
+                    piState = new State();
+                else
+                {
+                    piExpression = Parser.Parse(PiTextBox1.Text);
+                    piState = new State(piExpression, piString, Logic.Fluents);
+                }
             }
-            if (Pi2ComboBox2.SelectedItem != null && LogicOperatorComboBox3.SelectedItem != null)
+            catch (Exception)
             {
-                pi.Add((Fluent)Pi2ComboBox2.SelectedItem);
-                piOperator.Add(GetOperator(LogicOperatorComboBox3.SelectedIndex));
+                MessageBox.Show("Nastąpił błąd podczas parsowania podanej formuły", "Sprawdź formułę.",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Question);
+                return;
             }
 
             switch (queryEnum)
@@ -459,24 +455,23 @@ namespace RWProgram
                     Query = new EverExecutable();
                     break;
                 case QueriesEnum.AlwaysAccesibleYFromPi:
-                    if (GammaComboBox.SelectedItem != null)
+                    if (!string.IsNullOrEmpty(gammaString))
                     {
-                        var QueryAlways = new AlwaysAccesibleYFromPi();
-                        QueryAlways.Gamma.Fluents = gamma;
-                        QueryAlways.Gamma.Operators = gammaOperator;
-                        QueryAlways.Pi.Fluents = pi;
-                        QueryAlways.Pi.Operators = piOperator;
+                        var QueryAlways = new AlwaysAccesibleYFromPi(gammaState, piState);
                         Query = QueryAlways;
                     }
                     break;
                 case QueriesEnum.EverAccesibleYFromPi:
-                    if (GammaComboBox.SelectedItem != null)
+                    if (!string.IsNullOrEmpty(gammaString))
                     {
-                        var QueryAlways = new EverAccesibleYFromPi();
-                        QueryAlways.Gamma.Fluents = gamma;
-                        QueryAlways.Gamma.Operators = gammaOperator;
-                        QueryAlways.Pi.Fluents = pi;
-                        QueryAlways.Pi.Operators = piOperator;
+                        var QueryAlways = new EverAccesibleYFromPi(gammaState, piState);
+                        Query = QueryAlways;
+                    }
+                    break;
+                case QueriesEnum.TypicallyAccesibleYFromPi:
+                    if (!string.IsNullOrEmpty(gammaString))
+                    {
+                        var QueryAlways = new TypicallyAccesibleYFromPi(gammaState, piState);
                         Query = QueryAlways;
                     }
                     break;
@@ -607,17 +602,13 @@ namespace RWProgram
         private void ResetComboBoxes2()
         {
             Actor2ComboBox.SelectedIndex = -1;
-            Pi2ComboBox.SelectedIndex = -1;
-            GammaComboBox.SelectedIndex = -1;
-            Pi2ComboBox2.SelectedIndex = -1;
-            GammaComboBox2.SelectedIndex = -1;
-            LogicOperatorComboBox3.SelectedIndex = 0;
-            LogicOperatorComboBox4.SelectedIndex = 0;
+            PiTextBox2.Text = string.Empty;
+            GammaTextBox.Text = string.Empty;
         }
 
         private void SetQueryTextBox()
         {
-            QueryTextBox.Text = Query != null ? Query.ToString() : string.Empty;
+            QueryTextBox.Text = Query != null ? Query.ToString() + $" with program: {string.Join(",",Logic.Program.Select(x => $" {x.action.Name} by {x.actor.Name}"))}?" : string.Empty;
         }
 
         private void DeleteLastStatementButton_Click(object sender, EventArgs e)
@@ -634,13 +625,6 @@ namespace RWProgram
             SetProgramText( );
         }
 
-        private LogicOperator GetOperator(int index)
-        {
-            if (index < 0) return null;
-            if (index == 0) return new And();
-            if (index == 1) return new Or();
-            return new Implies();
-        }
         private void SetHardcodedLogicInFrontEnd(Logic logic)
         {
             actorsTextBox.Text = string.Join(", ", logic.Actors.Where(a => a.Name != "Anyone" && a.Name != "ɛ").Select(x => x.ToString()));
@@ -768,6 +752,28 @@ namespace RWProgram
             SetHardcodedLogicInFrontEnd(Tests_Logic.Test5);
             SetHardcodedProgramInFrontEnd(Tests_Programs.Test5c);
             SetHardcodedQueryInFrontEnd(Tests_Queries.Test5c);
+        }
+
+        private void ResetAllButton_Click(object sender, EventArgs e)
+        {
+            //TODO: refactor?
+            ActorCounter = 0;
+            ActionCounter = 0;
+            FluentCounter = 0;
+            actorsTextBox.Text = String.Empty;
+            fluentsTextBox.Text = String.Empty;
+            actionsTextBox.Text = String.Empty;
+            InitializeGui();
+            SetStatementsText();
+            ResetComboBoxes();
+            SetProgramText();
+            ResetComboBoxes2();
+            FluentComboBox.Items.Clear();
+            Query = null;
+            QueriesComboBox.SelectedIndex = -1;
+            ResponseTextBox.Text = string.Empty;
+            StatementsComboBox.SelectedIndex = -1; 
+            SetQueryTextBox();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LogicExpressionsParser;
 
 namespace RWLogic
 {
@@ -73,7 +74,7 @@ namespace RWLogic
                         if (model.state[i].typicalEffects[agent, action].Count != 0)
                         {
                             log += model.action[action] + " by " + model.agent[agent] + ":\n";
-                            foreach (Model.State s in model.state[i].typicalEffects[agent, action]) log += s.Print();
+                            foreach (State s in model.state[i].typicalEffects[agent, action]) log += s.Print();
                         }
 
                     }
@@ -86,7 +87,7 @@ namespace RWLogic
                         if (model.state[i].abnormalEffects[agent, action].Count != 0)
                         {
                             log += model.action[action] + " by " + model.agent[agent] + ":\n";
-                            foreach (Model.State s in model.state[i].abnormalEffects[agent, action]) log += s.Print();
+                            foreach (State s in model.state[i].abnormalEffects[agent, action]) log += s.Print();
                         }
 
                     }

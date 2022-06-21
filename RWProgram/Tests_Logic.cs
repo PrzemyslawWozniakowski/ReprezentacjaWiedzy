@@ -27,17 +27,18 @@ namespace RWProgram
                 var anyone = new Actor { Name = "Anyone", Index = 1000 };
                 var anything = new Action { Name = "Anything", Index = 1000 };
 
+                var fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive };
                 return new Logic
                 {
-                    Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
+                    Fluents = fluents,
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
-                    Statements = new List<Statement> { 
-                        new InitiallyFluent(new List<Fluent> { notLoaded }, new List<LogicOperator>()),
-                        new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notLoaded }, new List<LogicOperator>(), shoot, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notAlive }, new List<LogicOperator>(), shoot, bill, new List<Fluent> { loaded }, new List<LogicOperator>()),
+                    Statements = new List<Statement> {
+                        new InitiallyFluent(new State("not loaded", fluents)),
+                        new InitiallyFluent(new State("alive", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
                     }
                 };
             }
@@ -60,17 +61,19 @@ namespace RWProgram
                 var anyone = new Actor { Name = "Anyone", Index = 1000 };
                 var anything = new Action { Name = "Anything", Index = 1000 };
 
+                var fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive };
+
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notLoaded }, new List<LogicOperator>(), shoot, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notAlive }, new List<LogicOperator>(), shoot, bill, new List<Fluent> { loaded }, new List<LogicOperator>()),
-                        new FluentAfterActionbyActor(new List<Fluent> {notAlive}, new List<LogicOperator>(), new List<(Classes.Action action, Actor actor)> { (shoot, bill) })
+                        new InitiallyFluent(new State("alive", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new FluentAfterActionbyActor(new State("not alive", fluents), new List<(Classes.Action action, Actor actor)> { (shoot, bill) })
                     }
                 };
             }
@@ -92,18 +95,20 @@ namespace RWProgram
 
                 var anyone = new Actor { Name = "Anyone", Index = 1000 };
                 var anything = new Action { Name = "Anything", Index = 1000 };
-                
+
+                var fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive };
+
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
                     Actors = new List<Actor> { bill, anyone, empty },
                     Actions = new List<Action> { load, shoot, spin, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new List<Fluent> { notLoaded, alive }, new List<LogicOperator> { new And() }),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notLoaded }, new List<LogicOperator>(), shoot, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notAlive }, new List<LogicOperator>(), shoot, bill, new List<Fluent> { loaded }, new List<LogicOperator>()),
-                        new ActionByActorReleasesFluent1IfFluents(loaded, spin, bill, new List<Fluent> { loaded }, new List<LogicOperator>() ),
+                        new InitiallyFluent(new State("not loaded && alive", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
+                        new ActionByActorReleasesFluent1IfFluents(loaded, spin, bill,  new State("loaded", fluents)),
                     }
                 };
             }
@@ -124,15 +129,17 @@ namespace RWProgram
                 var anyone = new Actor { Name = "Anyone", Index = 1000 };
                 var anything = new Action { Name = "Anything", Index = 1000 };
 
+                var fluents = new List<Fluent> { open, notOpen, hasCard, notHasCard };
+
                 return new Logic
                 {
                     Fluents = new List<Fluent> { open, notOpen, hasCard, notHasCard },
                     Actors = new List<Actor> { bill, anyone, empty },
                     Actions = new List<Action> { insertCard, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new List<Fluent> { notOpen }, new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ open }, new List<LogicOperator>(), insertCard, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ImpossibleActionByActorIfFluents(insertCard, bill, new List<Fluent> { hasCard }, new List<LogicOperator>())
+                        new InitiallyFluent(new State("not open", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("open", fluents), insertCard, bill, new State()),
+                        new ImpossibleActionByActorIfFluents(insertCard, bill, new State("hasCard", fluents))
                     }
                 };
             }
@@ -155,17 +162,19 @@ namespace RWProgram
                 var anyone = new Actor { Name = "Anyone", Index = 1000 };
                 var anything = new Action { Name = "Anything", Index = 1000 };
 
+                var fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive };
+
                 return new Logic
                 {
                     Fluents = new List<Fluent> { loaded, notLoaded, alive, notAlive },
                     Actors = new List<Actor> { bill, jim, anyone, empty },
                     Actions = new List<Action> { load, shoot, anything },
                     Statements = new List<Statement> {
-                        new InitiallyFluent(new List<Fluent> { notLoaded }, new List<LogicOperator>()),
-                        new InitiallyFluent(new List<Fluent> { alive }, new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ loaded }, new List<LogicOperator>(), load, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorCausesAlphaIfFluents(new List<Fluent>{ notLoaded }, new List<LogicOperator>(), shoot, bill, new List<Fluent>(), new List<LogicOperator>()),
-                        new ActionByActorTypicallyCausesAlphaIfFluents(new List<Fluent>{ notAlive }, new List<LogicOperator>(), shoot, bill, new List<Fluent> { loaded }, new List<LogicOperator>()),
+                        new InitiallyFluent(new State("not loaded", fluents)),
+                        new InitiallyFluent(new State("alive", fluents)),
+                        new ActionByActorCausesAlphaIfFluents(new State("loaded", fluents), load, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not loaded", fluents), shoot, bill, new State()),
+                        new ActionByActorCausesAlphaIfFluents(new State("not alive", fluents), shoot, bill, new State("loaded", fluents)),
                     }
                 };
             }
