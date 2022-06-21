@@ -104,7 +104,7 @@ namespace RWProgram
             Actor2ComboBox.Items.Clear();
             Actor2ComboBox.Items.AddRange(Logic.Actors.Where(n => n.Name != "Anyone" && n.Name != "ɛ").ToArray());
 
-            Logic.Program = Logic.Program.Where(x => Logic.Actors.Contains(x.actor)).ToList();
+            Logic.Program = Logic.Program.Where(x => Logic.Actors.Any(a => a.Index == x.actor.Index)).ToList();
             SetProgramText();
         }
 
@@ -139,7 +139,7 @@ namespace RWProgram
             ProgramActionComboBox.Items.Clear();
             ProgramActionComboBox.Items.AddRange(Logic.Actions.Where(n => n.Name != "Anything").ToArray());
 
-            Logic.Program = Logic.Program.Where(x => Logic.Actions.Contains(x.action)).ToList();
+            Logic.Program = Logic.Program.Where(x => Logic.Actions.Any(a => a.Index == x.action.Index)).ToList();
             SetProgramText();
         }
 

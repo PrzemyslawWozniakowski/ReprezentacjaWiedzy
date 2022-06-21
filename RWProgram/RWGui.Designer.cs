@@ -618,7 +618,6 @@
             this.przykład1ToolStripMenuItem.Name = "przykład1ToolStripMenuItem";
             this.przykład1ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład1ToolStripMenuItem.Text = "Przykład 1 - Yale Shooting Problem";
-            this.przykład1ToolStripMenuItem.Click += new System.EventHandler(this.SetTest1Domain);
             // 
             // przykładKwerenda1ToolStripMenuItem
             // 
@@ -650,7 +649,6 @@
             this.przykład2ToolStripMenuItem.Name = "przykład2ToolStripMenuItem";
             this.przykład2ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład2ToolStripMenuItem.Text = "Przykład 2 - Stanford Murder Mystery";
-            this.przykład2ToolStripMenuItem.Click += new System.EventHandler(this.SetTest2Domain);
             // 
             // przykładKwerenda1ToolStripMenuItem1
             // 
@@ -682,7 +680,6 @@
             this.przykład3ToolStripMenuItem.Name = "przykład3ToolStripMenuItem";
             this.przykład3ToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład3ToolStripMenuItem.Text = "Przykład 3 - Russian Turkey Scenario";
-            this.przykład3ToolStripMenuItem.Click += new System.EventHandler(this.SetTest3Domain);
             // 
             // przykładKwerenda1ToolStripMenuItem2
             // 
@@ -714,7 +711,6 @@
             this.przykład4OpeningTheDoorToolStripMenuItem.Name = "przykład4OpeningTheDoorToolStripMenuItem";
             this.przykład4OpeningTheDoorToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład4OpeningTheDoorToolStripMenuItem.Text = "Przykład 4 - Opening the door";
-            this.przykład4OpeningTheDoorToolStripMenuItem.Click += new System.EventHandler(this.SetTest4Domain);
             // 
             // przykładKwerenda1ToolStripMenuItem3
             // 
@@ -746,7 +742,6 @@
             this.przykład5ModificationOfYSPToolStripMenuItem.Name = "przykład5ModificationOfYSPToolStripMenuItem";
             this.przykład5ModificationOfYSPToolStripMenuItem.Size = new System.Drawing.Size(337, 26);
             this.przykład5ModificationOfYSPToolStripMenuItem.Text = "Przykład 5 - YSP with default effect";
-            this.przykład5ModificationOfYSPToolStripMenuItem.Click += new System.EventHandler(this.SetTest5Domain);
             // 
             // przykładKwerenda1ToolStripMenuItem4
             // 
