@@ -118,11 +118,11 @@ namespace RWProgram
             }
         }
 
-        public static EverExecutable Test4c
+        public static AlwaysExecutable Test4c
         {
             get
             {
-                return new EverExecutable
+                return new AlwaysExecutable
                 {
                 };
             }

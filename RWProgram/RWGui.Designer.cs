@@ -734,7 +734,7 @@
             // 
             this.przykładKwerenda3ToolStripMenuItem3.Name = "przykładKwerenda3ToolStripMenuItem3";
             this.przykładKwerenda3ToolStripMenuItem3.Size = new System.Drawing.Size(344, 26);
-            this.przykładKwerenda3ToolStripMenuItem3.Text = "Przykład 3 - Kwerenda EverExecutable";
+            this.przykładKwerenda3ToolStripMenuItem3.Text = "Przykład 3 - Kwerenda AlwaysExecutable";
             this.przykładKwerenda3ToolStripMenuItem3.Click += new System.EventHandler(this.przykładKwerenda3ToolStripMenuItem3_Click);
             // 
             // przykład5ModificationOfYSPToolStripMenuItem
