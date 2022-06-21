@@ -68,7 +68,9 @@ namespace RWProgram
         private void InitializeGui()
         {
             Logic = new Logic();
+            StatementsComboBox.Items.Clear();
             StatementsComboBox.Items.AddRange(Statements.ToArray());
+            QueriesComboBox.Items.Clear();
             QueriesComboBox.Items.AddRange(Querends.ToArray());
             Logic.Actors.Add(new Actor() { Name = "ɛ", Index = ActorCounter++ });
             Logic.Actors.Add(new Actor() { Name = "Anyone", Index = 1000 });
@@ -328,9 +330,9 @@ namespace RWProgram
 
         private void ResetComboBoxes()
         {
-            ActionComboBox.SelectedIndex = -1;
-            ActorComboBox.SelectedIndex = -1;
-            FluentComboBox.SelectedIndex = -1;
+            ActionComboBox.ResetText();
+            ActorComboBox.ResetText();
+            FluentComboBox.ResetText();
             AlphaTextBox.Text = string.Empty;
             PiTextBox1.Text =  string.Empty;
         }
@@ -601,7 +603,7 @@ namespace RWProgram
 
         private void ResetComboBoxes2()
         {
-            Actor2ComboBox.SelectedIndex = -1;
+            Actor2ComboBox.ResetText();
             PiTextBox2.Text = string.Empty;
             GammaTextBox.Text = string.Empty;
         }
@@ -770,9 +772,11 @@ namespace RWProgram
             ResetComboBoxes2();
             FluentComboBox.Items.Clear();
             Query = null;
-            QueriesComboBox.SelectedIndex = -1;
+            QueriesComboBox.ResetText();
             ResponseTextBox.Text = string.Empty;
-            StatementsComboBox.SelectedIndex = -1; 
+            StatementsComboBox.ResetText();
+            ProgramActionComboBox.ResetText();
+            ProgramActorComboBox.ResetText();
             SetQueryTextBox();
         }
     }
