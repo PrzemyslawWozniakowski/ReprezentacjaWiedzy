@@ -343,13 +343,27 @@ namespace RWLogic
 
         public bool IsAlwaysAccessible(Query_AccessibleAlways query)
         {
-            List<State> currentStates = initial;
+            List<State> currentStates;
+
+            if(query.initialCondition.EmptyRoot)
+            {
+                currentStates = initial;
+            }
+            else
+            {
+                currentStates = new List<State>(state);
+            }
+
             List<State> nextStates = new List<State>();
 
             foreach (State state in currentStates)
             {
-                if (!state.SatisfiesCondition(query.initialCondition)) return false;
+                if (state.SatisfiesCondition(query.initialCondition) && !state.forbidden)
+                    nextStates.Add(state);
             }
+
+            currentStates = nextStates;
+            nextStates = new List<State>();
 
             for (int step = 0; step < query.program.Count; step++)
             {
@@ -374,15 +388,27 @@ namespace RWLogic
 
         public bool IsEverAccessible(Query_AccessibleEver query)
         {
-            List<State> currentStates = initial;
+            List<State> currentStates;
+
+            if (query.initialCondition.EmptyRoot)
+            {
+                currentStates = initial;
+            }
+            else
+            {
+                currentStates = new List<State>(state);
+            }
+
             List<State> nextStates = new List<State>();
 
             foreach (State state in currentStates)
             {
-                if (state.SatisfiesCondition(query.initialCondition)) nextStates.Add(state);
+                if (state.SatisfiesCondition(query.initialCondition) && !state.forbidden)
+                    nextStates.Add(state);
             }
 
             currentStates = nextStates;
+            if (currentStates.Count == 0) return true;
             nextStates = new List<State>();
 
             for (int step = 0; step < query.program.Count; step++)
