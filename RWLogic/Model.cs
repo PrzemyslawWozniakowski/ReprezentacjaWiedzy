@@ -436,72 +436,120 @@ namespace RWLogic
             else return false;
         }
 
-        public bool IsAlwaysInvolved(Query_InvolvedAlways query)
+        private bool AlwaysInvolvedDFS(State currentState, Query_InvolvedAlways query, int step, bool involved)
         {
-            if (!query.program.Select(p => p.agent).Contains(query.agent))
-                return false;
+            if (query.program.Count == step)
+                return involved;
 
-            List<State> currentStates = initial;
-            List<State> nextStates = new List<State>();
-
-            int step = 0;
-            while (step < query.program.Count)
+            foreach(State nextState in currentState.typicalEffects[query.program[step].agent, query.program[step].action])
             {
-                while (!(query.program[step].agent == query.agent))
+                if(query.program[step].agent == query.agent)
                 {
-                    foreach (State state in currentStates)
+                    if(nextState == currentState)
                     {
-                        List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
-                        nextStates.AddRange(possibleNextStates);
+                        if (!AlwaysInvolvedDFS(nextState, query, step + 1, involved)) return false;
                     }
-
-                    currentStates = nextStates;
-                    nextStates = new List<State>();
-
-                    step++;
                 }
-
-                foreach (State state in currentStates)
+                else
                 {
-                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
-                    if (possibleNextStates.Count == 0 || possibleNextStates is null) return false;
+                    if (!AlwaysInvolvedDFS(nextState, query, step + 1, involved)) return false;
                 }
-                step++;
+            }
+
+            foreach (State nextState in currentState.abnormalEffects[query.program[step].agent, query.program[step].action])
+            {
+                if (query.program[step].agent == query.agent)
+                {
+                    if (nextState == currentState)
+                    {
+                        if (!AlwaysInvolvedDFS(nextState, query, step + 1, involved)) return false;
+                    }
+                }
+                else
+                {
+                    if (!AlwaysInvolvedDFS(nextState, query, step + 1, involved)) return false;
+                }
             }
 
             return true;
         }
 
-        public bool IsEverInvolved(Query_InvolvedEver query)
+        public bool IsAlwaysInvolved(Query_InvolvedAlways query)
         {
+            List<State> currentStates = initial;
+
+            if (currentStates.Count == 0) return true;
+
             if (!query.program.Select(p => p.agent).Contains(query.agent))
                 return false;
 
-            List<State> currentStates = initial;
-            List<State> nextStates = new List<State>();
 
-            int step = 0;
-            while (step < query.program.Count)
+            foreach(State nextState in currentStates)
             {
-                while (!(query.program[step].agent == query.agent))
+                if (!AlwaysInvolvedDFS(nextState, query, 0, false)) return false;
+            }
+
+            return true;
+        }
+
+        private bool EverInvolvedDFS(State currentState, Query_InvolvedEver query, int step, bool involved)
+        {
+            if (step == query.program.Count)
+                return false;
+
+            foreach (State nextState in currentState.typicalEffects[query.program[step].agent, query.program[step].action])
+            {
+                if (query.program[step].agent == query.agent)
                 {
-                    foreach (State state in currentStates)
+                    if (nextState == currentState)
                     {
-                        List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
-                        nextStates.AddRange(possibleNextStates);
+                        if (EverInvolvedDFS(nextState, query, step + 1, involved)) return true;
                     }
-
-                    currentStates = nextStates;
-                    nextStates = new List<State>();
-
-                    step++;
+                    else
+                    {
+                        return true;
+                    }
                 }
-
-                foreach (State state in currentStates)
+                else
                 {
-                    List<State> possibleNextStates = state.possibleEffects[query.program[step].agent, query.program[step].action];
-                    if (possibleNextStates.Count != 0 && !(possibleNextStates is null)) return true;
+                    if (EverInvolvedDFS(nextState, query, step + 1, involved)) return true;
                 }
+            }
+
+            foreach (State nextState in currentState.abnormalEffects[query.program[step].agent, query.program[step].action])
+            {
+                if (query.program[step].agent == query.agent)
+                {
+                    if (nextState == currentState)
+                    {
+                        if (EverInvolvedDFS(nextState, query, step + 1, involved)) return true;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (EverInvolvedDFS(nextState, query, step + 1, involved)) return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsEverInvolved(Query_InvolvedEver query)
+        {
+            List<State> currentStates = initial;
+
+            if (currentStates.Count == 0) return true;
+
+            if (!query.program.Select(p => p.agent).Contains(query.agent))
+                return false;
+
+            foreach (State nextState in currentStates)
+            {
+                if (EverInvolvedDFS(nextState, query, 0, false)) return true;
             }
 
             return false;
