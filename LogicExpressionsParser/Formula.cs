@@ -11,7 +11,7 @@ namespace LogicExpressionsParser
     {
 
         private LogicalExpressionRoot LogicalExpressionRoot;
-        private bool EmptyRoot = false;
+        public bool EmptyRoot = false;
         private string[] FluentNames;
         public Formula(LogicalExpressionRoot root, string[] fluentName)
         {
