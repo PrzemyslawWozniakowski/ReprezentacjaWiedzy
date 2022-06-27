@@ -56,6 +56,8 @@ namespace RWProgram
                     return fasada.Query(new RWLogic.Query_AccessibleAlways(LogicProgram, q.Pi.ToLogic(), q.Gamma.ToLogic()));
                 case EverAccesibleYFromPi q:
                     return fasada.Query(new RWLogic.Query_AccessibleEver(LogicProgram, q.Pi.ToLogic(), q.Gamma.ToLogic()));
+                case TypicallyAccesibleYFromPi q:
+                    return fasada.Query(new RWLogic.Query_AccessibleTypically(LogicProgram, q.Pi.ToLogic(), q.Gamma.ToLogic()));
                 case AlwaysWInvolved q:
                     return fasada.Query(new RWLogic.Query_InvolvedAlways(LogicProgram, q.W.Index));
                 case EverWInvolved q:
