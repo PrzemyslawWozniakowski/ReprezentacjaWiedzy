@@ -225,6 +225,20 @@ namespace RWLogic
         }
     }
 
+    public class Query_AccessibleTypically
+    {
+        public List<(int agent, int action)> program { get; } //program dzialan
+        public Formula initialCondition { get; }
+        public Formula endCondition { get; }
+
+        public Query_AccessibleTypically(List<(int agent, int action)> program, Formula initialCondition, Formula endCondition)
+        {
+            this.program = program;
+            this.initialCondition = initialCondition;
+            this.endCondition = endCondition;
+        }
+    }
+
     public class Query_AccessibleEver
     {
         public List<(int agent, int action)> program { get; } //program dzialan

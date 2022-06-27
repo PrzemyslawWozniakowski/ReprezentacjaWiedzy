@@ -386,6 +386,65 @@ namespace RWLogic
 
         }
 
+        public bool IsTypicallyAccessible(Query_AccessibleTypically query)
+        {
+            List<State> startStates;
+
+            if (query.initialCondition.EmptyRoot)
+            {
+                startStates = initial;
+            }
+            else
+            {
+                startStates = new List<State>(state);
+            }
+
+            List<(State, int)> currentStates = new List<(State, int)>();
+            List<(State, int)> nextStates = new List<(State, int)>();
+
+            foreach (State state in startStates)
+            {
+                if (state.SatisfiesCondition(query.initialCondition) && !state.forbidden)
+                    nextStates.Add((state, 0));
+            }
+
+            currentStates = nextStates;
+            nextStates = new List<(State, int)>();
+
+            for (int step = 0; step < query.program.Count; step++)
+            {
+                foreach ((State,int) state in currentStates)
+                {
+                    foreach(State nextState in state.Item1.typicalEffects[query.program[step].agent, query.program[step].action])
+                    {
+                        nextStates.Add((nextState, state.Item2));
+                    }
+                    foreach (State nextState in state.Item1.abnormalEffects[query.program[step].agent, query.program[step].action])
+                    {
+                        nextStates.Add((nextState, state.Item2 + 1));
+                    }
+                }
+
+                currentStates = nextStates;
+                nextStates = new List<(State, int)>();
+            }
+
+            int min = query.program.Count + 100;
+
+            foreach((_,int atypical) in currentStates)
+            {
+                if (min > atypical)
+                    min = atypical;
+            }
+
+            foreach ((State,int) state in currentStates)
+            {
+                if (state.Item2 == min && !state.Item1.SatisfiesCondition(query.endCondition)) return false;
+            }
+
+            return true;
+        }
+
         public bool IsEverAccessible(Query_AccessibleEver query)
         {
             List<State> currentStates;

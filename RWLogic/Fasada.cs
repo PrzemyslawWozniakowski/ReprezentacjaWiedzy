@@ -107,6 +107,11 @@ namespace RWLogic
             return model.IsEverExecutable(query);
         }
 
+        public bool Query(Query_AccessibleTypically query)
+        {
+            return model.IsTypicallyAccessible(query);
+        }
+
         public bool Query(Query_AccessibleAlways query)
         {
             return model.IsAlwaysAccessible(query);
